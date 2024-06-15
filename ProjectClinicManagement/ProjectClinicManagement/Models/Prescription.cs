@@ -1,12 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjectClinicManagement.Models
 {
-    internal class Prescription
+    public class Prescription
     {
+        [Key] public int Id { get; set; }
+        [Required] public int PatientRecordId { get; set; }
+        [Required] public int MedicineID { get; set; }
+        [Required] public string Dosage { get; set; }
+        public string Duration { get; set; }
+        public string Instruction { get; set; }
+        public string Remark { get; set; }
+        [Required] public DateTime Date { get; set; }
+
+        [ForeignKey("PatientRecordId")] public virtual Patient_Record? Patient_Record { get; set; }
+        [ForeignKey("MedicineID")] public virtual Medicine? Medicine { get; set; }
+
+
+
     }
 }
