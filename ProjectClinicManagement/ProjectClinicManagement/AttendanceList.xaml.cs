@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace ProjectClinicManagement
 {
     /// <summary>
-    /// Interaction logic for UserList.xaml
+    /// Interaction logic for AttendanceList.xaml
     /// </summary>
-    public partial class UserList : Window
+    public partial class AttendanceList : Window
     {
-        public UserList()
+        public AttendanceList()
         {
             InitializeComponent();
         }

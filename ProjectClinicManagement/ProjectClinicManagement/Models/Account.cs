@@ -20,8 +20,15 @@ namespace ProjectClinicManagement.Models
         [Required] public RoleType Role { get; set; }
         [Required] public StatusType Status { get; set; }
 
+        [Required, DataType(DataType.Currency)]
+        public decimal Salary { get; set; }
+
+        [Required, DataType(DataType.Date)]
+        public DateTime JoinDate { get; set; }
         public virtual ICollection<Patient_Record>? Patient_Records { get; set; }
         public virtual ICollection<Receipt>? Receipts { get; set; }
+        public virtual ICollection<Attendance>? Attendances { get; set; }
+        public virtual ICollection<TaskAssignment>? TaskAssignments { get; set; }
 
         public enum RoleType
         {
