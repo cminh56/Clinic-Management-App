@@ -26,19 +26,19 @@ namespace ProjectClinicManagement
             LoadData();
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /*private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(AccountList.SelectedItems != null)
             {
                 
             }
-        }
+        }*/
         private void LoadData()
         {
             using (var context = new DataContext())
             {
-                var employees = context.Accounts.ToList();
-                AccountList.ItemsSource = employees;
+                var account = context.Account.ToList();
+                AccountList.ItemsSource = account;
             }
         }
     }

@@ -17,12 +17,14 @@ namespace ProjectClinicManagement.Data
             string connectionString = config.GetConnectionString("Dbcontext");
             optionsBuilder.UseSqlServer(connectionString);
         }
-        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Account> Account { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
-        public DbSet<Patient_Record> Patient_Records { get; set; }  
+        public DbSet<Patient_Record> Patient_Records { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }
         public DbSet<Receipt> Receipts { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<TaskAssignment> TaskAssignments { get; set; }
 
     }
 }

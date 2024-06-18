@@ -1,6 +1,7 @@
 ﻿using ProjectClinicManagement.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class TaskAssignment
 {
@@ -8,7 +9,7 @@ public class TaskAssignment
     public int Id { get; set; }
 
     [Required]
-    public int UserId { get; set; }
+    public int AccountId { get; set; }
 
     [Required]
     public string TaskName { get; set; }
@@ -23,7 +24,8 @@ public class TaskAssignment
     [Required]
     public TaskStatus Status { get; set; }
 
-    public virtual Account Account { get; set; }
+    [ForeignKey("AccountId")] public virtual Account? Account { get; set; }
+
 }
 
 public enum TaskStatus
@@ -31,5 +33,4 @@ public enum TaskStatus
     NotStarted,
     InProgress,
     Completed,
-    OnHold
 }

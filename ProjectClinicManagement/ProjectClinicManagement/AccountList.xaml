@@ -8,7 +8,7 @@
         Title="UserList" Height="450" Width="800">
     <Grid>
         <Grid Margin="0,0,227,0">
-            <DataGrid x:Name="AccountList" AutoGenerateColumns="True" SelectionChanged="DataGrid_SelectionChanged"/>
+            <DataGrid x:Name="AccountList" AutoGenerateColumns="True"/>
         </Grid>
         
 

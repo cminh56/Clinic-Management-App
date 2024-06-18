@@ -1,6 +1,7 @@
 ﻿using ProjectClinicManagement.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class Attendance
 {
@@ -8,12 +9,12 @@ public class Attendance
     public int Id { get; set; }
 
     [Required]
-    public int UserId { get; set; }
-
+    public int AccountId { get; set; }
+    
     [Required]
     public DateTime CheckInTime { get; set; }
 
     public DateTime? CheckOutTime { get; set; }
 
-    public virtual Account Account { get; set; }
+    [ForeignKey("AccountId")] public virtual Account? Account { get; set; }
 }

@@ -12,7 +12,7 @@ namespace ProjectClinicManagement.Models
         [Key] public int Id { get; set; }
 
         [Required, DataType(DataType.EmailAddress)]
-        public string Emai { get; set; }
+        public string Email { get; set; }
         [Required] public string UserName { get; set; }
 
         [Required, DataType(DataType.Password)]
