@@ -22,7 +22,6 @@ namespace ProjectClinicManagement
             ServiceProvider = serviceCollection.BuildServiceProvider();
 
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-            mainWindow.Show();
         }
 
         private void ConfigureServices(IServiceCollection services)
