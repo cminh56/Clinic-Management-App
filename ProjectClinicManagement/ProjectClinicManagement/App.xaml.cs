@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectClinicManagement.Data;
+using ProjectClinicManagement.ViewModel;
 using System;
 using System.Configuration;
 using System.Data;
@@ -13,22 +14,6 @@ namespace ProjectClinicManagement
     /// </summary>
     public partial class App : Application
     {
-        public static IServiceProvider ServiceProvider { get; private set; }
-
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            var serviceCollection = new ServiceCollection();
-            ConfigureServices(serviceCollection);
-            ServiceProvider = serviceCollection.BuildServiceProvider();
-
-            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-        }
-
-        private void ConfigureServices(IServiceCollection services)
-        {
-           
-            services.AddTransient<MainWindow>();
-        }
     }
 
 }
