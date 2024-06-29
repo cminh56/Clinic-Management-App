@@ -22,6 +22,12 @@
     <Compile Update="TaskList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Create.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Edit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -42,7 +48,19 @@
     <Page Update="AccountList.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Style\Button.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="TaskList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Utilities\DataTemplate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Create.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Edit.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Login.xaml">

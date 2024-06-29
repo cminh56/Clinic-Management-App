@@ -5,31 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ProjectClinicManagement.Command
+namespace ProjectClinicManagement.Utilities
 {
     public class RelayCommand : ICommand
     {
         public event EventHandler? CanExecuteChanged;
 
         private Action<object> _Excute { get; set; }
-        private Predicate<object> _CanExcute { get; set; }
+        private readonly Func<object, bool> _canExecute;
 
 
-        public RelayCommand(Action<object> ExcuteMethod, Predicate<object> CanExcuteMethod)
+        public RelayCommand(Action<object> ExcuteMethod, Func<object, bool> canExecute = null)
         {
 
             _Excute = ExcuteMethod;
-            _CanExcute = CanExcuteMethod;
+            _canExecute = canExecute;
 
         }
 
 
 
-        public bool CanExecute(object? parameter)
-        {
-            return _CanExcute(parameter);
-        }
-
+        public bool CanExecute(object parameter) => _canExecute == null || _canExecute(parameter);
         public void Execute(object? parameter)
         {
             _Excute(parameter);

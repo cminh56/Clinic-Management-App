@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectClinicManagement"
+         xmlns:vm="clr-namespace:ProjectClinicManagement.ViewModel"
+         xmlns:Menu="clr-namespace:ProjectClinicManagement.Utilities"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800"
+           AllowsTransparency="True"
+       WindowStartupLocation="CenterScreen"
+       WindowStyle="None">
+    
+
     <Grid>
+        <DockPanel LastChildFill="False">
+            <Grid Width="141" Height="433"/>
+        </DockPanel>
 
     </Grid>
 </Window>

@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Login" Height="530" Width="450">
     <Grid Margin="0,0,0,-81">
+        
         <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="10,263,0,0" VerticalAlignment="Top" Width="420" PasswordChanged="PasswordBox_PasswordChanged" Height="35" FontSize="14"/>
         <TextBox HorizontalAlignment="Left" Margin="10,165,0,0" TextWrapping="Wrap" Text="{Binding Username}" VerticalAlignment="Top" Width="420" Height="35" FontSize="14" />
         <Button Command="{Binding LoginCommand}" Content="Login" HorizontalAlignment="Center" Margin="0,372,0,0" VerticalAlignment="Top" Width="422" Height="50"  />
