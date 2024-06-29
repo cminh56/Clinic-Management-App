@@ -1,5 +1,6 @@
 ﻿using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Data;
+using ProjectClinicManagement.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,13 +40,14 @@ namespace ProjectClinicManagement.ViewModel
 
                 if (user != null)
                 {
-                    // Đăng nhập thành công
-                    System.Windows.MessageBox.Show("Login successful!");
-                    _loginWindow.Close();
 
-                    // Mở cửa sổ chính (MainWindow)
+
+                    // Open main window (Window1)
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
+
+                    _loginWindow.Close();
+
                 }
                 else
                 {

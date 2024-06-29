@@ -5,11 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectClinicManagement.Views"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
-    <Grid>
-        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="151,161,0,0" VerticalAlignment="Top" Width="120" PasswordChanged="PasswordBox_PasswordChanged"/>
-        <TextBox HorizontalAlignment="Left" Margin="151,104,0,0" TextWrapping="Wrap" Text="{Binding Username}" VerticalAlignment="Top" Width="120"/>
-        <Button Command="{Binding LoginCommand}" Content="Login" HorizontalAlignment="Left" Margin="211,217,0,0" VerticalAlignment="Top" />
+        Title="Login" Height="530" Width="450">
+    <Grid Margin="0,0,0,-81">
+        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Left" Margin="10,263,0,0" VerticalAlignment="Top" Width="420" PasswordChanged="PasswordBox_PasswordChanged" Height="35" FontSize="14"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,165,0,0" TextWrapping="Wrap" Text="{Binding Username}" VerticalAlignment="Top" Width="420" Height="35" FontSize="14" />
+        <Button Command="{Binding LoginCommand}" Content="Login" HorizontalAlignment="Center" Margin="0,372,0,0" VerticalAlignment="Top" Width="422" Height="50"  />
+        <Label Content="User Name:" HorizontalAlignment="Left" Margin="10,123,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="Password:" HorizontalAlignment="Left" Margin="10,228,0,0" VerticalAlignment="Top" Height="52" Width="133" FontSize="20"/>
+        <CheckBox x:Name="showpass" Content="Show password" HorizontalAlignment="Left" Margin="286,322,0,0" VerticalAlignment="Top" FontSize="16" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
 
+        <TextBox Name="passwordTextBox" HorizontalAlignment="Left"  Margin="10,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="420" Height="35" Visibility="Collapsed" FontSize="14"/>
+        
     </Grid>
 </Window>

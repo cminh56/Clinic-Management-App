@@ -31,9 +31,26 @@ namespace ProjectClinicManagement.Views
         {
             if (viewModel != null)
             {
-              
+
                 viewModel.Password = PasswordBox.Password;
             }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (showpass.IsChecked == true)
+            {
+                passwordTextBox.Text = PasswordBox.Password;
+                PasswordBox.Visibility = Visibility.Collapsed;
+                passwordTextBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PasswordBox.Password = passwordTextBox.Text;
+                PasswordBox.Visibility = Visibility.Visible;
+                passwordTextBox.Visibility = Visibility.Collapsed;
+            }
+
         }
     }
 }
