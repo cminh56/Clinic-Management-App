@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ProjectClinicManagement.Views
 {
     /// <summary>
-    /// Interaction logic for Create.xaml
+    /// Interaction logic for Page2.xaml
     /// </summary>
-    public partial class Create : UserControl
+    public partial class Page2 : Page
     {
-        public Create()
+        public Page2()
         {
             InitializeComponent();
         }
