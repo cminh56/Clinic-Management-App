@@ -20,12 +20,14 @@ namespace ProjectClinicManagement.ViewModel
 
         private readonly DataContext _context;
         private readonly Window _loginWindow;
+
         public LoginViewModel(Window loginWindow)
         {
             LoginCommand = new RelayCommand(Login, CanLogin);
             _context = new DataContext();
             _loginWindow = loginWindow; // Lưu tham chiếu của cửa sổ đăng nhập
         }
+
         private void Login(object? parameter)
         {
             // Kiểm tra xem Username hoặc Password có null hoặc empty không
@@ -41,19 +43,24 @@ namespace ProjectClinicManagement.ViewModel
 
                 if (user != null)
                 {
-
+                    if (user.Status.ToString().Equals("Inactive"))
+                    {
+                        MessageBox.Show("Your Account is locked");
+                    }
+                    Application.Current.Properties["UserName"] = user.UserName;
+                    Application.Current.Properties["UserRole"] = user.Role.ToString();
 
                     // Open main window (Window1)
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
 
                     _loginWindow.Close();
-
+                    MessageBox.Show(user.Status.ToString());
                 }
                 else
                 {
                     // Đăng nhập thất bại
-                    System.Windows.MessageBox.Show("Invalid username or password.");
+                 MessageBox.Show("Invalid username or password.");
                 }
 
             }
@@ -65,5 +72,7 @@ namespace ProjectClinicManagement.ViewModel
             return true;
 
         }
+
+       
     }
 }

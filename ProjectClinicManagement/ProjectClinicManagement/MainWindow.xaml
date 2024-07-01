@@ -29,11 +29,11 @@
             <ColumnDefinition Width="630" />
         </Grid.ColumnDefinitions>
 
-
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top"  Width="228">
             <Button Content="Go to Page 1" Command="{Binding NavigateToPage1Command}" Margin="10"/>
-            <Button Content="Go to Page 2" Command="{Binding NavigateToPage2Command}" Margin="10"/>
+            <Button Content="Go to Page 2" Command="{Binding NavigateToPage2Command}"/>
         </StackPanel>
+        
         <Frame Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" />
     </Grid>
 

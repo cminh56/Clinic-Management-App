@@ -48,6 +48,9 @@
     <Page Update="AccountList.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\LoginStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="TaskList.xaml">
       <SubType>Designer</SubType>
     </Page>
