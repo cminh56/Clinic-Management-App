@@ -28,8 +28,9 @@ namespace ProjectClinicManagement.Models
         public virtual ICollection<Patient_Record>? Patient_Records { get; set; }
         public enum StatusType
         {
-            Active,
-            Inactive
+            Inactive,
+            Active
+            
         }
 
     }

@@ -39,9 +39,9 @@ namespace ProjectClinicManagement.ViewModel
             else
             {
 
-                var user = _context.Account.FirstOrDefault(u => u.UserName == Username && u.Password == Password);
+                var user = _context.Account.FirstOrDefault(u => u.UserName == Username );
 
-                if (user != null)
+                if (user != null && BCrypt.Net.BCrypt.Verify(Password, user.Password))
                 {
                     if (user.Status.ToString().Equals("Inactive"))
                     {
@@ -55,7 +55,7 @@ namespace ProjectClinicManagement.ViewModel
                     mainWindow.Show();
 
                     _loginWindow.Close();
-                    MessageBox.Show(user.Status.ToString());
+                    
                 }
                 else
                 {
