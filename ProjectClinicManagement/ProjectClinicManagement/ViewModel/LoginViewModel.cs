@@ -12,7 +12,8 @@ using System.Windows.Input;
 
 namespace ProjectClinicManagement.ViewModel
 {
-    public class LoginViewModel
+    public class LoginViewModel : BaseViewModel
+    
     {
         public string Username { get; set; }
         public string Password { get; set; }
@@ -30,7 +31,7 @@ namespace ProjectClinicManagement.ViewModel
 
         private void Login(object? parameter)
         {
-            // Kiểm tra xem Username hoặc Password có null hoặc empty không
+            // check Username or Password is null/empty ?
             if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
             {
                 MessageBox.Show("Username and password are required.");
@@ -38,15 +39,19 @@ namespace ProjectClinicManagement.ViewModel
             }
             else
             {
-
+                //check username
                 var user = _context.Account.FirstOrDefault(u => u.UserName == Username );
-
+ 
+                //Check pass
                 if (user != null && BCrypt.Net.BCrypt.Verify(Password, user.Password))
                 {
+                    //check status
                     if (user.Status.ToString().Equals("Inactive"))
                     {
                         MessageBox.Show("Your Account is locked");
+                        return;
                     }
+                    //Save in Application
                     Application.Current.Properties["UserName"] = user.UserName;
                     Application.Current.Properties["UserRole"] = user.Role.ToString();
 
@@ -59,7 +64,7 @@ namespace ProjectClinicManagement.ViewModel
                 }
                 else
                 {
-                    // Đăng nhập thất bại
+                    // Login Failed
                  MessageBox.Show("Invalid username or password.");
                 }
 
@@ -68,7 +73,7 @@ namespace ProjectClinicManagement.ViewModel
         }
         private bool CanLogin(object? parameter)
         {
-            // Điều kiện để lệnh đăng nhập có thể thực thi
+            // 
             return true;
 
         }

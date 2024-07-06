@@ -39,8 +39,9 @@ namespace ProjectClinicManagement.Models
         }
         public enum StatusType
         {
-            Inactive,
-            Active
+            
+            Active,
+            Inactive
         }
     }
 }

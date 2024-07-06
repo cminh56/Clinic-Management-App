@@ -22,6 +22,18 @@
     <Compile Update="TaskList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Admin\AddUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\EditUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\AdminWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\ViewUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,6 +64,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TaskList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Admin\AddUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Admin\EditUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Admin\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Admin\ViewUser.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Login.xaml">
