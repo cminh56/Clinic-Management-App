@@ -19,6 +19,9 @@
     <Compile Update="AccountList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ReceiptForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="TaskList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -37,6 +40,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AccountList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ReceiptForm.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TaskList.xaml">
