@@ -1,4 +1,4 @@
-﻿using ProjectClinicManagement.ViewModel;
+﻿using ProjectClinicManagement.ViewModel.AdminViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +16,15 @@ using System.Windows.Shapes;
 namespace ProjectClinicManagement.Views.Admin
 {
     /// <summary>
-    /// Interaction logic for UserManagement.xaml
+    /// Interaction logic for AdminWindow.xaml
     /// </summary>
-    public partial class UserManagement : Window
+    public partial class AdminWindow : Window
     {
-       
-        public UserManagement()
+        public AdminWindow()
         {
             InitializeComponent();
-
+           
         }
+     
     }
 }

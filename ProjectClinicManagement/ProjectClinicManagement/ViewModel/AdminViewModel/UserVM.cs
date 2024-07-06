@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
-namespace ProjectClinicManagement.ViewModel
+namespace ProjectClinicManagement.ViewModel.AdminViewModel
 {
-    class UserViewModel: BaseViewModel
+    class UserVM: BaseViewModel
     {
 
         //Khai báo list account
@@ -40,10 +41,12 @@ namespace ProjectClinicManagement.ViewModel
         public ICommand DeleteUserCommand { get; set; }
 
         private readonly DataContext _context;
+        public  NavigationService _navigationService;
 
-        public UserViewModel()
+        public UserVM()
         {
             _context = new DataContext();
+         
 
             // Khởi tạo danh sách Accounts
             Accounts = new List<Account>(_context.Account);
@@ -54,8 +57,8 @@ namespace ProjectClinicManagement.ViewModel
         }
         private void NavigateToAddUserPage(object parameter)
         {
-      
-     
+            _navigationService.Navigate(new Uri("Views/Admin/AddUser.xaml", UriKind.Relative));
+
         }
         private void UpdateUser(object parameter) { }
         private bool CanExecuteUserCommand(object parameter)

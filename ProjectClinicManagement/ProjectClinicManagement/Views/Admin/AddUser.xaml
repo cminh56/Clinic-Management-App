@@ -8,7 +8,40 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddUser">
 
-    <Grid>
-        
-    </Grid>
+    <Grid Background="#FFF6F0F0" >
+       
+            <StackPanel Margin="10">
+                <TextBlock Text="Email" Margin="5"/>
+                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+                <TextBlock Text="Username" Margin="5"/>
+                <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+                <TextBlock Text="Password" Margin="5"/>
+            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+
+            <TextBlock Text="Role" Margin="5"/>
+                <ComboBox SelectedIndex="{Binding Role, UpdateSourceTrigger=PropertyChanged}" Margin="5">
+                    <ComboBoxItem Content="Admin"/>
+                    <ComboBoxItem Content="Doctor"/>
+                    <ComboBoxItem Content="Nurse"/>
+                    <ComboBoxItem Content="Receipter"/>
+                </ComboBox>
+
+                <TextBlock Text="Status" Margin="5"/>
+                <ComboBox SelectedIndex="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Margin="5">
+                    <ComboBoxItem Content="Active"/>
+                    <ComboBoxItem Content="Inactive"/>
+                </ComboBox>
+
+                <TextBlock Text="Salary" Margin="5"/>
+                <TextBox Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+                <TextBlock Text="Join Date" Margin="5"/>
+                <DatePicker SelectedDate="{Binding JoinDate, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+                <Button Content="Add Account" Command="{Binding AddAccountCommand}" Margin="5"/>
+            </StackPanel>
+        </Grid>
 </Page>

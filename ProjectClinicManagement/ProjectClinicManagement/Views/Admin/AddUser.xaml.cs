@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectClinicManagement.ViewModel.AdminViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace ProjectClinicManagement.Views.Admin
     /// </summary>
     public partial class AddUser : Page
     {
+        private AddUserVM addUserVM;
         public AddUser()
         {
             InitializeComponent();
+            addUserVM = new AddUserVM();
+            this.DataContext = addUserVM;
         }
+      
     }
 }
