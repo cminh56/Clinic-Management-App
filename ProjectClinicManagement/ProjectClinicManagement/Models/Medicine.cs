@@ -22,11 +22,11 @@ namespace ProjectClinicManagement.Models
         [Required] public int Quantity { get; set; }
         public StatusType Status { get; set; }
 
-        public virtual ICollection<Prescription>? Prescriptions { get; set; }
+        public virtual ICollection<Prescription_Medicine>? Prescription_Medicines { get; set; }
         public enum StatusType
         {
-            Active,
-            Inactive
+            Inactive,
+            Active
         }
     }
 }

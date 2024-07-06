@@ -34,10 +34,12 @@ namespace ProjectClinicManagement.Models
         {
             Admin,
             Doctor,
-            Patient
+            Nurse,
+            Receipter
         }
         public enum StatusType
         {
+            
             Active,
             Inactive
         }
