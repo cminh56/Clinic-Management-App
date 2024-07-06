@@ -43,6 +43,9 @@
     <Compile Update="Views\Page2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\UI Template\UITemplate.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AttendanceList.xaml">
@@ -58,6 +61,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AccountList.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\UITemplateStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\LoginStyle.xaml">
@@ -85,6 +91,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Page2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UI Template\UITemplate.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
