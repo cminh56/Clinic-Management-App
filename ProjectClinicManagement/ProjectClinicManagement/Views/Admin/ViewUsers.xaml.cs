@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjectClinicManagement.ViewModel;
+using ProjectClinicManagement.ViewModel.AdminViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +18,22 @@ using System.Windows.Shapes;
 namespace ProjectClinicManagement.Views.Admin
 {
     /// <summary>
-    /// Interaction logic for ViewUser.xaml
+    /// Interaction logic for ViewUsers.xaml
     /// </summary>
-    public partial class ViewUser : Page
+    public partial class ViewUsers : Page
     {
-        public ViewUser()
+        private UserVM userVM;
+        public ViewUsers()
         {
             InitializeComponent();
+           userVM = new UserVM();   
+            this.DataContext = userVM;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            userVM._navigationService = NavigationService;
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-USE [PRN221_ProjectClinicManagement1]
+
+USE [PRN221_ProjectClinicManagement3]
 GO
 
 INSERT INTO [dbo].[Account]
@@ -67,7 +68,7 @@ VALUES
            ('Alexander Miller', 52, 94.1, 178.9, '901-234-5678', 'alexm@example.com', '606 Chestnut St, Anytown, USA', 'Maria Miller', 1),
            ('Isabella Hernandez', 47, 72.9, 164.7, '012-345-6789', 'isabellah@example.com', '707 Spruce St, Anytown, USA', 'Juan Hernandez', 1)
 
-USE [PRN221_ProjectClinicManagement1]
+
 GO
 
 INSERT INTO [dbo].[Patient_Records]
@@ -111,23 +112,24 @@ VALUES
 
 
 
-INSERT INTO [dbo].[Prescription_Medicine]
+INSERT INTO [dbo].[Prescription_Medicines]
            ([MedicineID]
            ,[PrescriptionID]
            ,[Quantity]
            ,[Unit]
+		   ,[Price]
 		   )
 VALUES
-           (1, 1, 30, 'Tablets'),
-           (2, 2, 60, 'Units'),
-           (3, 3, 1, 'Inhaler'),
-           (4, 4, 10, 'Tablets'),
-           (5, 5, 60, 'Tablets'),
-           (6, 6, 30, 'Tablets'),
-           (7, 7, 1, 'Tube'),
-           (8, 8, 14, 'Tablets'),
-           (9, 9, 30, 'Tablets'),
-           (10, 10, 30, 'Tablets')
+           (1, 1, 30, 'Tablets',0),
+           (2, 2, 60, 'Units',0),
+           (3, 3, 1, 'Inhaler',0),
+           (4, 4, 10, 'Tablets',0),
+           (5, 5, 60, 'Tablets',0),
+           (6, 6, 30, 'Tablets',0),
+           (7, 7, 1, 'Tube',0),
+           (8, 8, 14, 'Tablets',0),
+           (9, 9, 30, 'Tablets',0),
+           (10, 10, 30, 'Tablets',0)
 
 INSERT INTO [dbo].[Receipts]
            ([PatientId]

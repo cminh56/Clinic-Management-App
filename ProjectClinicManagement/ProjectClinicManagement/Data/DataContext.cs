@@ -25,6 +25,7 @@ namespace ProjectClinicManagement.Data
         public DbSet<Receipt> Receipts { get; set; }
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<TaskAssignment> TaskAssignments { get; set; }
+        public DbSet<Prescription_Medicine> Prescription_Medicines { get; set; }
 
     }
 }
