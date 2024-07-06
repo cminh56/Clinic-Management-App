@@ -34,6 +34,15 @@
     <Compile Update="Views\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Medicine\AddMedicineWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Medicine\EditMedicineWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Medicine\MedicineView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Page1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +88,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Medicine\AddMedicineWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Medicine\EditMedicineWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Medicine\MedicineView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Page1.xaml">
