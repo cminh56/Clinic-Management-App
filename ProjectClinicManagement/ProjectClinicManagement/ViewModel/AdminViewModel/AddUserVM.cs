@@ -75,11 +75,12 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
         private void AddUser(object parameter)
         {
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(this.Password);
             var newAccount = new Account
             {
                 Email = this.Email,
                 UserName = this.UserName,
-                Password = this.Password,
+                Password = hashedPassword,
                 Role = this.Role,
                 Status = this.Status,
                 Salary = this.Salary,

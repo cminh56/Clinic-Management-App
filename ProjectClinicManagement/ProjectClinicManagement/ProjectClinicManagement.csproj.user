@@ -63,11 +63,9 @@
     <Page Update="AccountList.xaml">
       <SubType>Designer</SubType>
     </Page>
-<<<<<<< HEAD
-    <Page Update="ReceiptForm.xaml">
-=======
+
+    <Page Update="ReceiptForm.xaml"> </Page>
     <Page Update="Styles\LoginStyle.xaml">
->>>>>>> 02715b66f46ee862db37d9443161aeef5057106b
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TaskList.xaml">
