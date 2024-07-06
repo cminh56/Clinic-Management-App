@@ -28,13 +28,13 @@
     <Compile Update="Views\Admin\AddUser.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Admin\EditUser.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Admin\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Admin\ViewUser.xaml.cs">
+    <Compile Update="Views\Admin\EditUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\ViewUsers.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Login.xaml.cs">
@@ -63,11 +63,9 @@
     <Page Update="AccountList.xaml">
       <SubType>Designer</SubType>
     </Page>
-<<<<<<< HEAD
-    <Page Update="ReceiptForm.xaml">
-=======
+
+    <Page Update="ReceiptForm.xaml"> </Page>
     <Page Update="Styles\LoginStyle.xaml">
->>>>>>> 02715b66f46ee862db37d9443161aeef5057106b
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TaskList.xaml">
@@ -76,13 +74,13 @@
     <Page Update="Views\Admin\AddUser.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Admin\EditUser.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Admin\AdminWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Admin\ViewUser.xaml">
+    <Page Update="Views\Admin\EditUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Admin\ViewUsers.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Login.xaml">
