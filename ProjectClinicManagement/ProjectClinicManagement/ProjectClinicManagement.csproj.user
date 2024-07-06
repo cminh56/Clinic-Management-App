@@ -19,6 +19,9 @@
     <Compile Update="AccountList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ReceiptForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="TaskList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -60,7 +63,11 @@
     <Page Update="AccountList.xaml">
       <SubType>Designer</SubType>
     </Page>
+<<<<<<< HEAD
+    <Page Update="ReceiptForm.xaml">
+=======
     <Page Update="Styles\LoginStyle.xaml">
+>>>>>>> 02715b66f46ee862db37d9443161aeef5057106b
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TaskList.xaml">
