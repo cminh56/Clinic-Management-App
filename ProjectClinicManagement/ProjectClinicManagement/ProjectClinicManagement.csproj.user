@@ -105,6 +105,9 @@
     <Page Update="Views\Page2.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\ReceiptForm.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\UI Template\UITemplate.xaml">
       <SubType>Designer</SubType>
     </Page>
