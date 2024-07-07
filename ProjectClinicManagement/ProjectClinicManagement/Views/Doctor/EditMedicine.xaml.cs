@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectClinicManagement.Views.Medicine
+namespace ProjectClinicManagement.Views.Doctor
 {
     /// <summary>
-    /// Interaction logic for AddMedicineWindow.xaml
+    /// Interaction logic for EditMedicine.xaml
     /// </summary>
-    public partial class AddMedicineWindow : Window
+    public partial class EditMedicine : Page
     {
-        public AddMedicineWindow()
+        public EditMedicine()
         {
             InitializeComponent();
         }
