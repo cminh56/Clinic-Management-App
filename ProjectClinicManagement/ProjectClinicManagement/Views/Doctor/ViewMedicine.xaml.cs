@@ -1,5 +1,5 @@
-﻿using ProjectClinicManagement.ViewModel;
-using ProjectClinicManagement.ViewModel.AdminViewModel;
+﻿using ProjectClinicManagement.ViewModel.AdminViewModel;
+using ProjectClinicManagement.ViewModel.DoctorViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,26 +15,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectClinicManagement.Views.Admin
+namespace ProjectClinicManagement.Views.Doctor
 {
     /// <summary>
-    /// Interaction logic for ViewUsers.xaml
+    /// Interaction logic for ViewMedicine.xaml
     /// </summary>
-    public partial class ViewUsers : Page
+    public partial class ViewMedicine : Page
     {
-        private UserVM userVM;
-        public ViewUsers()
+        private MedicineVM MedicineVM;
+        public ViewMedicine()
         {
             InitializeComponent();
-           userVM = new UserVM();   
-            this.DataContext = userVM;
+            MedicineVM = new MedicineVM();
+            this.DataContext = MedicineVM;
         }
 
-       
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            userVM._navigationService = NavigationService;
+            MedicineVM._navigationService = NavigationService;
         }
     }
 }

@@ -1,17 +1,17 @@
-﻿<Window x:Class="ProjectClinicManagement.Views.Admin.AdminWindow"
+﻿<Window x:Class="ProjectClinicManagement.Views.Doctor.DoctorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjectClinicManagement.Views.Admin"
-        xmlns:vm="clr-namespace:ProjectClinicManagement.ViewModel.AdminViewModel"
+        xmlns:local="clr-namespace:ProjectClinicManagement.Views.Doctor"
+        xmlns:vm="clr-namespace:ProjectClinicManagement.ViewModel.DoctorViewModel"
           xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
+        Title="DoctorWindow" Height="450" Width="800">
     <Window.DataContext>
-        <vm:AdminNavigationVM />
+        <vm:DoctorNavigationVM />
     </Window.DataContext>
-   
+
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>

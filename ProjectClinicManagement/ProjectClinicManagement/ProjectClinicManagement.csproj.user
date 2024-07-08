@@ -31,7 +31,19 @@
     <Compile Update="Views\Admin\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Doctor\AddMedicine.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Doctor\EditMedicine.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Doctor\ViewMedicine.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Doctor\DoctorWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Page1.xaml.cs">
@@ -78,13 +90,28 @@
     <Page Update="Views\Admin\AdminWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Doctor\AddMedicine.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Doctor\EditMedicine.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Doctor\ViewMedicine.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Doctor\DoctorWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Page1.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Page2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ReceiptForm.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UI Template\UITemplate.xaml">

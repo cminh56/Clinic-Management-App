@@ -1,5 +1,4 @@
-﻿using ProjectClinicManagement.ViewModel.AdminViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,18 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ProjectClinicManagement.Views.Admin
+namespace ProjectClinicManagement.Views.Doctor
 {
     /// <summary>
-    /// Interaction logic for AdminWindow.xaml
+    /// Interaction logic for DoctorWindow.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class DoctorWindow : Window
     {
-        public AdminWindow()
+        public DoctorWindow()
         {
             InitializeComponent();
-           
         }
+
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -53,4 +52,3 @@ namespace ProjectClinicManagement.Views.Admin
         }
     }
 }
-
