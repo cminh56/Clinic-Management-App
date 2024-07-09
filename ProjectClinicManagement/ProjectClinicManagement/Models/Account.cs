@@ -13,6 +13,9 @@ namespace ProjectClinicManagement.Models
 
         [Required, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        public string Name { get; set; }    
+        public DateTime Dob {  get; set; }
+        public GenderType Gender { get; set; }
         [Required] public string UserName { get; set; }
 
         [Required, DataType(DataType.Password)]
@@ -37,11 +40,17 @@ namespace ProjectClinicManagement.Models
             Nurse,
             Receipter
         }
+        public enum GenderType
+        {
+          Male,
+          FeMale
+        }
         public enum StatusType
         {
             
             Active,
-            Inactive
+            Inactive,
+            Other
         }
     }
 }

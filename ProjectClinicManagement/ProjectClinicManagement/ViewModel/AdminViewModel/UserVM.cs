@@ -6,15 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 
 namespace ProjectClinicManagement.ViewModel.AdminViewModel
 {
-    class UserVM: BaseViewModel
+    class UserVM : BaseViewModel
     {
-
-        //Khai báo list account
+        //This variable is saved when switching to other pages
+        public static Account accountInstan;
+        //Declare list account
         private List<Account> _accounts;
         public List<Account> Accounts
         {
@@ -25,7 +27,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
                 OnPropertyChanged();
             }
         }
-        //Khai báo account
+        //Declarec account
         private Account _account;
         public Account Account
         {
@@ -38,32 +40,42 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         }
         public ICommand AddUserCommand { get; set; }
         public ICommand UpdateUserCommand { get; set; }
-        public ICommand DeleteUserCommand { get; set; }
+        
 
         private readonly DataContext _context;
-        public  NavigationService _navigationService;
+        public NavigationService _navigationService;
 
         public UserVM()
         {
             _context = new DataContext();
-         
 
-            // Khởi tạo danh sách Accounts
+
+            // Initialize list Accounts
             Accounts = new List<Account>(_context.Account);
 
-            // Khởi tạo các lệnh (command)
+            // Initialize list (command)
             AddUserCommand = new RelayCommand(NavigateToAddUserPage);
-            UpdateUserCommand = new RelayCommand(UpdateUser, CanExecuteUserCommand);
+            UpdateUserCommand = new RelayCommand(NavigateToUpdateUser);
+          
         }
         private void NavigateToAddUserPage(object parameter)
         {
             _navigationService.Navigate(new Uri("Views/Admin/AddUser.xaml", UriKind.Relative));
 
         }
-        private void UpdateUser(object parameter) { }
-        private bool CanExecuteUserCommand(object parameter)
+        private void NavigateToUpdateUser(object parameter)
         {
-            return Account != null;
+
+            // Pass the account as a parameter
+            if (_account != null)
+            {
+                accountInstan = Account;
+                _navigationService.Navigate(new Uri($"Views/Admin/EditUser.xaml", UriKind.Relative));
+            }
+
+
+
         }
+       
     }
 }

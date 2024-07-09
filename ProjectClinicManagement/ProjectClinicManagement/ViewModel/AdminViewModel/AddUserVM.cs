@@ -16,9 +16,12 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
     {
         private string email;
         private string userName;
-        private string password;
+        private string name;
+        private string password;    
+        private DateTime dob;
+        private Account.GenderType gender;
         private Account.RoleType role;
-        private Account.StatusType status;
+       
         private decimal salary;
         private DateTime joinDate;
 
@@ -33,44 +36,51 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             get => userName;
             set { userName = value; OnPropertyChanged(); }
         }
-
         public string Password
         {
             get => password;
             set { password = value; OnPropertyChanged(); }
         }
+        public string Name
+        {
+            get => name;
+            set { name = value; OnPropertyChanged(); }
+        }
 
+        public DateTime Dob
+        {
+            get => dob;
+            set { dob = value; OnPropertyChanged(); }
+        }
+
+        public Account.GenderType Gender
+        {
+            get => gender;
+            set { gender = value; OnPropertyChanged(); }
+        }
         public Account.RoleType Role
         {
             get => role;
             set { role = value; OnPropertyChanged(); }
         }
 
-        public Account.StatusType Status
-        {
-            get => status;
-            set { status = value; OnPropertyChanged(); }
-        }
+
 
         public decimal Salary
         {
             get => salary;
             set { salary = value; OnPropertyChanged(); }
         }
+        
 
-        public DateTime JoinDate
-        {
-            get => joinDate;
-            set { joinDate = value; OnPropertyChanged(); }
-        }
 
         private readonly DataContext _context;
 
-        public ICommand AddAccountCommand { get; }
+        public ICommand AddUserCommand { get; }
         public AddUserVM()
         {
             _context = new DataContext();
-            AddAccountCommand = new RelayCommand(AddUser);
+            AddUserCommand = new RelayCommand(AddUser);
         }
 
         private void AddUser(object parameter)
@@ -80,11 +90,14 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             {
                 Email = this.Email,
                 UserName = this.UserName,
+                Name = this.Name,
+                Gender = this.Gender,
+                Dob = this.Dob,
                 Password = hashedPassword,
                 Role = this.Role,
-                Status = this.Status,
+                Status = Account.StatusType.Active,
                 Salary = this.Salary,
-                JoinDate = this.JoinDate
+               JoinDate = DateTime.Now,
             };
 
             _context.Account.Add(newAccount);

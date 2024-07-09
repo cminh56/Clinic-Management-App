@@ -28,6 +28,7 @@ namespace ProjectClinicManagement.Views.Admin
             InitializeComponent();
            userVM = new UserVM();   
             this.DataContext = userVM;
+
         }
 
        
@@ -36,5 +37,11 @@ namespace ProjectClinicManagement.Views.Admin
         {
             userVM._navigationService = NavigationService;
         }
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+            userVM._navigationService = NavigationService;
+          
+        }
+
     }
 }
