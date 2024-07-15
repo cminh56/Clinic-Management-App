@@ -1,6 +1,7 @@
 ﻿
 using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Data;
+using ProjectClinicManagement.ViewModel.Common;
 using ProjectClinicManagement.Views;
 using System;
 using System.Collections.Generic;

@@ -82,20 +82,13 @@
         <!--Memeber Datagrid-->
         <DataGrid ItemsSource="{Binding Accounts}" SelectedItem="{Binding Account}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" x:Name="membersDataGrid">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                        </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-                </DataGridCheckBoxColumn>
-
-                <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
+               
         
-                <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding UserName}"/>
+                <DataGridTextColumn Header="User Name" IsReadOnly="True" Width="*" Binding="{Binding UserName}"/>
 
 
                 <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Full Name" IsReadOnly="True" Width="*" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Role" IsReadOnly="True" Width="*" Binding="{Binding Role}"/>
                 <DataGridTextColumn Header="Status" IsReadOnly="True" Width="*" Binding="{Binding Status}"/>
 
@@ -145,20 +138,6 @@
             </StackPanel>
 
         </Border>
-        <!--<ListBox ItemsSource="{Binding Accounts}" SelectedItem="{Binding Account}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding UserName}" Width="200"/>
-                        <TextBlock Text="{Binding Email}" Width="200"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-            <Button Content="Add User" Command="{Binding AddUserCommand}" Width="100" Margin="5" Click="Button_Click"/>
-            <Button Content="Update User" Command="{Binding UpdateUserCommand}" Width="100" Margin="5"/>
-            <Button Content="Delete User" Command="{Binding DeleteUserCommand}" Width="100" Margin="5"/>
-        </StackPanel>-->
+       
     </Grid>
 </Page>

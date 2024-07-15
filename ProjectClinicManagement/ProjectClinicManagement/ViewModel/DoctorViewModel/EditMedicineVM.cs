@@ -1,6 +1,7 @@
 ﻿using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Data;
 using ProjectClinicManagement.Models;
+using ProjectClinicManagement.ViewModel.Common;
 using System;
 using System.Linq;
 using System.Windows;

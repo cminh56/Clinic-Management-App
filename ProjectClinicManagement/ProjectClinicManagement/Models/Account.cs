@@ -13,15 +13,27 @@ namespace ProjectClinicManagement.Models
 
         [Required, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        public string Name { get; set; }    
-        public DateTime Dob {  get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required, DataType(DataType.Date)]
+        public DateTime Dob { get; set; }
+
+        [Required]
         public GenderType Gender { get; set; }
-        [Required] public string UserName { get; set; }
+
+        [Required]
+        public string UserName { get; set; }
 
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required] public RoleType Role { get; set; }
-        [Required] public StatusType Status { get; set; }
+
+        [Required]
+        public RoleType Role { get; set; }
+
+        [Required]
+        public StatusType Status { get; set; }
 
         [Required, DataType(DataType.Currency)]
         public decimal Salary { get; set; }
