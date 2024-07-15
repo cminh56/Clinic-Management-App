@@ -114,11 +114,9 @@
                 <Grid Width="300" HorizontalAlignment="Left">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
                     Panel.ZIndex="1" Text="Search here ..."
-<<<<<<< HEAD
+
                     Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmty,Converter={StaticResource BoolToVis}}"/>
-=======
-                    Visibility="{Binding ElementName=txtSearch,Converter={StaticResource BoolToVis}}"           />
->>>>>>> 41b58e28dd6d74acc056bd4c41a606601ae3619f
+
                     
                     <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}"/>
                     

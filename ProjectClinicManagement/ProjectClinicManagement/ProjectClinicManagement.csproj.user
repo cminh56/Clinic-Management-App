@@ -46,6 +46,9 @@
     <Compile Update="Views\Page2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Patient\AddPatient.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\UI Template\UITemplate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -97,6 +100,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Page2.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Patient\AddPatient.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ReceiptForm.xaml">
