@@ -10,12 +10,6 @@
     <Compile Update="AttendanceList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="PatientInfo.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="PatientList.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="AccountList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,12 +55,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="PatientInfo.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="PatientList.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="AccountList.xaml">
