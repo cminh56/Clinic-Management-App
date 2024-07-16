@@ -3,7 +3,10 @@ using ProjectClinicManagement.Data;
 using ProjectClinicManagement.Models;
 using ProjectClinicManagement.ViewModel.Common;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,8 +17,56 @@ using static ProjectClinicManagement.Models.Account;
 
 namespace ProjectClinicManagement.ViewModel.AdminViewModel
 {
-    class EditUserVM : BaseViewModel
+    class EditUserVM : BaseViewModel, INotifyDataErrorInfo
     {
+        //Validation
+        Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
+
+        public bool HasErrors => Errors.Count > 0;
+
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+
+        public IEnumerable GetErrors(string? propertyName)
+        {
+            if (Errors.ContainsKey(propertyName))
+            {
+                return Errors[propertyName];
+
+            }
+            else
+            {
+                return Enumerable.Empty<string>();
+            }
+
+        }
+
+        public void Validate(string propertyName, object propertyValue)
+        {
+            var results = new List<ValidationResult>();
+
+            Validator.TryValidateProperty(propertyValue, new ValidationContext(this) { MemberName = propertyName }, results);
+
+
+            if (results.Any())
+            {
+                Errors.Add(propertyName, results.Select(r => r.ErrorMessage).ToList());
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            }
+            else
+            {
+                Errors.Remove(propertyName);
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            }
+
+
+
+            EditUserCommand.CanExecuteChanged += (sender, e) =>
+            {
+                CommandManager.InvalidateRequerySuggested();
+            };
+
+
+        }
         private Account _account;
         public Account Account
         {
@@ -36,27 +87,51 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         private decimal salary;
         private DateTime joinDate;
 
+        [Required(ErrorMessage = "Email is required.")]
+        [EmailAddress(ErrorMessage = "Invalid email address.")]
         public string Email
         {
-            get => email;
-            set { email = value; OnPropertyChanged(); }
+            get { return email; }
+            set
+            {
+                email = value;
+                Validate(nameof(Email), value);
+            }
         }
 
+        [Required(ErrorMessage = "Username is required.")]
         public string UserName
         {
-            get => userName;
-            set { userName = value; OnPropertyChanged(); }
+            get { return userName; }
+            set
+            {
+                userName = value;
+                Validate(nameof(UserName), value);
+            }
         }
+
+        [Required(ErrorMessage = "Name is required.")]
+
         public string Name
         {
             get => name;
-            set { name = value; OnPropertyChanged(); }
+            set
+            {
+                name = value;
+                Validate(nameof(Name), value);
+            }
         }
 
+        [Required(ErrorMessage = "Date of birth is required.")]
+        [Range(typeof(DateTime), "1/1/1800", "12/31/9999", ErrorMessage = "Date of birth must be after 1800.")]
         public DateTime Dob
         {
             get => dob;
-            set { dob = value; OnPropertyChanged(); }
+            set
+            {
+                dob = value;
+                Validate(nameof(Dob), value);
+            }
         }
 
         public int Gender
@@ -76,10 +151,16 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             set { status = value; OnPropertyChanged(); }
         }
 
+
+        [Range(0, double.MaxValue, ErrorMessage = "Salary must be greater than 0.")]
         public decimal Salary
         {
             get => salary;
-            set { salary = value; OnPropertyChanged(); }
+            set
+            {
+                salary = value;
+                Validate(nameof(Salary), value);
+            }
         }
         public DateTime JoinDate
         {
@@ -90,8 +171,12 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
         private readonly DataContext _context;
 
+   
+
         public ICommand EditUserCommand { get; }
         public ICommand ChangeStatusCommand { get; }
+
+    
 
         public EditUserVM(Account account)
         {
@@ -108,12 +193,12 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             salary = Account.Salary;
 
             _context = new DataContext();
-            EditUserCommand = new RelayCommand(EditUser);
+            EditUserCommand = new RelayCommand(EditUser, CanSubmit);
             ChangeStatusCommand = new RelayCommand(ChangeStatusUser); 
         }
         private void ChangeStatusUser(object parameter)
         {
-            MessageBoxResult result = MessageBox.Show("Do you want change?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("Do you want change?", "Confirm ", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 if (Account.Status == StatusType.Active)
@@ -156,7 +241,6 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
                 Account.Salary = Salary;
                 Account.JoinDate = JoinDate;
 
-
                 // Lưu thay đổi vào cơ sở dữ liệu
                 _context.Account.Update(Account);
                 _context.SaveChanges();
@@ -167,6 +251,12 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             {
                 MessageBox.Show($"Error editing account: {ex.Message}");
             }
+        }
+
+        private bool CanSubmit(object obj)
+        {
+            return Validator.TryValidateObject(this, new ValidationContext(this), null);
+
         }
 
     }

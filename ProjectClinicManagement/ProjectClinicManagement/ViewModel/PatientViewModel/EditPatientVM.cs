@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using ProjectClinicManagement.ViewModel.DoctorViewModel;
+using ProjectClinicManagement.ViewModel.Common;
 
 namespace ProjectClinicManagement.ViewModel.PatientViewModel
 {
-    internal class EditPatientVM:BaseViewModel
+    internal class EditPatientVM: BaseViewModel
     {
         private int id;
         private string name;

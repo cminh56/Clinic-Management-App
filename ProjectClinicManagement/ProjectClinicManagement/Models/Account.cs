@@ -14,7 +14,7 @@ namespace ProjectClinicManagement.Models
         [Required, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
+        [Required,DataType(DataType.Text)]
         public string Name { get; set; }
 
         [Required, DataType(DataType.Date)]

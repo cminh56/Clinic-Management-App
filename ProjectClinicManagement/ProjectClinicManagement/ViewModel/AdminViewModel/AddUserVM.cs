@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -70,11 +71,11 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         private string email;
         private string userName;
         private string name;
-        private string password;    
+        private string password;
         private DateTime dob;
         private Account.GenderType gender;
         private Account.RoleType role;
-       
+
         private decimal salary;
 
         [Required(ErrorMessage = "Email is required.")]
@@ -86,54 +87,86 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             {
                 email = value;
                 Validate(nameof(Email), value);
-
             }
         }
+
         [Required(ErrorMessage = "Username is required.")]
         public string UserName
         {
             get { return userName; }
-            set { Validate(nameof(UserName), value); }
+            set
+            {
+                userName = value;
+                Validate(nameof(UserName), value);
+            }
         }
+
         [Required(ErrorMessage = "Password is required.")]
+        
         public string Password
         {
             get => password;
-            set { Validate(nameof(Password), value); }
+            set
+            {
+                password = value;
+                Validate(nameof(Password), value);
+            }
         }
+
         [Required(ErrorMessage = "Name is required.")]
+
         public string Name
         {
             get => name;
-            set { Validate(nameof(Name), value); }
+            set
+            {
+                name = value;
+                Validate(nameof(Name), value);
+            }
         }
+
         [Required(ErrorMessage = "Date of birth is required.")]
+        [Range(typeof(DateTime), "1/1/1800", "12/31/9999", ErrorMessage = "Date of birth must be after 1800.")]
         public DateTime Dob
         {
             get => dob;
-            set { Validate(nameof(Dob), value); }
+            set
+            {
+                dob = value;
+                Validate(nameof(Dob), value);
+            }
         }
-        [Required(ErrorMessage = "Date of birth is required.")]
+
         public Account.GenderType Gender
         {
             get => gender;
-            set { Validate(nameof(Gender), value); }
+            set
+            {
+                gender = value;
+                Validate(nameof(Gender), value);
+            }
         }
-        [Required(ErrorMessage = "Role is required.")]
         public Account.RoleType Role
         {
             get => role;
-            set { Validate(nameof(Role), value); }
+            set
+            {
+                role = value;
+                Validate(nameof(Role), value);
+            }
         }
-
-
-        [Required(ErrorMessage = "Salary is required.")]
+     
+        [Range(0, double.MaxValue, ErrorMessage = "Salary must be greater than 0.")]
         public decimal Salary
         {
             get => salary;
-            set { salary = value; OnPropertyChanged(); }
+            set
+            {
+                salary = value;
+                Validate(nameof(Salary), value);
+            }
         }
-        
+
 
 
         private readonly DataContext _context;
@@ -166,18 +199,17 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
                 _context.Account.Add(newAccount);
                 _context.SaveChanges();
-                MessageBox.Show("Add ok");
+                MessageBox.Show("Add New User Successfully ");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-           
+
         }
         private bool CanSubmit(object obj)
         {
-            // Check if there are any errors in the Errors dictionary
-            return Errors.Count == 0;
+            return Validator.TryValidateObject(this, new ValidationContext(this), null);
 
         }
 
