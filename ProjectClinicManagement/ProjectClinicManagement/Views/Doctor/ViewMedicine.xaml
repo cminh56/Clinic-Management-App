@@ -109,9 +109,10 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridEditButton}" Command="{Binding DataContext.EditMedicineCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Click="Button_Click_1">
+                                <Button Style="{StaticResource gridEditButton}" Command="{Binding DataContext.EditMedicineCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}" />
                                 </Button>
+
                                 <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0">
                                     <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>

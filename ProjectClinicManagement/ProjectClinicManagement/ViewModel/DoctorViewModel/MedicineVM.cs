@@ -59,11 +59,12 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
         private void NavigateToEditMedicinePage(object parameter)
         {
-            if (SelectedMedicine != null)
+            if (parameter is Medicine selectedMedicine)
             {
-                NavigationService?.Navigate(new Uri($"Views/Doctor/EditMedicine.xaml?id={SelectedMedicine.Id}", UriKind.Relative));
+                NavigationService?.Navigate(new Uri($"Views/Doctor/EditMedicine.xaml?id={selectedMedicine.Id}", UriKind.Relative));
             }
         }
+
 
         private bool CanExecuteUserCommand(object parameter)
         {
