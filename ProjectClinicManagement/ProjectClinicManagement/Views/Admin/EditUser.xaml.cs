@@ -1,5 +1,8 @@
-﻿using System;
+﻿using ProjectClinicManagement.Models;
+using ProjectClinicManagement.ViewModel.AdminViewModel;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +23,16 @@ namespace ProjectClinicManagement.Views.Admin
     /// </summary>
     public partial class EditUser : Page
     {
+        private EditUserVM vm;
         public EditUser()
         {
+
             InitializeComponent();
+            vm = new EditUserVM(UserVM.accountInstan);
+            this.DataContext = vm;
+          
+
         }
+       
     }
 }

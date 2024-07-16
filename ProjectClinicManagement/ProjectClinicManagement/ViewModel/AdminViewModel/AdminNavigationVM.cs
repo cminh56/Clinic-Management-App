@@ -1,4 +1,5 @@
 ﻿using ProjectClinicManagement.Command;
+using ProjectClinicManagement.ViewModel.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows.Controls;
 
 namespace ProjectClinicManagement.ViewModel.AdminViewModel
 {
-     class AdminNavigationVM : BaseViewModel
+    class AdminNavigationVM : BaseViewModel
     {
         private Page _currentPage;
         public Page CurrentPage

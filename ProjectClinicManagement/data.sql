@@ -1,9 +1,10 @@
 
-USE [PRN221_ProjectClinicManagement3]
-GO
 
 INSERT INTO [dbo].[Account]
            ([Email]
+           ,[Name]
+           ,[Dob]
+           ,[Gender]
            ,[UserName]
            ,[Password]
            ,[Role]
@@ -11,14 +12,15 @@ INSERT INTO [dbo].[Account]
            ,[Salary]
            ,[JoinDate])
 VALUES
-           ('user1@example.com', 'Admin', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 0, 1, 5000.00, '2023-01-01 00:00:00'),
-           ('user2@example.com', 'Doctor', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 1, 1, 6000.00, '2023-02-01 00:00:00'),
-           ('user3@example.com', 'Nurse', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 2, 1, 5500.00, '2023-03-01 00:00:00'),
-           ('user4@example.com', 'Receipter', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 3, 1, 6200.00, '2023-04-01 00:00:00'),
-           ('user5@example.com', 'User5', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 0, 1, 5300.00, '2023-05-01 00:00:00'),
-           ('user6@example.com', 'User6', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 1, 1, 6400.00, '2023-06-01 00:00:00'),
-           ('user7@example.com', 'User7', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 1, 1, 5100.00, '2023-07-01 00:00:00')
-    
+           ('user1@example.com', 'Admin User', '1980-01-01 00:00:00', 1, 'Admin', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 0, 0, 5000.00, '2023-01-01 00:00:00'),
+           ('user2@example.com', 'Doctor User', '1985-02-01 00:00:00', 1, 'Doctor', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 1, 0, 6000.00, '2023-02-01 00:00:00'),
+           ('user3@example.com', 'Nurse User', '1990-03-01 00:00:00', 0, 'Nurse', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 2, 0, 5500.00, '2023-03-01 00:00:00'),
+           ('user4@example.com', 'Receipter User', '1995-04-01 00:00:00', 1, 'Receipter', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 3, 0, 6200.00, '2023-04-01 00:00:00'),
+           ('user5@example.com', 'User5', '2000-05-01 00:00:00', 0, 'User5', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 0, 0, 5300.00, '2023-05-01 00:00:00'),
+           ('user6@example.com', 'User6', '2001-06-01 00:00:00', 1, 'User6', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 1, 0, 6400.00, '2023-06-01 00:00:00'),
+           ('user7@example.com', 'User7', '2002-07-01 00:00:00', 0, 'User7', '$2a$11$tUra/L8Tjk3GkECoFDo9O.ajG1ctiqAEVHwQuGO0J/QGItiz4ICIG', 1, 0, 5100.00, '2023-07-01 00:00:00')
+GO
+
    -- Mk : 123       
 GO
 INSERT INTO [dbo].[Medicines]

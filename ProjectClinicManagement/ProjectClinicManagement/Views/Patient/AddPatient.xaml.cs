@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectClinicManagement
+namespace ProjectClinicManagement.Views.Patient
 {
     /// <summary>
-    /// Interaction logic for PatientList.xaml
+    /// Interaction logic for AddPatient.xaml
     /// </summary>
-    public partial class PatientList : Window
+    public partial class AddPatient : Page
     {
-        public PatientList()
+        public AddPatient()
         {
             InitializeComponent();
         }
-
-        
     }
 }

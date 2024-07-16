@@ -13,12 +13,27 @@ namespace ProjectClinicManagement.Models
 
         [Required, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required] public string UserName { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required, DataType(DataType.Date)]
+        public DateTime Dob { get; set; }
+
+        [Required]
+        public GenderType Gender { get; set; }
+
+        [Required]
+        public string UserName { get; set; }
 
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required] public RoleType Role { get; set; }
-        [Required] public StatusType Status { get; set; }
+
+        [Required]
+        public RoleType Role { get; set; }
+
+        [Required]
+        public StatusType Status { get; set; }
 
         [Required, DataType(DataType.Currency)]
         public decimal Salary { get; set; }
@@ -37,11 +52,17 @@ namespace ProjectClinicManagement.Models
             Nurse,
             Receipter
         }
+        public enum GenderType
+        {
+          Male,
+          FeMale
+        }
         public enum StatusType
         {
             
             Active,
-            Inactive
+            Inactive,
+            Other
         }
     }
 }
