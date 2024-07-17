@@ -112,7 +112,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                 Unit = this.Unit,
                 Price = this.Price,
                 Quantity = this.Quantity,
-                Status = this.Status
+                Status = Medicine.StatusType.Active
             };
 
             _context.Medicines.Add(newMedicine);

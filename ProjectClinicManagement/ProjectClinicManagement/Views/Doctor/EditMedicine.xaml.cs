@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjectClinicManagement.ViewModel.AdminViewModel;
+using ProjectClinicManagement.ViewModel.DoctorViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,14 @@ namespace ProjectClinicManagement.Views.Doctor
     /// </summary>
     public partial class EditMedicine : Page
     {
+        private EditMedicineVM vm;
         public EditMedicine()
         {
+
             InitializeComponent();
+            vm = new EditMedicineVM(MedicineVM.medicineInstan);
+            this.DataContext = vm;
+
         }
     }
 }

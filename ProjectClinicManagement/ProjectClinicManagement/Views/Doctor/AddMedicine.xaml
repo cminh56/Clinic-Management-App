@@ -10,8 +10,8 @@
 
     <Grid Background="#FFF6F0F0">
         <StackPanel Margin="10">
-            <TextBlock Text="Name" Margin="5"/>
-            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Name" Margin="5"/> 
+            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/> 
 
             <TextBlock Text="ATC Code" Margin="5"/>
             <TextBox Text="{Binding ATCCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
