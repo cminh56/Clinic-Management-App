@@ -20,7 +20,9 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
     {
         //This variable is saved when switching to other pages
         public static Account accountInstan;
-       
+
+        private int _currentPage = 1; // Trang hiện tại
+        private int _itemsPerPage = 3; // Số mục trên mỗi trang
         //Declare list account
         private List<Account> _accounts;
         public List<Account> Accounts
@@ -97,6 +99,8 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         public ICommand AddUserCommand { get; set; }
         public ICommand UpdateUserCommand { get; set; }
         public ICommand FilterByRoleCommand { get; set; }
+        public ICommand Nextpage { get; set; }
+        public ICommand Prepage { get; set; }
 
 
         private readonly DataContext _context;
@@ -108,12 +112,14 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
 
             // Initialize list Accounts
-            Accounts = new List<Account>(_context.Account);
+            Accounts = new List<Account>(_context.Account.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage));
             placeHolderText = "Search by name, email,...";
             // Initialize list (command)
             AddUserCommand = new RelayCommand(NavigateToAddUserPage);
             UpdateUserCommand = new RelayCommand(NavigateToUpdateUser);
             FilterByRoleCommand = new RelayCommand(Filter);
+            Nextpage = new RelayCommand(NextPage);
+            Prepage = new RelayCommand(PrePage);
             // Initialize RoleButtons
             RoleButtons = new List<Button>
     {
@@ -151,12 +157,13 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             // Filter by search text  if applicable
             if (string.IsNullOrEmpty(SearchText))
             {
-                Accounts = new List<Account>(_context.Account);
+                Accounts = new List<Account>(_context.Account.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage));
             }
             else
             {
                 Accounts = new List<Account>(_context.Account
-                    .Where(x => x.Email.Contains(SearchText) || x.UserName.Contains(SearchText) || x.Name.Contains(SearchText)));
+                    .Where(x => x.Email.Contains(SearchText) || x.UserName.Contains(SearchText) || x.Name.Contains(SearchText))
+                    .Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage));
             }
         }
 
@@ -164,16 +171,17 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         private void Filter(object parameter)
         {
             string role = parameter as string;
+            _currentPage = 1;
             if (role == "All")
             {
                 SelectedRole = "All"; // Không có vai trò nào được chọn
-                Accounts = new List<Account>(_context.Account);
+                Accounts = new List<Account>(_context.Account.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage));
             }
             else if (Enum.TryParse<Account.RoleType>(role, out var roleType))
             {
                 SelectedRole = role; // Cập nhật vai trò được chọn
                 Accounts = new List<Account>(_context.Account
-                    .Where(a => a.Role == roleType));
+                    .Where(a => a.Role == roleType).Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage));
             }
             else
             {
@@ -194,6 +202,23 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
                     // Thiết lập màu BorderBrush mặc định cho các Button khác
                     button.ClearValue(Button.BorderBrushProperty);
                 }
+            }
+        }
+        private void NextPage(object parameter)
+        {
+            if (_currentPage < Accounts.Count / _itemsPerPage)
+            {
+                _currentPage++;
+                ApplyFilters();
+            }
+        }
+        private void PrePage(object parameter) {
+
+            if (_currentPage > 0)
+            {
+
+                _currentPage--;
+                ApplyFilters();
             }
         }
 
