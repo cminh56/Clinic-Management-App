@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ProjectClinicManagement
+namespace ProjectClinicManagement.Views.Receiptor
 {
     /// <summary>
-    /// Interaction logic for ReceiptForm.xaml
+    /// Interaction logic for Receipt.xaml
     /// </summary>
-    public partial class ReceiptForm : Window
+    public partial class Receipt : Window
     {
-        public ReceiptForm()
+        public Receipt()
         {
             InitializeComponent();
         }
