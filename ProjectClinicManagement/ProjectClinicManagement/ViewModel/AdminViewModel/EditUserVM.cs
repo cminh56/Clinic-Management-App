@@ -49,7 +49,18 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
             if (results.Any())
             {
-                Errors.Add(propertyName, results.Select(r => r.ErrorMessage).ToList());
+
+                // Check if propertyName already exists in Errors
+                if (Errors.ContainsKey(propertyName))
+                {
+                    // Update existing errors for propertyName
+                    Errors[propertyName] = results.Select(r => r.ErrorMessage).ToList();
+                }
+                else
+                {
+                    // Add new entry for propertyName
+                    Errors.Add(propertyName, results.Select(r => r.ErrorMessage).ToList());
+                }
                 ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
             }
             else
@@ -255,7 +266,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
         private bool CanSubmit(object obj)
         {
-            return Validator.TryValidateObject(this, new ValidationContext(this), null);
+            return Validator.TryValidateObject(this, new ValidationContext(this), null ) && Errors.Count == 0;
 
         }
 

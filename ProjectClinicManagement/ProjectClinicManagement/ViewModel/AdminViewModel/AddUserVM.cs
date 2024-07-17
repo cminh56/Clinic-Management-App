@@ -219,7 +219,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         }
         private bool CanSubmit(object obj)
         {
-            return Validator.TryValidateObject(this, new ValidationContext(this), null);
+            return Validator.TryValidateObject(this, new ValidationContext(this), null) && Errors.Count ==0 ;
 
         }
 
