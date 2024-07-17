@@ -49,6 +49,9 @@
     <Compile Update="Views\Patient\AddPatient.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Receiptor\Invoices.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Receiptor\Receipt.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -106,6 +109,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Patient\AddPatient.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Receiptor\Invoices.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Receiptor\Receipt.xaml">
