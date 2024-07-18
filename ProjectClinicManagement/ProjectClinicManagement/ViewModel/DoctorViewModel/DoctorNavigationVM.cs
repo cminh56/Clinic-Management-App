@@ -39,7 +39,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
         private void NavigateToPage2()
         {
-            CurrentPage = new Views.Page2();
+            CurrentPage = new Views.Doctor.ViewPrescription();
         }
     }
 }

@@ -107,7 +107,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         {
             _context = new DataContext();
             LoadMedicines();
-            placeHolderText = "Search by name, email,...";
+            placeHolderText = "Search by Name";
             AddMedicineCommand = new RelayCommand(NavigateToAddMedicinePage);
             UpdateMedicineCommand = new RelayCommand(NavigateToEditMedicinePage);
             DeleteMedicineCommand = new RelayCommand(DeleteMedicine);

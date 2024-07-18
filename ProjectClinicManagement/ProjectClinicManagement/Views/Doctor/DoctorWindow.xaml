@@ -62,14 +62,14 @@
                             <Button Style="{StaticResource menuButton}"  Command="{Binding NavigateToPage1Command}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="DashBoard"/>
+                                    <TextBlock Text="Medicine"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}"  Command="{Binding NavigateToPage2Command}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Events"/>
+                                    <TextBlock Text="Prescription"/>
                                 </StackPanel>
                             </Button>
 
