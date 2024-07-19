@@ -36,5 +36,11 @@ namespace ProjectClinicManagement.Views.Doctor
         {
             MedicineVM._navigationService = NavigationService;
         }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
+        {
+            MedicineVM._navigationService = NavigationService;
+
+        }
     }
 }

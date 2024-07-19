@@ -31,6 +31,9 @@
     <Compile Update="Views\Doctor\ViewMedicine.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Doctor\ViewPrescription.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Authentication\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -38,6 +41,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Patient\AddPatient.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Receiptor\Invoices.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Receiptor\Receipt.xaml.cs">
@@ -81,6 +87,9 @@
     <Page Update="Views\Doctor\ViewMedicine.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Doctor\ViewPrescription.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Authentication\Login.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -88,6 +97,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Patient\AddPatient.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Receiptor\Invoices.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Receiptor\Receipt.xaml">

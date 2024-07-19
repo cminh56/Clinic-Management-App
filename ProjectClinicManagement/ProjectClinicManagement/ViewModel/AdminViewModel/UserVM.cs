@@ -241,6 +241,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
             Accounts = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
         }
+
         private void UpdateButtonBorderBrush()
         {
             foreach (var button in RoleButtons)

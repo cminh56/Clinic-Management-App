@@ -1,5 +1,4 @@
-﻿using ProjectClinicManagement.ViewModel.AdminViewModel;
-using ProjectClinicManagement.ViewModel.DoctorViewModel;
+﻿using ProjectClinicManagement.ViewModel.DoctorViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +17,26 @@ using System.Windows.Shapes;
 namespace ProjectClinicManagement.Views.Doctor
 {
     /// <summary>
-    /// Interaction logic for EditMedicine.xaml
+    /// Interaction logic for ViewPrescription.xaml
     /// </summary>
-    public partial class EditMedicine : Page
+    public partial class ViewPrescription : Page
     {
-        private EditMedicineVM vm;
-        public EditMedicine()
+        private PrescriptionVM PrescriptionVM;
+        public ViewPrescription()
+        {
+            InitializeComponent();
+            PrescriptionVM = new PrescriptionVM();
+            this.DataContext = PrescriptionVM;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+         
+        }
+
+        private void Update_Click(object sender, RoutedEventArgs e)
         {
 
-            InitializeComponent();
-            vm = new EditMedicineVM(MedicineVM.medicineInstan);
-            this.DataContext = vm;
 
         }
     }
