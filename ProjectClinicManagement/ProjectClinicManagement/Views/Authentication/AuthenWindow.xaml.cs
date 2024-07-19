@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectClinicManagement.Views
+namespace ProjectClinicManagement.Views.Authentication
 {
     /// <summary>
-    /// Interaction logic for Page2.xaml
+    /// Interaction logic for AuthenWindow.xaml
     /// </summary>
-    public partial class Page2 : Page
+    public partial class AuthenWindow : Window
     {
-        public Page2()
+        public AuthenWindow()
         {
             InitializeComponent();
+        }
+        private void MainFrame_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Điều hướng đến LoginPage khi MainWindow khởi động
+            MainFrame.Navigate(new Login(this));
         }
     }
 }

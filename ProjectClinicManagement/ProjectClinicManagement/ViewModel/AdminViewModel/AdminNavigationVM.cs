@@ -1,6 +1,7 @@
 ﻿using ProjectClinicManagement.Command;
 using ProjectClinicManagement.ViewModel.Common;
 using ProjectClinicManagement.Views;
+using ProjectClinicManagement.Views.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
         private void NavigateToPage2()
         {
-            CurrentPage = new Views.Page2();
+            //CurrentPage = new Views.Page2();
         }
         private void Logout(object? parameter)
         {
@@ -53,7 +54,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             Application.Current.Properties["UserRole"] = null;
 
             // Reopen login window
-            Login loginWindow = new Login();
+            AuthenWindow loginWindow = new AuthenWindow();
             loginWindow.Show();
 
             // Close current window

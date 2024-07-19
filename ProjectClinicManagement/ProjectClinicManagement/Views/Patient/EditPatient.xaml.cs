@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectClinicManagement.Views
+namespace ProjectClinicManagement.Views.Patient
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for EditPatient.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class EditPatient : Page
     {
-        public Page1()
+        public EditPatient()
         {
             InitializeComponent();
         }

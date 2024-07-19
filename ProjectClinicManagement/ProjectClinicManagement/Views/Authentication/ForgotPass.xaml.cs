@@ -1,6 +1,4 @@
-﻿using ProjectClinicManagement.ViewModel.AdminViewModel;
-using ProjectClinicManagement.ViewModel.PatientViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectClinicManagement.Views.Patient
+namespace ProjectClinicManagement.Views.Authentication
 {
     /// <summary>
-    /// Interaction logic for AddPatient.xaml
+    /// Interaction logic for ForgotPass.xaml
     /// </summary>
-    public partial class AddPatient : Page
+    public partial class ForgotPass : Page
     {
-        private AddPatientVM addPatientVm;
-        public AddPatient()
+        public ForgotPass()
         {
             InitializeComponent();
-            addPatientVm = new AddPatientVM();
-            this.DataContext = addPatientVm;
         }
     }
 }

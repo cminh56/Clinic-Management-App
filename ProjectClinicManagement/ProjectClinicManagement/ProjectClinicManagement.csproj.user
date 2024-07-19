@@ -10,9 +10,6 @@
     <Compile Update="AttendanceList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AccountList.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="TaskList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -40,16 +37,7 @@
     <Compile Update="Views\Doctor\ViewPrescriptionDetail.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Login.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Doctor\DoctorWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Page1.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Page2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Patient\AddPatient.xaml.cs">
@@ -70,9 +58,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="AccountList.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\UITemplateStyle.xaml">
@@ -108,16 +93,7 @@
     <Page Update="Views\Doctor\ViewPrescriptionDetail.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Login.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Doctor\DoctorWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Page1.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Page2.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Patient\AddPatient.xaml">
