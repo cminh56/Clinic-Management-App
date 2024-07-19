@@ -22,6 +22,18 @@
     <Compile Update="Views\Admin\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Authentication\AuthenWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Authentication\ChangePass.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Authentication\ForgotPass.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Authentication\Login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Doctor\AddMedicine.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -34,7 +46,7 @@
     <Compile Update="Views\Doctor\ViewPrescription.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Authentication\Login.xaml.cs">
+    <Compile Update="Views\Authentication\1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Doctor\DoctorWindow.xaml.cs">
@@ -78,6 +90,18 @@
     <Page Update="Views\Admin\AdminWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Authentication\AuthenWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\ChangePass.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\ForgotPass.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Doctor\AddMedicine.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -90,7 +114,7 @@
     <Page Update="Views\Doctor\ViewPrescription.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Authentication\Login.xaml">
+    <Page Update="Views\Authentication\1.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Doctor\DoctorWindow.xaml">

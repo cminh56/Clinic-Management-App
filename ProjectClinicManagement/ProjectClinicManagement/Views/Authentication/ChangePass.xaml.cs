@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ProjectClinicManagement.Views.Authentication
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for ChangePass.xaml
     /// </summary>
-    public partial class Login : Page
+    public partial class ChangePass : Page
     {
-        public Login()
+        public ChangePass()
         {
             InitializeComponent();
         }

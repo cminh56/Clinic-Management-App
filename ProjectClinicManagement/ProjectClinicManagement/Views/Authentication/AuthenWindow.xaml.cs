@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ProjectClinicManagement.Views.Authentication
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for AuthenWindow.xaml
     /// </summary>
-    public partial class Login : Page
+    public partial class AuthenWindow : Window
     {
-        public Login()
+        public AuthenWindow()
         {
             InitializeComponent();
         }
