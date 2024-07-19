@@ -23,7 +23,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
-<<<<<<< HEAD
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="QRCoder" Version="1.6.0" />
     <PackageReference Include="RestSharp" Version="110.2.0" />
@@ -35,9 +34,7 @@
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     <PackageReference Include="ZXing.Net" Version="0.16.9" />
-=======
-    <PackageReference Include="MimeKit" Version="4.7.1" />
->>>>>>> 30edb91d023e33e2a154815c751939ae7bc6f70d
+	  <PackageReference Include="MimeKit" Version="4.7.1" />
   </ItemGroup>
 
   <ItemGroup>

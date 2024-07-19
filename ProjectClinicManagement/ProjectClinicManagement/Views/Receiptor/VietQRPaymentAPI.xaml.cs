@@ -33,7 +33,7 @@ namespace ProjectClinicManagement.Views.Receiptor
                 amount = Convert.ToInt32(tbMonney.Text),
                 format = "text",
                 template = cbTemplate.Text,
-                addInfo = "khiem deptrai"
+                addInfo = "Chuyen tien kham benh <3"
             };
 
             var jsonRequest = JsonConvert.SerializeObject(apiRequest);
