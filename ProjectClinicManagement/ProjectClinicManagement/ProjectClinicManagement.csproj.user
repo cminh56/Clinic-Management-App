@@ -22,18 +22,6 @@
     <Compile Update="Views\Admin\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Authentication\AuthenWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Authentication\ChangePass.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Authentication\ForgotPass.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Authentication\Login.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Doctor\AddMedicine.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +34,9 @@
     <Compile Update="Views\Doctor\ViewPrescription.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Doctor\ViewPrescriptionDetail.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Doctor\DoctorWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -56,9 +47,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Receiptor\Receipt.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Receiptor\VietQRPaymentAPI.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\UI Template\UITemplate.xaml.cs">
@@ -90,18 +78,6 @@
     <Page Update="Views\Admin\AdminWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Authentication\AuthenWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Authentication\ChangePass.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Authentication\ForgotPass.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Authentication\Login.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Doctor\AddMedicine.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -114,6 +90,9 @@
     <Page Update="Views\Doctor\ViewPrescription.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Doctor\ViewPrescriptionDetail.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Doctor\DoctorWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -124,9 +103,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Receiptor\Receipt.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Receiptor\VietQRPaymentAPI.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UI Template\UITemplate.xaml">

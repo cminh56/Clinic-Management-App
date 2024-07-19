@@ -1,6 +1,4 @@
-﻿using ProjectClinicManagement.ViewModel.AdminViewModel;
-using ProjectClinicManagement.ViewModel.PatientViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,16 +16,13 @@ using System.Windows.Shapes;
 namespace ProjectClinicManagement.Views.Patient
 {
     /// <summary>
-    /// Interaction logic for AddPatient.xaml
+    /// Interaction logic for EditPatient.xaml
     /// </summary>
-    public partial class AddPatient : Page
+    public partial class EditPatient : Page
     {
-        private AddPatientVM addPatientVm;
-        public AddPatient()
+        public EditPatient()
         {
             InitializeComponent();
-            addPatientVm = new AddPatientVM();
-            this.DataContext = addPatientVm;
         }
     }
 }

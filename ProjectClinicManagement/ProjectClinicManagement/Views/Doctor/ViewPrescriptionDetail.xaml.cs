@@ -1,5 +1,4 @@
-﻿using ProjectClinicManagement.ViewModel.AdminViewModel;
-using ProjectClinicManagement.ViewModel.PatientViewModel;
+﻿using ProjectClinicManagement.ViewModel.DoctorViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,19 +14,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectClinicManagement.Views.Patient
+namespace ProjectClinicManagement.Views.Doctor
 {
     /// <summary>
-    /// Interaction logic for AddPatient.xaml
+    /// Interaction logic for ViewPrescriptionDetail.xaml
     /// </summary>
-    public partial class AddPatient : Page
+    public partial class ViewPrescriptionDetail : Page
     {
-        private AddPatientVM addPatientVm;
-        public AddPatient()
+        private ViewPrescriptionVM vm;
+        public ViewPrescriptionDetail()
         {
             InitializeComponent();
-            addPatientVm = new AddPatientVM();
-            this.DataContext = addPatientVm;
+            vm = new ViewPrescriptionVM(PrescriptionVM.PrescriptionInstan);
+            this.DataContext = vm;
         }
     }
 }

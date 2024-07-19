@@ -29,9 +29,10 @@ namespace ProjectClinicManagement.Views.Doctor
             this.DataContext = PrescriptionVM;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void View_Click(object sender, RoutedEventArgs e)
         {
-         
+            PrescriptionVM._navigationService = NavigationService;
+
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
