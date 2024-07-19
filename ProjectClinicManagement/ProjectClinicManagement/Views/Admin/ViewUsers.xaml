@@ -47,12 +47,20 @@
              HorizontalAlignment="Left" Foreground="#121518"/>
 
         <!--Add Button-->
-        <Button  Style="{StaticResource addButton}" Command="{Binding AddUserCommand}" Click="Button_Click_1">
+        <Button  Style="{StaticResource addButton}" Command="{Binding ExportFileCommand}" >
+            <StackPanel Orientation="Horizontal">
+               
+                <TextBlock Text="Export to Exel"/>
+            </StackPanel>
+        </Button>
+        <!--Add Button-->
+        <Button  Style="{StaticResource addButton}" Command="{Binding AddUserCommand}" Click="Button_Click_1" Margin="0,24,181,4" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                 <TextBlock Text="Add New User"/>
             </StackPanel>
         </Button>
+
 
         <!--Separator-->
         <Separator Height="1" Grid.Row="3" Background="#dae2ea" Margin="0 -1 0 10"/>
