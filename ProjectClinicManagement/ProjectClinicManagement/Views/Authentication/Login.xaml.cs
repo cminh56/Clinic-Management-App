@@ -1,4 +1,4 @@
-﻿using ProjectClinicManagement.ViewModel;
+﻿using ProjectClinicManagement.ViewModel.AuthenViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

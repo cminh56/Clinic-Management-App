@@ -1,5 +1,4 @@
-﻿
-using ProjectClinicManagement.Command;
+﻿using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Data;
 using ProjectClinicManagement.ViewModel.Common;
 using ProjectClinicManagement.Views;
@@ -11,10 +10,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace ProjectClinicManagement.ViewModel
+namespace ProjectClinicManagement.ViewModel.AuthenViewModel
 {
     public class LoginViewModel : BaseViewModel
-    
+
     {
         public string Username { get; set; }
         public string Password { get; set; }
@@ -41,8 +40,8 @@ namespace ProjectClinicManagement.ViewModel
             else
             {
                 //check username
-                var user = _context.Account.FirstOrDefault(u => u.UserName == Username );
- 
+                var user = _context.Account.FirstOrDefault(u => u.UserName == Username);
+
                 //Check pass
                 if (user != null && BCrypt.Net.BCrypt.Verify(Password, user.Password))
                 {
@@ -61,12 +60,12 @@ namespace ProjectClinicManagement.ViewModel
                     mainWindow.Show();
 
                     _loginWindow.Close();
-                    
+
                 }
                 else
                 {
                     // Login Failed
-                 MessageBox.Show("Invalid username or password.");
+                    MessageBox.Show("Invalid username or password.");
                 }
 
             }
@@ -79,6 +78,6 @@ namespace ProjectClinicManagement.ViewModel
 
         }
 
-       
+
     }
 }

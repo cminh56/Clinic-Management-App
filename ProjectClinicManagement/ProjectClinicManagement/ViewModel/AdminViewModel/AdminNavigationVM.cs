@@ -44,7 +44,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
         private void NavigateToPage2()
         {
-            CurrentPage = new Views.Page2();
+            //CurrentPage = new Views.Page2();
         }
         private void Logout(object? parameter)
         {

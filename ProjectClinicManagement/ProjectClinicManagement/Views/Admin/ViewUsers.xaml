@@ -124,15 +124,14 @@ Command="{Binding FilterByRoleCommand}" CommandParameter="All"/>
                 </Button>
                 <Rectangle Width="1" Fill="#dee4ec" Margin="3 7" />
 
-                <Button Style="{StaticResource paginButton}" Content="1"/>
-                <Button Style="{StaticResource paginButton}" Content="2" Background="#7950f2" Foreground="#ffffff"/>
-                <Button Style="{StaticResource paginButton}" Content="3"/>
 
-                <TextBlock Text="..." Foreground="#6c7682" VerticalAlignment="Center" FontSize="15" Margin="10 0"/>
+                <Button Style="{StaticResource paginButton}" Content="{Binding CurrentPage}" Background="#7950f2" Foreground="#ffffff"/>
+               
 
-                <Button Style="{StaticResource paginButton}" Content="7"/>
-                <Button Style="{StaticResource paginButton}" Content="8"/>
-                <Button Style="{StaticResource paginButton}" Content="9"/>
+                <TextBlock Text="/" Foreground="#6c7682" VerticalAlignment="Center" FontSize="15" Margin="10 0"/>
+
+                <Button Style="{StaticResource paginButton}" Content="{Binding Totalpage}"/>
+               
 
                 <Rectangle Width="1" Fill="#dee4ec" Margin="3 7" />
                 <Button Command="{Binding Nextpage}" Style="{StaticResource paginButton}">
