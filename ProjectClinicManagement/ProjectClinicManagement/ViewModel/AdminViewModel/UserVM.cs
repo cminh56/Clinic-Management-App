@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ProjectClinicManagement.ViewModel.AdminViewModel
 {
@@ -20,10 +21,36 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
     {
         //This variable is saved when switching to other pages
         public static Account accountInstan;
+        
+        public int _currentPage = 1; // Trang hiện tại
+        public int CurrentPage
+        {
+            get { return _currentPage; }
+            set
+            {
+                _currentPage = value;
+                OnPropertyChanged();
 
-        private int _currentPage = 1; // Trang hiện tại
-        private int _itemsPerPage = 3; // Số mục trên mỗi trang
+
+            }
+
+        }
+        public int _itemsPerPage = 3; // Số mục trên mỗi trang
+        public int totalpage;
+        public int Totalpage
+        {
+            get { return totalpage; }
+            set
+            {
+                totalpage = value;
+                OnPropertyChanged();
+
+
+            }
+
+        }
         //Declare list account
+
         private List<Account> _accounts;
         public List<Account> Accounts
         {
@@ -54,8 +81,9 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             {
                 searchText = value;
                 OnPropertyChanged();
-                ApplyFilters(); // Thay đổi tên hàm gọi tới
-                PlaceHolderText = string.Empty; 
+                CurrentPage = 1;
+                Filter(SelectedRole);
+                PlaceHolderText = string.Empty;
             }
         }
         private string placeHolderText;
@@ -66,7 +94,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             {
                 placeHolderText = value;
                 OnPropertyChanged();
-              
+
 
             }
 
@@ -112,14 +140,19 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
 
             // Initialize list Accounts
-            Accounts = new List<Account>(_context.Account.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage));
+            var query = _context.Account.AsQueryable();
+            Accounts = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
+
             placeHolderText = "Search by name, email,...";
+            //Cacular total page
+            Totalpage = query.ToList().Count / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage;
+
             // Initialize list (command)
             AddUserCommand = new RelayCommand(NavigateToAddUserPage);
             UpdateUserCommand = new RelayCommand(NavigateToUpdateUser);
-            FilterByRoleCommand = new RelayCommand(Filter);
-            Nextpage = new RelayCommand(NextPage);
-            Prepage = new RelayCommand(PrePage);
+            FilterByRoleCommand = new RelayCommand(Filter2);
+            Nextpage = new RelayCommand(NextPage,CanNextPage);
+            Prepage = new RelayCommand(PrePage,CanPrePage);
             // Initialize RoleButtons
             RoleButtons = new List<Button>
     {
@@ -152,43 +185,63 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
 
         }
-        private void ApplyFilters()
-        {
-            // Filter by search text  if applicable
-            if (string.IsNullOrEmpty(SearchText))
-            {
-                Accounts = new List<Account>(_context.Account.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage));
-            }
-            else
-            {
-                Accounts = new List<Account>(_context.Account
-                    .Where(x => x.Email.Contains(SearchText) || x.UserName.Contains(SearchText) || x.Name.Contains(SearchText))
-                    .Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage));
-            }
-        }
 
         //Filter by role
         private void Filter(object parameter)
         {
             string role = parameter as string;
-            _currentPage = 1;
-            if (role == "All")
+            SelectedRole = role;
+
+            var query = _context.Account.AsQueryable();
+         
+            if (Enum.TryParse<Account.RoleType>(SelectedRole, out var roleType))
             {
-                SelectedRole = "All"; // Không có vai trò nào được chọn
-                Accounts = new List<Account>(_context.Account.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage));
+              
+                query = query.Where(a => a.Role == roleType);
             }
-            else if (Enum.TryParse<Account.RoleType>(role, out var roleType))
+          
+            if (!string.IsNullOrEmpty(SearchText))
             {
-                SelectedRole = role; // Cập nhật vai trò được chọn
-                Accounts = new List<Account>(_context.Account
-                    .Where(a => a.Role == roleType).Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage));
+
+                query = query.Where(x => x.Email.Contains(SearchText) 
+                || x.UserName.Contains(SearchText) 
+                || x.Name.Contains(SearchText));
+
+
             }
-            else
-            {
-                SelectedRole = null; // Trường hợp không hợp lệ
-                ApplyFilters(); // Áp dụng lại bộ lọc nếu không có vai trò được chọn
-            }
+
+            Totalpage = query.ToList().Count / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage;
+
+            Accounts = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
         }
+        private void Filter2(object parameter)
+        {
+            string role = parameter as string;
+            SelectedRole = role;
+            CurrentPage = 1;
+            var query = _context.Account.AsQueryable();
+
+            if (Enum.TryParse<Account.RoleType>(SelectedRole, out var roleType))
+            {
+
+                query = query.Where(a => a.Role == roleType);
+            }
+
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+
+                query = query.Where(x => x.Email.Contains(SearchText)
+                || x.UserName.Contains(SearchText)
+                || x.Name.Contains(SearchText));
+
+
+            }
+
+            Totalpage = query.ToList().Count / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage;
+
+            Accounts = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
+        }
+
         private void UpdateButtonBorderBrush()
         {
             foreach (var button in RoleButtons)
@@ -204,23 +257,35 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
                 }
             }
         }
+        // Phân trang - Next Page
         private void NextPage(object parameter)
         {
-            if (_currentPage < Accounts.Count / _itemsPerPage)
-            {
-                _currentPage++;
-                ApplyFilters();
-            }
+            CurrentPage++;
+            Filter(SelectedRole);
+            UpdateButtonBorderBrush();
         }
-        private void PrePage(object parameter) {
 
-            if (_currentPage > 0)
-            {
-
-                _currentPage--;
-                ApplyFilters();
-            }
+        // Phân trang - Previous Page
+        private void PrePage(object parameter)
+        {
+            CurrentPage--;
+            Filter(SelectedRole);
+            UpdateButtonBorderBrush();
         }
+
+        // Kiểm tra có thể đi tới trang tiếp theo không
+        private bool CanNextPage(object parameter)
+        {
+      
+            return _currentPage < totalpage;
+        }
+
+        // Kiểm tra có thể đi tới trang trước đó không
+        private bool CanPrePage(object parameter)
+        {
+            return _currentPage > 1;
+        }
+
 
     }
 }

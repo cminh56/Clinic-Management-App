@@ -10,9 +10,6 @@
     <Compile Update="AttendanceList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AccountList.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="TaskList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -23,6 +20,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Admin\AdminWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Authentication\AuthenWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Authentication\ChangePass.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Authentication\ForgotPass.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Authentication\Login.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Doctor\AddMedicine.xaml.cs">
@@ -37,16 +46,7 @@
     <Compile Update="Views\Doctor\ViewPrescription.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Login.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Doctor\DoctorWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Page1.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Page2.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Patient\AddPatient.xaml.cs">
@@ -72,9 +72,6 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="AccountList.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Styles\UITemplateStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -93,6 +90,18 @@
     <Page Update="Views\Admin\AdminWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Authentication\AuthenWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\ChangePass.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\ForgotPass.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Doctor\AddMedicine.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -105,16 +114,7 @@
     <Page Update="Views\Doctor\ViewPrescription.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Login.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Doctor\DoctorWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Page1.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Page2.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Patient\AddPatient.xaml">

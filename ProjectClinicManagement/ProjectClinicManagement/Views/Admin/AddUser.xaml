@@ -22,11 +22,7 @@
             <TextBox x:Name="UsernameTextbox" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Label  Content="{Binding ElementName=UsernameTextbox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <!--Password-->
-            <TextBlock Text="Password" Margin="5"/>
-            <TextBox x:Name="PasswordTextBox" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            <Label  Content="{Binding ElementName=PasswordTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
-
+           
             <!--Fullname-->
             <TextBlock Text="Name" Margin="5"/>
             <TextBox x:Name="FullNameTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>

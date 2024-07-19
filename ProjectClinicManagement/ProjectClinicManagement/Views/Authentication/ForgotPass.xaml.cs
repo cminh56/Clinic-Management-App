@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectClinicManagement.Views
+namespace ProjectClinicManagement.Views.Authentication
 {
     /// <summary>
-    /// Interaction logic for Page2.xaml
+    /// Interaction logic for ForgotPass.xaml
     /// </summary>
-    public partial class Page2 : Page
+    public partial class ForgotPass : Page
     {
-        public Page2()
+        public ForgotPass()
         {
             InitializeComponent();
         }

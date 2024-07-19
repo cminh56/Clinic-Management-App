@@ -1,4 +1,4 @@
-﻿using ProjectClinicManagement.ViewModel;
+﻿using ProjectClinicManagement.ViewModel.AuthenViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,20 +11,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjectClinicManagement.Views
+namespace ProjectClinicManagement.Views.Authentication
 {
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Login : Page
     {
         private LoginViewModel viewModel;
-        public Login()
+        public Login(Window window)
         {
             InitializeComponent();
-            viewModel = new LoginViewModel(this);
+           
+            viewModel = new LoginViewModel(window);
             this.DataContext = viewModel;
         }
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
@@ -51,6 +53,11 @@ namespace ProjectClinicManagement.Views
                 passwordTextBox.Visibility = Visibility.Collapsed;
             }
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ChangePass());
         }
     }
 }

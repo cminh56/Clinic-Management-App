@@ -9,8 +9,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:ProjectClinicManagement.ViewModel"
-    
+     
         mc:Ignorable="d"
         Title="MainWindow"
         Height="600"
@@ -20,21 +19,9 @@
         WindowStyle="None"
         >
 
-    <Window.DataContext>
-        <vm:NavigationVM />
-    </Window.DataContext>
+  
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220" />
-            <ColumnDefinition Width="630" />
-        </Grid.ColumnDefinitions>
-
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top"  Width="228">
-            <Button Content="Go to Page 1" Command="{Binding NavigateToPage1Command}" Margin="10"/>
-            <Button Content="Go to Page 2" Command="{Binding NavigateToPage2Command}"/>
-        </StackPanel>
-        
-        <Frame Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" />
+      
     </Grid>
 
 </Window>

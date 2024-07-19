@@ -1,5 +1,6 @@
 ﻿using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Data;
+using ProjectClinicManagement.Helper;
 using ProjectClinicManagement.Models;
 using ProjectClinicManagement.ViewModel.Common;
 using System;
@@ -19,6 +20,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 {
     class AddUserVM : BaseViewModel, INotifyDataErrorInfo
     {
+        private readonly SendEmail send = new SendEmail();
         //Validation
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
@@ -111,17 +113,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             }
         }
 
-        [Required(ErrorMessage = "Password is required.")]
-        
-        public string Password
-        {
-            get => password;
-            set
-            {
-                password = value;
-                Validate(nameof(Password), value);
-            }
-        }
+
 
         [Required(ErrorMessage = "Name is required.")]
 
@@ -192,7 +184,24 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         {
             try
             {
-                var hashedPassword = BCrypt.Net.BCrypt.HashPassword(this.Password);
+                // Check if email or username already exists
+                bool emailExists = _context.Account.Any(a => a.Email == this.Email);
+                bool usernameExists = _context.Account.Any(a => a.UserName == this.UserName);
+
+                if (emailExists)
+                {
+                    MessageBox.Show("Email already exists. Please use a different email address.");
+                    return;
+                }
+
+                if (usernameExists)
+                {
+                    MessageBox.Show("Username already exists. Please choose a different username.");
+                    return;
+                }
+                //
+                string Password = GenerateRandomPassword();
+                var hashedPassword = BCrypt.Net.BCrypt.HashPassword(Password);
                 var newAccount = new Account
                 {
                     Email = this.Email,
@@ -209,7 +218,11 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
                 _context.Account.Add(newAccount);
                 _context.SaveChanges();
-                MessageBox.Show("Add New User Successfully ");
+
+                //send email
+                send.sendEmailCreateUser(newAccount, Password);
+
+                MessageBox.Show("Add and Send Email Successfully ");
             }
             catch (Exception ex)
             {
@@ -221,6 +234,19 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         {
             return Validator.TryValidateObject(this, new ValidationContext(this), null) && Errors.Count ==0 ;
 
+        }
+        private string GenerateRandomPassword()
+        {
+            // Độ dài của mật khẩu ngẫu nhiên
+            int length = 8;
+
+            // Các ký tự được phép trong mật khẩu
+            string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+=-";
+
+            // Sinh mật khẩu ngẫu nhiên
+            Random random = new Random();
+            return new string(Enumerable.Repeat(validChars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
     }
