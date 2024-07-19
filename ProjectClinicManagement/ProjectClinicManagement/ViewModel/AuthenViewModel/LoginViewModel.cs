@@ -2,6 +2,7 @@
 using ProjectClinicManagement.Data;
 using ProjectClinicManagement.ViewModel.Common;
 using ProjectClinicManagement.Views;
+using ProjectClinicManagement.Views.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,8 +59,8 @@ namespace ProjectClinicManagement.ViewModel.AuthenViewModel
                     // Open main window (Window1)
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
-
-                    _loginWindow.Close();
+                     _loginWindow.Close();
+               
 
                 }
                 else

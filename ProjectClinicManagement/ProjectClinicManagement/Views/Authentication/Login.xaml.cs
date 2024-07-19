@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectClinicManagement.ViewModel.AuthenViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,43 @@ namespace ProjectClinicManagement.Views.Authentication
     /// </summary>
     public partial class Login : Page
     {
-        public Login()
+        private LoginViewModel viewModel;
+        public Login(Window window)
         {
             InitializeComponent();
+           
+            viewModel = new LoginViewModel(window);
+            this.DataContext = viewModel;
+        }
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (viewModel != null)
+            {
+
+                viewModel.Password = PasswordBox.Password;
+            }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (showpass.IsChecked == true)
+            {
+                passwordTextBox.Text = PasswordBox.Password;
+                PasswordBox.Visibility = Visibility.Collapsed;
+                passwordTextBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PasswordBox.Password = passwordTextBox.Text;
+                PasswordBox.Visibility = Visibility.Visible;
+                passwordTextBox.Visibility = Visibility.Collapsed;
+            }
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ChangePass());
         }
     }
 }

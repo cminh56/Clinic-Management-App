@@ -23,5 +23,10 @@ namespace ProjectClinicManagement.Views.Authentication
         {
             InitializeComponent();
         }
+        private void MainFrame_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Điều hướng đến LoginPage khi MainWindow khởi động
+            MainFrame.Navigate(new Login(this));
+        }
     }
 }
