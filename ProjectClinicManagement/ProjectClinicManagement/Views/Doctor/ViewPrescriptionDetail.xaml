@@ -1,0 +1,97 @@
+﻿<Page x:Class="ProjectClinicManagement.Views.Doctor.ViewPrescriptionDetail"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectClinicManagement.Views.Doctor" 
+      xmlns:vm="clr-namespace:ProjectClinicManagement.ViewModel.DoctorViewModel"
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ViewPrescriptionDetail">
+
+
+    <Grid Background="#FFF8F8F8">
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+
+                </Grid.RowDefinitions>
+
+                <!-- Name -->
+                <TextBlock Text="Patient Name" Margin="5" Grid.Row="0" Grid.Column="0"/>
+                <TextBox x:Name="PatientName" IsReadOnly="True" Text="{Binding PatientName}" Margin="5" Grid.Row="1" Grid.Column="0"/>
+
+                <!-- ATC Code -->
+                <TextBlock Text="Phone" Margin="5" Grid.Row="2" Grid.Column="0"/>
+                <TextBox x:Name="Phone" IsReadOnly="True" Text="{Binding Phone}" Margin="5" Grid.Row="3" Grid.Column="0"/>
+
+                <!-- Description -->
+                <TextBlock Text="Patient Record ID" Margin="5" Grid.Row="4" Grid.Column="0"/>
+                <TextBox x:Name="PatientRecordId" IsReadOnly="True" Text="{Binding PatientRecordId}" Margin="5" Grid.Row="5" Grid.Column="0"/>
+
+
+                <!-- Generic Name -->
+                <TextBlock Text="Dosage" Margin="5" Grid.Row="6" Grid.Column="0"/>
+                <TextBox x:Name="Dosage" IsReadOnly="True" Text="{Binding Dosage}" Margin="5" Grid.Row="7" Grid.Column="0"/>
+
+
+                <!-- Type -->
+                <TextBlock Text="Duration" Margin="5" Grid.Row="4" Grid.Column="1"/>
+                <TextBox x:Name="Duration" IsReadOnly="True" Text="{Binding Duration}" Margin="5" Grid.Row="5" Grid.Column="1"/>
+
+                <!-- Category -->
+                <TextBlock Text="Instruction" Margin="5" Grid.Row="0" Grid.Column="1"/>
+                <TextBox x:Name="Instruction" IsReadOnly="True" Text="{Binding Instruction}" Margin="5" Grid.Row="1" Grid.Column="1"/>
+
+                <!-- Unit -->
+                <TextBlock Text="Remark" Margin="5" Grid.Row="2" Grid.Column="1"/>
+                <TextBox x:Name="Remark" IsReadOnly="True" Text="{Binding Remark}" Margin="5" Grid.Row="3" Grid.Column="1"/>
+
+
+                <!-- Manufacturer -->
+                <TextBlock Text="Date" Margin="5" Grid.Row="6" Grid.Column="1"/>
+                <TextBox x:Name="Date" IsReadOnly="True" Text="{Binding Date}" Margin="5" Grid.Row="7" Grid.Column="1"/>
+                <TextBlock Text="List Medicines" Margin="5" Grid.Row="8" Grid.Column="0"/>
+                <StackPanel Grid.Row="9" Grid.ColumnSpan="2" Margin="0,0,0,-214" >
+                    <DataGrid ItemsSource="{Binding Medicines}" SelectedItem="{Binding Medicine}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Width="1000"  >
+                        <DataGrid.Columns>
+
+
+                            <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding MedicineId}"/>
+
+                            <DataGridTextColumn Header="Medicine" IsReadOnly="True" Width="*" Binding="{Binding GenericName}"/>
+
+
+                            <DataGridTextColumn Header="ATC Code" IsReadOnly="True" Width="*" Binding="{Binding ATCCode}"/>
+                            <DataGridTextColumn Header="Price" IsReadOnly="True" Width="*" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="Quantity" IsReadOnly="True" Width="*" Binding="{Binding Quantity}"/>
+                            <DataGridTextColumn Header="Total Price" IsReadOnly="True" Width="*" Binding="{Binding TotalPrice}"/>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+
+                    <!--Memeber Datagrid-->
+                </StackPanel>
+            </Grid>
+
+        </ScrollViewer>
+    </Grid>
+</Page>
