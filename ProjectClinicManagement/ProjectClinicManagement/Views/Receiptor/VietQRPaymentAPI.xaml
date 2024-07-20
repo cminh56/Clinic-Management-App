@@ -40,7 +40,7 @@
         <Label Content="Thông tin thêm:" Grid.Row="2" Grid.Column="2" Margin="10"/>
         <TextBox Name="tbThongTin" Grid.Row="2" Grid.Column="3" Margin="10"/>
 
-        <Button Content="Create VietQR payment" x:Name="btCreate" Grid.Row="3" Grid.ColumnSpan="4" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btCreate_Click"/>
+
 
         <Label Content="VietQR Payment:" Grid.Row="4" Grid.ColumnSpan="4" Margin="10"/>
         <Border Grid.Row="5" Grid.ColumnSpan="4" Margin="10" BorderBrush="Black" BorderThickness="1">

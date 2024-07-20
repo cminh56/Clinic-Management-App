@@ -9,6 +9,7 @@ using ProjectClinicManagement.API;
 using RestSharp;
 using System.Drawing;
 using QRCoder;
+using static ProjectClinicManagement.Views.Receiptor.Receipt;
 
 namespace ProjectClinicManagement.Views.Receiptor
 {
@@ -17,48 +18,12 @@ namespace ProjectClinicManagement.Views.Receiptor
     /// </summary>
     public partial class VietQRPaymentAPI : Window
     {
-        public VietQRPaymentAPI()
+        private ReceiptViewModel receipt;
+        public VietQRPaymentAPI(ReceiptViewModel receipt)
         {
             InitializeComponent();
             Loaded += Window_Loaded;
-        }
-
-        private void btCreate_Click(object sender, RoutedEventArgs e)
-        {
-            var apiRequest = new ApiRequest
-            {
-                acqId = Convert.ToInt32(cbBank.SelectedValue.ToString()),
-                accountNo = long.Parse(tbTaiKhoan.Text),
-                accountName = tbTen.Text,
-                amount = Convert.ToInt32(tbMonney.Text),
-                format = "text",
-                template = cbTemplate.Text,
-                addInfo = "Chuyen tien kham benh <3"
-            };
-
-            var jsonRequest = JsonConvert.SerializeObject(apiRequest);
-            var client = new RestClient("https://api.vietqr.io/v2/generate");
-            var request = new RestRequest
-            {
-                Method = Method.Post
-            };
-            request.AddHeader("Accept", "application/json");
-            request.AddParameter("application/json", jsonRequest, ParameterType.RequestBody);
-
-            var response = client.Execute(request);
-            var content = response.Content;
-
-            var dataResult = JsonConvert.DeserializeObject<ApiResponse>(content);
-
-            if (dataResult != null && dataResult.data != null && !string.IsNullOrEmpty(dataResult.data.qrCode))
-            {
-                var image = GenerateQRCodeImage(dataResult.data.qrCode);
-                qrGrid.Source = image;
-            }
-            else
-            {
-                MessageBox.Show("No QR code data received from API.");
-            }
+            this.receipt = receipt; 
         }
 
         private BitmapImage GenerateQRCodeImage(string qrCodeData)
@@ -98,6 +63,7 @@ namespace ProjectClinicManagement.Views.Receiptor
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             using (var client = new WebClient())
             {
                 var htmlData = client.DownloadData("https://api.vietqr.io/v2/banks");
@@ -108,8 +74,54 @@ namespace ProjectClinicManagement.Views.Receiptor
                 cbBank.DisplayMemberPath = "custom_name";
                 cbBank.SelectedValuePath = "bin";
                 cbBank.SelectedValue = listBankData.data.FirstOrDefault()?.bin;
-                cbBank.SelectedIndex = 0;
+                cbBank.SelectedIndex = 6;
+            }
+            tbTaiKhoan.Text = "19037766903012";
+            tbTen.Text = "NGUYEN HUY HOANG";
+            tbMonney.Text = receipt.TotalPrice.ToString();
+            cbTemplate.Text = "";
+            tbThongTin.Text = "";
+
+            // Generate QR code
+            GenerateQRCode();
+        }
+        private void GenerateQRCode()
+        {
+            var apiRequest = new ApiRequest
+            {
+                acqId = 970407, // Techcombank's bank code
+                accountNo = 19037766903012,
+                accountName = "Nguyen Huy Hoang",
+                amount = Convert.ToInt32(receipt.TotalPrice),
+                format = "text",
+                template = "",
+                addInfo = receipt.Phone
+            };
+
+            var jsonRequest = JsonConvert.SerializeObject(apiRequest);
+            var client = new RestClient("https://api.vietqr.io/v2/generate");
+            var request = new RestRequest
+            {
+                Method = Method.Post
+            };
+            request.AddHeader("Accept", "application/json");
+            request.AddParameter("application/json", jsonRequest, ParameterType.RequestBody);
+
+            var response = client.Execute(request);
+            var content = response.Content;
+
+            var dataResult = JsonConvert.DeserializeObject<ApiResponse>(content);
+
+            if (dataResult != null && dataResult.data != null && !string.IsNullOrEmpty(dataResult.data.qrCode))
+            {
+                var image = GenerateQRCodeImage(dataResult.data.qrCode);
+                qrGrid.Source = image;
+            }
+            else
+            {
+                MessageBox.Show("No QR code data received from API.");
             }
         }
+
     }
 }
