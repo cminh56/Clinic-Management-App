@@ -5,6 +5,7 @@ using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Data;
 using ProjectClinicManagement.Helper;
 using ProjectClinicManagement.Models;
+using ProjectClinicManagement.ViewModel.AuthenViewModel;
 using ProjectClinicManagement.ViewModel.Common;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
     {
         private readonly ExelService exelService;
         public static Patient patientInstan;
+        public String accountName { get; set; }
         private List<Patient> _Patients;
         public List<Patient> Patients
         {
@@ -102,7 +104,7 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
 
         public ICommand AddPatientCommand { get; set; }
         public ICommand EditPatientCommand { get; set; }
-
+        public ICommand PatientRecordCommand { get; set; }
         public ICommand Nextpage { get; set; }
         public ICommand Prepage { get; set; }
         public ICommand ExportFilePatientCommand { get; set; }
@@ -119,6 +121,8 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         public PatientVM()
         {
             _context = new DataContext();
+            Application.Current.Properties["User"] = _context.Account.FirstOrDefault(u => u.UserName == "Admin");
+
             exelService = new ExelService();
             var query = _context.Patients.AsQueryable();
             Patients=query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
@@ -131,6 +135,7 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
 
             AddPatientCommand = new RelayCommand(NavigateToAddPatientPage);
             EditPatientCommand = new RelayCommand(NavigateToEditPatientPage, CanExecuteUserCommand);
+            PatientRecordCommand = new RelayCommand(NavigateToPatientRecordPage, CanExecuteUserCommand);
             Nextpage = new RelayCommand(NextPage, CanNextPage);
             Prepage = new RelayCommand(PrePage, CanPrePage);
             ExportFilePatientCommand = new RelayCommand(ExportToExel);
@@ -141,6 +146,15 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
             NavigationService?.Navigate(new Uri("Views/Patient/AddPatient.xaml", UriKind.Relative));
         }
 
+        private void NavigateToPatientRecordPage(object parameter)
+        {
+            if (SelectedPatient != null)
+            {
+                patientInstan = this.SelectedPatient;
+                NavigationService?.Navigate(new Uri($"Views/Patient/PatientRecord.xaml", UriKind.Relative));
+            }
+            
+        }
         private void NavigateToEditPatientPage(object parameter)
         {
             if (SelectedPatient != null)
@@ -148,8 +162,9 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
                 patientInstan = this.SelectedPatient;
                 NavigationService?.Navigate(new Uri($"Views/Patient/EditPatient.xaml", UriKind.Relative));
             }
-            
+
         }
+
 
         private bool CanExecuteUserCommand(object parameter)
         {

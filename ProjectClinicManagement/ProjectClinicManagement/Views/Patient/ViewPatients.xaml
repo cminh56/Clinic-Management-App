@@ -100,6 +100,9 @@
                                 <Button  Style="{StaticResource gridEditButton}" Click="ClickUpdate"  Command="{Binding DataContext.EditPatientCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}" />
                                 </Button>
+                                <Button  Style="{StaticResource gridEditButton}" Click="ClickPatientRecord"  Command="{Binding DataContext.PatientRecordCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                    <Icon:PackIconMaterial Kind="ViewList" Style="{StaticResource gridButtonIcon}" />
+                                </Button>
 
                             </StackPanel>
                         </DataTemplate>

@@ -39,5 +39,10 @@ namespace ProjectClinicManagement.Views.Patient
             patientVM._navigationService = NavigationService;
 
         }
+        private void ClickPatientRecord(object sender, RoutedEventArgs e)
+        {
+            patientVM._navigationService = NavigationService;
+
+        }
     }
 }
