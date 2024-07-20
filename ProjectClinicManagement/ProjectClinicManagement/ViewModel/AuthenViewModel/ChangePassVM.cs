@@ -55,6 +55,7 @@ namespace ProjectClinicManagement.ViewModel.AuthenViewModel
                     context.SaveChanges();
 
                     MessageBox.Show("Password changed successfully.");
+
                 }
                 else
                 {

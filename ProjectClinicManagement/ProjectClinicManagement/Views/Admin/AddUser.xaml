@@ -9,14 +9,14 @@
       Title="AddUser"
       Width="800" Height="700">
 
-    <Grid Background="#FFF6F0F0" >
+    <Grid Background="White" Margin="-100,0,0,0" >
         <StackPanel Margin="-239,-90,239,608">
             <!-- Page Title -->
             <TextBlock Text="Add User" FontSize="32" FontWeight="Bold" 
            HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,105,0,0"
            Foreground="#121518"/>
         </StackPanel>
-        <StackPanel Margin="10,108,405,0" Height="549" VerticalAlignment="Top">
+        <StackPanel Margin="10,108,505,0" Height="549" VerticalAlignment="Top">
             
             <!--Email-->
             <TextBlock Text="Email" Margin="5" FontSize="15" FontWeight="SemiBold"/>
@@ -35,7 +35,7 @@
             <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" Height="30" x:Name="FullNameTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Label  Content="{Binding ElementName=FullNameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
         </StackPanel>
-        <StackPanel Margin="400,108,10,0" Height="647" VerticalAlignment="Top">
+        <StackPanel Margin="489,108,10,0" Height="647" VerticalAlignment="Top">
             <!--Dob-->
             <TextBlock Text="Date of Birth" Margin="5" FontSize="15" FontWeight="SemiBold"/>
             <DatePicker  Height="30" x:Name="DobPicker" Background="white" SelectedDate="{Binding Dob, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
