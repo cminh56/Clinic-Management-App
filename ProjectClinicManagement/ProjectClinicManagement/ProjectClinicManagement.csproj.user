@@ -43,7 +43,7 @@
     <Compile Update="Views\Doctor\ViewPrescription.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Authentication\Login.xaml.cs">
+    <Compile Update="Views\Doctor\ViewPrescriptionDetail.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Doctor\DoctorWindow.xaml.cs">
@@ -108,7 +108,7 @@
     <Page Update="Views\Doctor\ViewPrescription.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Authentication\Login.xaml">
+    <Page Update="Views\Doctor\ViewPrescriptionDetail.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Doctor\DoctorWindow.xaml">

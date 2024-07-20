@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectClinicManagement.Views.Receiptor"
         mc:Ignorable="d"
-           Title="ReceiptForm" Height="747" Width="948">
+           Title="ReceiptForm" Height="747" Width="1080" Loaded="Window_Loaded">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -31,33 +31,43 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Column="0" Margin="5">Date:</TextBlock>
-            <TextBox Grid.Column="1" Margin="5" Name="OrderDate" Width="200"/>
-            <TextBlock Grid.Column="2" Margin="5">Receipt No:</TextBlock>
-            <TextBox Grid.Column="3" Margin="5" Name="OrderID" Width="200"/>
+            <DatePicker Grid.Column="1" Margin="5" Name="OrderDate" Width="200" Text="{Binding Path=Date}"/>
+
 
             <TextBlock Grid.Column="0" Grid.Row="1" Margin="5">Customer:</TextBlock>
-            <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Name="CustomerName" Width="200"/>
-            <TextBlock Grid.Column="2" Grid.Row="1" Margin="5">Seller:</TextBlock>
-            <TextBox Grid.Column="3" Grid.Row="1" Margin="5" Name="Seller" Width="200"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Name="CustomerName" Width="200" Text="{Binding Path=PatientName}"/>
+            <TextBlock Grid.Column="2" Grid.Row="1" Margin="5">Total Price:</TextBlock>
+            <TextBox Grid.Column="3" Grid.Row="1" Margin="5" Name="Seller" Width="200" Text="{Binding Path=TotalPrice}"/>
 
             <TextBlock Grid.Column="0" Grid.Row="2" Margin="5">Address:</TextBlock>
-            <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Name="Address" Width="200"/>
-            <TextBlock Grid.Column="2" Grid.Row="2" Margin="5">Sales Person:</TextBlock>
-            <TextBox Grid.Column="3" Grid.Row="2" Margin="5" Name="SalesPerson" Width="200"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Name="Address" Width="200" Text="{Binding Path=Address}"/>
+            <TextBlock Grid.Column="2" Grid.Row="2" Margin="5">Status:</TextBlock>
+            <TextBox Grid.Column="3" Grid.Row="2" Margin="5" Name="SalesPerson" Width="200" Text="{Binding Path=Status}"/>
+            <Button Grid.Column="3" Grid.Row="3" Width="90" Content="Change Status" Click="Button_Click">
 
-            <TextBlock Grid.Column="0" Grid.Row="3" Margin="5">Phone:</TextBlock>
-            <TextBox Grid.Column="1" Grid.Row="3" Margin="5" Name="Phone" Width="200"/>
+            </Button>
         </Grid>
 
-        <DataGrid Grid.Row="2" Margin="0,10,0,0" AutoGenerateColumns="False" Name="OrderDetailsGrid">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="No" Binding="{Binding No}" Width="50"/>
-                <DataGridTextColumn Header="Description" Binding="{Binding ProductName}" Width="*"/>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="100"/>
-                <DataGridTextColumn Header="Unit Price" Binding="{Binding UnitPrice}" Width="100"/>
-                <DataGridTextColumn Header="Line Total" Binding="{Binding LineTotal}" Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListView Grid.Row="2" Margin="0,10,0,0" Name="lvData" SelectionChanged="lvData_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="No" Width="50" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Patients Name" Width="100" DisplayMemberBinding="{Binding PatientName}"/>
+                    <GridViewColumn Header="Age" Width="100" DisplayMemberBinding="{Binding Age}"/>
+                    <GridViewColumn Header="Weight" Width="100" DisplayMemberBinding="{Binding Weight}"/>
+                    <GridViewColumn Header="Height" Width="100" DisplayMemberBinding="{Binding Height}"/>
+                    <GridViewColumn Header="Address" Width="100" DisplayMemberBinding="{Binding Address}"/>
+                    <GridViewColumn Header="Symtoms" Width="100" DisplayMemberBinding="{Binding Symptoms}"/>
+                    <GridViewColumn Header="Medicines" Width="100" DisplayMemberBinding="{Binding MedicineName}"/>
+                    <GridViewColumn Header="Quantity" Width="100" DisplayMemberBinding="{Binding Quantity}"/>
+                    <GridViewColumn Header="Total Price" Width="100" DisplayMemberBinding="{Binding TotalPrice}"/>
+                    <GridViewColumn Header="Date" Width="100" DisplayMemberBinding="{Binding Date, StringFormat='dd/MM/yyyy'}"/>
+                    <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding Status}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
 
         <Grid Grid.Row="3" Margin="0,10">
             <Grid.ColumnDefinitions>

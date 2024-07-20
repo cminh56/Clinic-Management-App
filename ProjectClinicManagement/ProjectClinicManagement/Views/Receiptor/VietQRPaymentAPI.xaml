@@ -1,0 +1,50 @@
+﻿<Window x:Class="ProjectClinicManagement.Views.Receiptor.VietQRPaymentAPI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectClinicManagement.Views.Receiptor"
+        mc:Ignorable="d"
+        Title="VietQRPaymentAPI" Height="700" Width="700" Loaded="Window_Loaded">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Ngân hàng:" Grid.Row="0" Grid.Column="0" Margin="10"/>
+        <ComboBox Name="cbBank" Grid.Row="0" Grid.Column="1" Margin="10"/>
+
+        <Label Content="Số tài khoản:" Grid.Row="0" Grid.Column="2" Margin="10"/>
+        <TextBox Name="tbTaiKhoan" Grid.Row="0" Grid.Column="3" Margin="10"/>
+
+        <Label Content="Số tiền:" Grid.Row="1" Grid.Column="0" Margin="10"/>
+        <TextBox Name="tbMonney" Grid.Row="1" Grid.Column="1" Margin="10"/>
+
+        <Label Content="Tên tài khoản:" Grid.Row="1" Grid.Column="2" Margin="10"/>
+        <TextBox Name="tbTen" Grid.Row="1" Grid.Column="3" Margin="10"/>
+
+        <Label Content="Template:" Grid.Row="2" Grid.Column="0" Margin="10"/>
+        <ComboBox Name="cbTemplate" Grid.Row="2" Grid.Column="1" Margin="10"/>
+
+        <Label Content="Thông tin thêm:" Grid.Row="2" Grid.Column="2" Margin="10"/>
+        <TextBox Name="tbThongTin" Grid.Row="2" Grid.Column="3" Margin="10"/>
+
+        <Button Content="Create VietQR payment" x:Name="btCreate" Grid.Row="3" Grid.ColumnSpan="4" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btCreate_Click"/>
+
+        <Label Content="VietQR Payment:" Grid.Row="4" Grid.ColumnSpan="4" Margin="10"/>
+        <Border Grid.Row="5" Grid.ColumnSpan="4" Margin="10" BorderBrush="Black" BorderThickness="1">
+            <Image x:Name="qrGrid"/>
+        </Border>
+    </Grid>
+</Window>

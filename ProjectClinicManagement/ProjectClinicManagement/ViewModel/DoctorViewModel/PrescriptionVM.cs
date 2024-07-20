@@ -94,8 +94,9 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
             }
 
         }
-       
-     
+
+    
+        public ICommand ViewPrescriptionCommand { get; set; }
 
         public ICommand FilterByStatusCommand { get; set; }
         public NavigationService _navigationService;
@@ -113,10 +114,19 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
             _context = new DataContext();
             LoadPrescription();
             placeHolderText = "Search by Patient Name, RecordID";
+            ViewPrescriptionCommand = new RelayCommand(NavigateToViewPrescriptionPage);
 
         }
 
-
+    
+        private void NavigateToViewPrescriptionPage(object parameter)
+        {
+            if (_Prescription != null)
+            {
+                PrescriptionInstan = Prescription;
+                NavigationService.Navigate(new Uri("Views/Doctor/ViewPrescriptionDetail.xaml", UriKind.Relative));
+            }
+        }
 
 
         private void LoadPrescription()

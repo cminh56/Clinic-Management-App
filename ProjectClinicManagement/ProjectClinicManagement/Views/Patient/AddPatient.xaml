@@ -8,39 +8,50 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddPatient">
 
-    <Grid Background="#FFF6F0F0">
-        <StackPanel Margin="10">
-            <TextBlock Text="Name" Margin="5"/>
-            <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+    <Grid Background="#FFF8F8F8">
 
-            <TextBlock Text="ATC Code" Margin="5"/>
-            <TextBox Text="{Binding ATCCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
-            <TextBlock Text="Generic Name" Margin="5"/>
-            <TextBox Text="{Binding GenericName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <StackPanel Margin="10,105,10,10">
+                <!--Email-->
+                <TextBlock Text="Name" Margin="5"/>
+                <TextBox x:Name="NameTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <Label  Content="{Binding ElementName=NameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock Text="Description" Margin="5"/>
-            <TextBox Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
-            <TextBlock Text="Manufacturer" Margin="5"/>
-            <TextBox Text="{Binding Manufacturer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <TextBlock Text="Age" Margin="5"/>
+                <TextBox x:Name="AgeTextBox" Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <Label  Content="{Binding ElementName=AgeTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock Text="Type" Margin="5"/>
-            <TextBox Text="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <TextBlock Text="Weight" Margin="5"/>
+                <TextBox x:Name="WeightTextBox" Text="{Binding Weight, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <Label  Content="{Binding ElementName=WeightTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock Text="Category" Margin="5"/>
-            <TextBox Text="{Binding Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <TextBlock Text="Height" Margin="5"/>
+                <TextBox x:Name="HeightTextBox" Text="{Binding Height, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <Label  Content="{Binding ElementName=HeightTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock Text="Unit" Margin="5"/>
-            <TextBox Text="{Binding Unit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <TextBlock Text="Phone" Margin="5"/>
+                <TextBox x:Name="PhoneTextBox" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <Label  Content="{Binding ElementName=PhoneTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock Text="Price" Margin="5"/>
-            <TextBox Text="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <TextBlock Text="Email" Margin="5"/>
+                <TextBox x:Name="EmailTextBox" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <Label  Content="{Binding ElementName=EmailTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock Text="Quantity" Margin="5"/>
-            <TextBox Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <TextBlock Text="Address" Margin="5"/>
+                <TextBox x:Name="AddressTextBox" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <Label  Content="{Binding ElementName=AddressTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <Button Content="Add Medicine" Command="{Binding AddMedicineCommand}" Margin="5"/>
-        </StackPanel>
+                <TextBlock Text="Emergency" Margin="5"/>
+                <TextBox x:Name="EmergencyTextBox" Text="{Binding Emergency, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <Label  Content="{Binding ElementName=EmergencyTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+
+               
+
+                <Button Content="Add Patient" Command="{Binding AddPatientCommand}" Margin="5"/>
+
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

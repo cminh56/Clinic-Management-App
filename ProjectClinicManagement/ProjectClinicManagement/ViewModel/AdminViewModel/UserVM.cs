@@ -1,10 +1,13 @@
-﻿using ProjectClinicManagement.Command;
+﻿using Microsoft.Win32;
+using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Data;
+using ProjectClinicManagement.Helper;
 using ProjectClinicManagement.Models;
 using ProjectClinicManagement.ViewModel.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +24,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
     {
         //This variable is saved when switching to other pages
         public static Account accountInstan;
+        private readonly ExelService exelService;
         
         public int _currentPage = 1; // Trang hiện tại
         public int CurrentPage
@@ -129,6 +133,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         public ICommand FilterByRoleCommand { get; set; }
         public ICommand Nextpage { get; set; }
         public ICommand Prepage { get; set; }
+        public ICommand ExportFileCommand { get; set; }
 
 
         private readonly DataContext _context;
@@ -137,6 +142,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         public UserVM()
         {
             _context = new DataContext();
+            exelService = new ExelService();
 
 
             // Initialize list Accounts
@@ -153,6 +159,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             FilterByRoleCommand = new RelayCommand(Filter2);
             Nextpage = new RelayCommand(NextPage,CanNextPage);
             Prepage = new RelayCommand(PrePage,CanPrePage);
+            ExportFileCommand = new RelayCommand(ExportToExel);
             // Initialize RoleButtons
             RoleButtons = new List<Button>
     {
@@ -263,6 +270,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             CurrentPage++;
             Filter(SelectedRole);
             UpdateButtonBorderBrush();
+           
         }
 
         // Phân trang - Previous Page
@@ -284,6 +292,44 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         private bool CanPrePage(object parameter)
         {
             return _currentPage > 1;
+        }
+
+
+        private void ExportToExel(object parameter)
+        {
+            //get list
+            var query = _context.Account.AsQueryable();
+
+            if (Enum.TryParse<Account.RoleType>(SelectedRole, out var roleType))
+            {
+
+                query = query.Where(a => a.Role == roleType);
+            }
+
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+
+                query = query.Where(x => x.Email.Contains(SearchText)
+                || x.UserName.Contains(SearchText)
+                || x.Name.Contains(SearchText));
+
+
+            }
+            //Convert
+            var data = exelService.ConvertListToExel(query.ToList());
+
+            //Send
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Excel files (*.xlsx)|*.xlsx",
+                FileName = "AccountsList.xlsx"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllBytes(saveFileDialog.FileName, data);
+                MessageBox.Show("File Excel đã được tải xuống thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
 
