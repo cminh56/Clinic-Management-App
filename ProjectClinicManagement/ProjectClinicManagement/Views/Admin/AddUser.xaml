@@ -39,7 +39,7 @@
             <!--Dob-->
             <TextBlock Text="Date of Birth" Margin="5" FontSize="15" FontWeight="SemiBold"/>
             <DatePicker  Height="30" x:Name="DobPicker" Background="white" SelectedDate="{Binding Dob, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            <Label  Content="{Binding ElementName=DobPicker,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+            <Label Content="{Binding ElementName=DobPicker,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
 
             <!--Gender-->
