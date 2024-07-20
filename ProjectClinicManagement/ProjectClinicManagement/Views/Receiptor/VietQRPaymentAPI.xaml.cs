@@ -79,8 +79,7 @@ namespace ProjectClinicManagement.Views.Receiptor
             tbTaiKhoan.Text = "19037766903012";
             tbTen.Text = "NGUYEN HUY HOANG";
             tbMonney.Text = receipt.TotalPrice.ToString();
-            cbTemplate.Text = "";
-            tbThongTin.Text = "";
+           
 
             // Generate QR code
             GenerateQRCode();
@@ -123,5 +122,10 @@ namespace ProjectClinicManagement.Views.Receiptor
             }
         }
 
+        private void btTest_Click(object sender, RoutedEventArgs e)
+        {
+            Invoices invoices = new Invoices(receipt);
+            invoices.Show();
+        }
     }
 }

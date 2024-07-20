@@ -9,7 +9,7 @@
       Title="Invoice" Height="732" Width="535.5" ResizeMode="NoResize" WindowStyle="None" FontFamily="Roboto" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <ScrollViewer>
         <Grid>
-            <Button HorizontalAlignment="Right" Margin="10" VerticalAlignment="Top">
+            <Button HorizontalAlignment="Right" Margin="10" VerticalAlignment="Top" Click="Button_Click">
                 <materialDesign:PackIcon Kind="Printer"/>
             </Button>
             <Grid x:Name="print">

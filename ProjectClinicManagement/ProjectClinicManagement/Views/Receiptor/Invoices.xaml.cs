@@ -41,5 +41,22 @@ namespace ProjectClinicManagement.Views.Receiptor
             tbMedicines.DataContext = receipt.MedicineName;
             tbQuantity.DataContext = receipt.Quantity;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.IsEnabled = false;
+                PrintDialog printDialog = new PrintDialog();
+                if (printDialog.ShowDialog() == true)
+                {
+                    printDialog.PrintVisual(print, "invoice");
+                }
+            }
+            finally
+            {
+                this.IsEnabled = true;
+            }
+        }
     }
 }
