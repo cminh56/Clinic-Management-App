@@ -5,7 +5,8 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              StartupUri="Views/Receiptor/Receipt.xaml"
 
-    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+             xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+
     <Application.Resources>
 
         <ResourceDictionary>

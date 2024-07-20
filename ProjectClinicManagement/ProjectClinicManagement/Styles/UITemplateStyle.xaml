@@ -87,7 +87,7 @@
                             <Setter Property="BorderBrush" Value="#d9d9d9" TargetName="border"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
-                </ControlTemplate> 
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
@@ -225,11 +225,11 @@
         </Style.Triggers>
 
     </Style>
-    
+
     <Style x:Key="gridRemoveButton" TargetType="Button" BasedOn="{StaticResource gridEditButton}">
         <Setter Property="Background" Value="#d32f2f"/>
         <Setter Property="BorderBrush" Value="#b71c1c"/>
-        
+
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#f44336"/>
@@ -311,7 +311,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <Style x:Key="StyledTextBox" TargetType="TextBox">
         <Setter Property="Template">
             <Setter.Value>
@@ -336,7 +336,7 @@ CornerRadius="15">
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <Style x:Key="StyledUnreadTextBox" TargetType="TextBox">
         <Setter Property="Template">
             <Setter.Value>
@@ -344,7 +344,7 @@ CornerRadius="15">
                     <Border Background="#FFE5E5E5"
 BorderBrush="Gray"
 BorderThickness="1"
-CornerRadius="15">
+>
                         <ScrollViewer x:Name="PART_ContentHost" 
                                       HorizontalAlignment="Left" 
                                       VerticalAlignment="Center"/>
@@ -532,6 +532,37 @@ CornerRadius="15">
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="TextBoxStyle69" TargetType="TextBox">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Padding" Value="5,0,5,0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        >
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                  VerticalAlignment="Center"
+                                  VerticalScrollBarVisibility="Hidden"
+                                  HorizontalScrollBarVisibility="Hidden"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#7b5cd6"/>
+                            <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 
 </ResourceDictionary>

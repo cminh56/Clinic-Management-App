@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,7 +22,7 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
     public class PatientVM : BaseViewModel
     {
         private readonly ExelService exelService;
-
+        public static Patient patientInstan;
         private List<Patient> _Patients;
         public List<Patient> Patients
         {
@@ -121,7 +122,8 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
             exelService = new ExelService();
             var query = _context.Patients.AsQueryable();
             Patients=query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
-            Totalpage = query.ToList().Count / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage+1;
+            int totalCount = query.ToList().Count;
+            Totalpage= (totalCount + _itemsPerPage - 1) / _itemsPerPage;
 
 
             placeHolderText = "Search by name, email,...";
@@ -143,8 +145,10 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         {
             if (SelectedPatient != null)
             {
-                NavigationService?.Navigate(new Uri($"Views/Patient/EditPatient.xaml?id={SelectedPatient.Id}", UriKind.Relative));
+                patientInstan = this.SelectedPatient;
+                NavigationService?.Navigate(new Uri($"Views/Patient/EditPatient.xaml", UriKind.Relative));
             }
+            
         }
 
         private bool CanExecuteUserCommand(object parameter)
@@ -175,12 +179,13 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
 
             }
             Patients = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
-            Totalpage = query.ToList().Count / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage+1;
+            int totalCount = query.ToList().Count;
+            Totalpage = (totalCount + _itemsPerPage - 1) / _itemsPerPage;
         }
-         
 
-    // Kiểm tra có thể đi tới trang trước đó không
-    private bool CanPrePage(object parameter)
+
+        // Kiểm tra có thể đi tới trang trước đó không
+        private bool CanPrePage(object parameter)
     {
         return _currentPage > 1;
     }

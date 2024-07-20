@@ -59,6 +59,8 @@ namespace ProjectClinicManagement.ViewModel.AuthenViewModel
                     // Open main window (Window1)
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
+
+
                      _loginWindow.Close();
                
 

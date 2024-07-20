@@ -1,4 +1,8 @@
-﻿using ProjectClinicManagement.ViewModel.AuthenViewModel;
+
+using ProjectClinicManagement.Views.UI_Template;
+
+using ProjectClinicManagement.ViewModel.AuthenViewModel;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +40,7 @@ namespace ProjectClinicManagement.Views.Authentication
             ChangePassVM.CurrPassword = txtOldPass.Password;
             ChangePassVM.Newpassword = txtNewPass.Password;
             ChangePassVM.ConfirmPassWord = txtConfirmPass.Password;
-      
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

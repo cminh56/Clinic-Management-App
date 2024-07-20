@@ -64,6 +64,15 @@
     <Compile Update="Views\Receiptor\Receipt.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\UI Template\CallMessageBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UI Template\Error.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UI Template\Success.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\UI Template\UITemplate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -133,6 +142,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Receiptor\Receipt.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UI Template\CallMessageBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UI Template\Error.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UI Template\Success.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UI Template\UITemplate.xaml">
