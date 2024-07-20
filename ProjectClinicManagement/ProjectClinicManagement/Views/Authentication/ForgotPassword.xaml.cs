@@ -22,11 +22,19 @@ namespace ProjectClinicManagement.Views.Authentication
     public partial class ForgotPassWord : Page
     {
         private ForgotPassVM ForgotPassVM;
-        public ForgotPassWord()
+        private AuthenWindow _authenWindow;
+        public ForgotPassWord(Window window)
         {
             InitializeComponent();
+            _authenWindow = window as AuthenWindow;
             ForgotPassVM = new ForgotPassVM();
             this.DataContext = ForgotPassVM;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Tôi muốn về page login
+            _authenWindow.MainFrame.Navigate(new Login(_authenWindow));
         }
     }
 }

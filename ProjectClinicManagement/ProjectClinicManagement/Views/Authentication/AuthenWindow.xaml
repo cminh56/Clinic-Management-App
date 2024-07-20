@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectClinicManagement.Views.Authentication"
         mc:Ignorable="d"
+
         Title="AuthenWindow" Height="700" Width="550">
+
     <Grid>
         <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Loaded="MainFrame_Loaded" Background="White" />
     </Grid>
