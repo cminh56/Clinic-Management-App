@@ -13,36 +13,36 @@
 
         <StackPanel Margin="10,10,10,0" Height="647" VerticalAlignment="Top">
             <!--Email-->
-            <TextBlock Text="Email" Margin="5"/>
-            <TextBox x:Name="EmailTextbox" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Email" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle}" Height="30" x:Name="EmailTextbox" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Label  Content="{Binding ElementName=EmailTextbox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
           
           <!--UserName-->
-            <TextBlock Text="Username" Margin="5"/>
-            <TextBox x:Name="UsernameTextbox" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Username" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle}" Height="30" x:Name="UsernameTextbox" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Label  Content="{Binding ElementName=UsernameTextbox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
            
             <!--Fullname-->
-            <TextBlock Text="Name" Margin="5"/>
-            <TextBox x:Name="FullNameTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Name" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle}" Height="30" x:Name="FullNameTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Label  Content="{Binding ElementName=FullNameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
             <!--Dob-->
-            <TextBlock Text="Date of Birth" Margin="5"/>
-            <DatePicker x:Name="DobPicker" SelectedDate="{Binding Dob, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Date of Birth" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <DatePicker Style="{StaticResource StyledDatePicker}" Height="30" x:Name="DobPicker" SelectedDate="{Binding Dob, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Label  Content="{Binding ElementName=DobPicker,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
             <!--Gender-->
-            <TextBlock Text="Gender" Margin="5"/>
-            <ComboBox x:Name="GenderCombobox"  SelectedIndex="{Binding Gender, UpdateSourceTrigger=PropertyChanged}" Margin="5">
+            <TextBlock Text="Gender" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <ComboBox Style="{StaticResource CustomComboBoxStyle}" Height="30" x:Name="GenderCombobox"  SelectedIndex="{Binding Gender, UpdateSourceTrigger=PropertyChanged}" Margin="5">
                 <ComboBoxItem Content="Male"/>
                 <ComboBoxItem Content="Female"/>
                 <ComboBoxItem Content="Other"/>
             </ComboBox>
 
             <!--Role-->
-            <TextBlock Text="Role" Margin="5"/>
-            <ComboBox x:Name="RoleCombobox" SelectedIndex="{Binding Role, UpdateSourceTrigger=PropertyChanged}" Margin="5">
+            <TextBlock Text="Role" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <ComboBox Style="{StaticResource CustomComboBoxStyle}" Height="30" x:Name="RoleCombobox" SelectedIndex="{Binding Role, UpdateSourceTrigger=PropertyChanged}" Margin="5">
                 <ComboBoxItem Content="Admin"/>
                 <ComboBoxItem Content="Doctor"/>
                 <ComboBoxItem Content="Nurse"/>
@@ -52,12 +52,12 @@
          
 
            <!--Salary-->
-            <TextBlock Text="Salary" Margin="5"/>
-            <TextBox x:Name="SalaryTextBox" Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Salary" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle}" Height="30" x:Name="SalaryTextBox" Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Label  Content="{Binding ElementName=SalaryTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
 
-            <Button Content="Add Account" Command="{Binding AddUserCommand}" Margin="5"/>
+            <Button Style="{StaticResource addButton}" Content="Add Account" Command="{Binding AddUserCommand}" Margin="5" HorizontalAlignment="Center"/>
          
           
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectClinicManagement.Views.Receiptor"
         mc:Ignorable="d"
-           Title="ReceiptForm" Height="747" Width="948">
+           Title="ReceiptForm" Height="747" Width="1080" Loaded="Window_Loaded">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -30,34 +30,40 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Margin="5">Date:</TextBlock>
-            <TextBox Grid.Column="1" Margin="5" Name="OrderDate" Width="200"/>
-            <TextBlock Grid.Column="2" Margin="5">Receipt No:</TextBlock>
-            <TextBox Grid.Column="3" Margin="5" Name="OrderID" Width="200"/>
+            <Label Grid.Column="0" Margin="5">Date From:</Label>
+            <DatePicker Grid.Column="1" Margin="5" Name="dtpDateFrom" Width="200"/>
+            <Label Grid.Column="2" Margin="5">Date To:</Label>
+            <DatePicker Grid.Column="3" Margin="5" Name="dtpDateTo" Width="200"/>
 
-            <TextBlock Grid.Column="0" Grid.Row="1" Margin="5">Customer:</TextBlock>
-            <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Name="CustomerName" Width="200"/>
-            <TextBlock Grid.Column="2" Grid.Row="1" Margin="5">Seller:</TextBlock>
-            <TextBox Grid.Column="3" Grid.Row="1" Margin="5" Name="Seller" Width="200"/>
-
-            <TextBlock Grid.Column="0" Grid.Row="2" Margin="5">Address:</TextBlock>
-            <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Name="Address" Width="200"/>
-            <TextBlock Grid.Column="2" Grid.Row="2" Margin="5">Sales Person:</TextBlock>
-            <TextBox Grid.Column="3" Grid.Row="2" Margin="5" Name="SalesPerson" Width="200"/>
-
-            <TextBlock Grid.Column="0" Grid.Row="3" Margin="5">Phone:</TextBlock>
-            <TextBox Grid.Column="1" Grid.Row="3" Margin="5" Name="Phone" Width="200"/>
+            <Label Grid.Column="0" Grid.Row="2" Margin="5">Search by Phone's Patient:</Label>
+            <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Name="tbSearchPhone" Width="200"/>
+            <Label Grid.Column="2" Grid.Row="2" Margin="5">Search by Patient'name :</Label>
+            <TextBox Grid.Column="3" Grid.Row="2" Margin="5" x:Name="tbSearchPatientName" Width="200"/>
+            <Button Grid.Column="3" Grid.Row="3" Width="90" Content="Search" Click="Button_Click">
+            </Button>
         </Grid>
 
-        <DataGrid Grid.Row="2" Margin="0,10,0,0" AutoGenerateColumns="False" Name="OrderDetailsGrid">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="No" Binding="{Binding No}" Width="50"/>
-                <DataGridTextColumn Header="Description" Binding="{Binding ProductName}" Width="*"/>
-                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="100"/>
-                <DataGridTextColumn Header="Unit Price" Binding="{Binding UnitPrice}" Width="100"/>
-                <DataGridTextColumn Header="Line Total" Binding="{Binding LineTotal}" Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListView Grid.Row="2" Margin="0,10,0,0" Name="lvData">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="No" Width="50" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Patients Name" Width="100" DisplayMemberBinding="{Binding PatientName}"/>
+                    <GridViewColumn Header="Age" Width="100" DisplayMemberBinding="{Binding Age}"/>
+                    <GridViewColumn Header="Weight" Width="100" DisplayMemberBinding="{Binding Weight}"/>
+                    <GridViewColumn Header="Height" Width="100" DisplayMemberBinding="{Binding Height}"/>
+                    <GridViewColumn Header="Address" Width="100" DisplayMemberBinding="{Binding Address}"/>
+                    <GridViewColumn Header="Phone" Width="100" DisplayMemberBinding="{Binding Phone}"/>
+                    <GridViewColumn Header="Symtoms" Width="100" DisplayMemberBinding="{Binding Symptoms}"/>
+                    <GridViewColumn Header="Medicines" Width="100" DisplayMemberBinding="{Binding MedicineName}"/>
+                    <GridViewColumn Header="Quantity" Width="100" DisplayMemberBinding="{Binding Quantity}"/>
+                    <GridViewColumn Header="Total Price" Width="100" DisplayMemberBinding="{Binding TotalPrice}"/>
+                    <GridViewColumn Header="Date" Width="100" DisplayMemberBinding="{Binding Date, StringFormat='dd/MM/yyyy'}"/>
+                    <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding Status}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
 
         <Grid Grid.Row="3" Margin="0,10">
             <Grid.ColumnDefinitions>
@@ -71,27 +77,15 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,341,10">
-                <TextBlock Margin="5">Sub Total:</TextBlock>
-                <TextBox Margin="5" Name="SubTotal" Width="100"/>
-            </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,98,23">
-                <TextBlock Margin="5">Tax rate:</TextBlock>
-                <TextBox Margin="5" Name="TaxRate" Text="5%" Width="100"/>
-            </StackPanel>
-
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,223,21" Grid.ColumnSpan="2">
-                <TextBlock Margin="5">Total Due:</TextBlock>
-                <TextBox Margin="5" Name="TotalDue" Width="100"/>
-            </StackPanel>
-
+           
             <StackPanel Orientation="Horizontal" Margin="20,0,217,17" Grid.RowSpan="2" Grid.Row="1">
                 <TextBlock Margin="5">Payment method:</TextBlock>
-                <CheckBox Margin="5" Content="Cash"/>
-                <CheckBox Margin="5" Content="Card"/>
+                <CheckBox Margin="5" Content="Cash" x:Name="cbCash"/>
+                <CheckBox Margin="5" Content="Card" x:Name="cbCard"/>
+                <Button x:Name="btCheckOut" Content="Check Out" Margin="1" Width="100" Click="btCheckOut_Click"></Button>
             </StackPanel>
-            <Button Margin="315,2,13,19" Content="Import to Excel file" Grid.RowSpan="2" Grid.Row="1"/>
+            <Button Margin="515,2,13,19" Content="Import to Excel file" Grid.RowSpan="2" Grid.Row="1"/>
         </Grid>
     </Grid>
 </Window>

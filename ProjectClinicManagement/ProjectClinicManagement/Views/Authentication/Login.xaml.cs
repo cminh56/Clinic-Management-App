@@ -22,10 +22,11 @@ namespace ProjectClinicManagement.Views.Authentication
     public partial class Login : Page
     {
         private LoginViewModel viewModel;
+        private AuthenWindow _authenWindow;
         public Login(Window window)
         {
             InitializeComponent();
-           
+            _authenWindow = window as AuthenWindow;
             viewModel = new LoginViewModel(window);
             this.DataContext = viewModel;
         }
@@ -57,7 +58,12 @@ namespace ProjectClinicManagement.Views.Authentication
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ChangePass());
+            _authenWindow.MainFrame.Navigate(new ForgotPassWord(_authenWindow));
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            _authenWindow.MainFrame.Navigate(new ChangePasswordTemplate(_authenWindow));
         }
     }
 }

@@ -22,6 +22,15 @@
     <Compile Update="Views\Admin\AdminWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Authentication\ChangePassword.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Authentication\ForgotPassword.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Controls\PasswordBoxWithToggle.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Doctor\AddMedicine.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -79,6 +88,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Admin\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\ChangePassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Authentication\ForgotPassword.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\PasswordBoxWithToggle.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Doctor\AddMedicine.xaml">
