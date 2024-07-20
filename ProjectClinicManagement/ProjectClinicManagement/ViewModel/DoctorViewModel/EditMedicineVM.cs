@@ -17,7 +17,7 @@ using static ProjectClinicManagement.Models.Medicine;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
-    class EditMedicineVM : BaseViewModel, INotifyDataErrorInfo
+    class EditMedicineVM : BaseViewModel
     {
 
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
@@ -109,66 +109,66 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public string Name
         {
             get => name;
-            set { name = value; OnPropertyChanged(); Validate(nameof(Name), value); }
+            set { name = value; OnPropertyChanged();  }
         }
 
         [Required(ErrorMessage = "ATCCode is required.")]
         public string ATCCode
         {
             get => atcCode;
-            set { atcCode = value; OnPropertyChanged(); Validate(nameof(ATCCode), value);  }
+            set { atcCode = value; OnPropertyChanged(); }
         }
         [Required(ErrorMessage = "GenericName is required.")]
         public string GenericName
         {
             get => genericName;
-            set { genericName = value; OnPropertyChanged(); Validate(nameof(GenericName), value);  }
+            set { genericName = value; OnPropertyChanged();   }
         }
         [Required(ErrorMessage = "Description is required.")]
         public string Description
         {
             get => description;
-            set { description = value; OnPropertyChanged(); Validate(nameof(Description), value);  }
+            set { description = value; OnPropertyChanged();  }
         }
         [Required(ErrorMessage = "Manufacturer is required.")]
         public string Manufacturer
         {
             get => manufacturer;
-            set { manufacturer = value; OnPropertyChanged(); Validate(nameof(Manufacturer), value); }
+            set { manufacturer = value; OnPropertyChanged();  }
         }
         [Required(ErrorMessage = "Type is required.")]
         public string Type
         {
             get => type;
-            set { type = value; OnPropertyChanged(); Validate(nameof(Type), value); }
+            set { type = value; OnPropertyChanged(); }
         }
         [Required(ErrorMessage = "Category is required.")]
         public string Category
         {
             get => category;
-            set { category = value; OnPropertyChanged(); Validate(nameof(Category), value);}
+            set { category = value; OnPropertyChanged(); }
         }
         [Required(ErrorMessage = "Unit is required.")]
         public string Unit
         {
             get => unit;
-            set { unit = value; OnPropertyChanged(); Validate(nameof(Unit), value);}
+            set { unit = value; OnPropertyChanged(); }
         }
         [Required(ErrorMessage = "Price is required.")]
-        [Range(0, double.MaxValue, ErrorMessage = "Price must be greater than 0.")]
+
         public float Price
         {
             get => price;
-            set { price = value; OnPropertyChanged(); Validate(nameof(Price), value);}
+            set { price = value; OnPropertyChanged(); ;}
         }
         [Required(ErrorMessage = "Quantity is required.")]
-        [Range(0, double.MaxValue, ErrorMessage = "Quantity must be greater than 0.")]
+        
         public int Quantity
         {
             get => quantity;
-            set { quantity = value; OnPropertyChanged(); Validate(nameof(Quantity), value);}
+            set { quantity = value; OnPropertyChanged(); }
         }
-
+       
         public string Status
         {
             get => status;
