@@ -5,11 +5,31 @@ namespace ProjectClinicManagement.Controls
 {
     public partial class PasswordBoxWithToggle : UserControl
     {
+        private bool _isPasswordChanging = false;
+
         public PasswordBoxWithToggle()
         {
             InitializeComponent();
-            TextBox.TextChanged += (s, e) => PasswordBox.Password = TextBox.Text;
-            PasswordBox.PasswordChanged += (s, e) => TextBox.Text = PasswordBox.Password;
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (_isPasswordChanging)
+                return;
+
+            _isPasswordChanging = true;
+            TextBox.Text = PasswordBox.Password;
+            _isPasswordChanging = false;
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (_isPasswordChanging)
+                return;
+
+            _isPasswordChanging = true;
+            PasswordBox.Password = TextBox.Text;
+            _isPasswordChanging = false;
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
