@@ -169,10 +169,11 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
                 Emergency = this.Emergency,
                 Height = this.Height,
                 Weight = this.Weight,
+                Status = Patient.StatusType.Active,
             };
 
-           /* _context.Patients.Add(newPatient);
-            _context.SaveChanges();*/
+            _context.Patients.Add(newPatient);
+            _context.SaveChanges();
             MessageBox.Show("Patient added successfully");
         }
         private bool CanSubmit(object obj)
