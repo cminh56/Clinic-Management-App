@@ -15,46 +15,46 @@
                 <!--Email-->
                 <TextBlock Text="Name" Margin="5"/>
                 <TextBox x:Name="Name" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <Label  Content="{Binding ElementName=EmailTextbox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                <Label  Content="{Binding ElementName=Name,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
 
                 <!--UserName-->
                 <TextBlock Text="ATC Code" Margin="5"/>
                 <TextBox x:Name="ATCCode" Text="{Binding ATCCode, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <Label  Content="{Binding ElementName=UsernameTextbox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                <Label  Content="{Binding ElementName=ATCCode,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
                 <!--Fullname-->
                 <TextBlock Text="Description" Margin="5"/>
                 <TextBox x:Name="Description" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <Label  Content="{Binding ElementName=FullNameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                <Label  Content="{Binding ElementName=Description,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
                 <!--Fullname-->
                 <TextBlock Text="Generic Name" Margin="5"/>
                 <TextBox x:Name="GenericName" Text="{Binding GenericName, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <Label  Content="{Binding ElementName=FullNameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                <Label  Content="{Binding ElementName=GenericName,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
                 <!--Gender-->
 
 
                 <TextBlock Text="Type" Margin="5"/>
                 <TextBox x:Name="Type" Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <Label  Content="{Binding ElementName=FullNameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                <Label  Content="{Binding ElementName=Type,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
                 <!--Gender-->
 
                 <TextBlock Text="Category" Margin="5"/>
                 <TextBox x:Name="Category" Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <Label  Content="{Binding ElementName=FullNameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                <Label  Content="{Binding ElementName=Category,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
                 <TextBlock Text="Unit" Margin="5"/>
                 <TextBox x:Name="Unit" Text="{Binding Unit, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <Label  Content="{Binding ElementName=FullNameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                <Label  Content="{Binding ElementName=Unit,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
                 <TextBlock Text="Price" Margin="5"/>
                 <TextBox x:Name="Price" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <Label  Content="{Binding ElementName=FullNameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                <Label  Content="{Binding ElementName=Price,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
                 <TextBlock Text="Quantity" Margin="5"/>
                 <TextBox x:Name="Quantity" Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <Label  Content="{Binding ElementName=FullNameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                <Label  Content="{Binding ElementName=Quantity,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
                 <!--Gender-->
                 
                 <TextBlock Text="Status" Margin="5"/>
@@ -64,7 +64,7 @@
                 <!--Salary-->
                 <TextBlock Text="Manufacturer" Margin="5"/>
                 <TextBox x:Name="Manufacturer" Text="{Binding Manufacturer, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <Label  Content="{Binding ElementName=SalaryTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                <Label  Content="{Binding ElementName=Manufacturer,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
               
                 <Button Content="Edit Medicine" Command="{Binding EditMedicineCommand}" Margin="5"/>

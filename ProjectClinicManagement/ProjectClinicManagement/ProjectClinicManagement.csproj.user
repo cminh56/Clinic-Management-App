@@ -34,6 +34,9 @@
     <Compile Update="Views\Doctor\AddMedicine.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Doctor\AddPrescription.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Doctor\EditMedicine.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -100,6 +103,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Doctor\AddMedicine.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Doctor\AddPrescription.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Doctor\EditMedicine.xaml">

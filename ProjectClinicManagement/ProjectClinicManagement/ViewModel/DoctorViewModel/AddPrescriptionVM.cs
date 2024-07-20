@@ -19,7 +19,7 @@ using ProjectClinicManagement.Views.Doctor;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
-    public class EditPrescriptionVM : BaseViewModel
+    public class AddPrescriptionVM : BaseViewModel
     {
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
@@ -70,7 +70,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
 
 
-            EditPrescriptionCommand.CanExecuteChanged += (sender, e) =>
+            AddPrescriptionCommand.CanExecuteChanged += (sender, e) =>
             {
                 CommandManager.InvalidateRequerySuggested();
             };
@@ -78,7 +78,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
 
         }
-        public ICommand EditPrescriptionCommand { get; }
+        public ICommand AddPrescriptionCommand { get; }
         public ICommand AddMedicineCommand { get; }
         public ICommand DeleteMedicineCommand { get; }
 
@@ -108,37 +108,27 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public string Phone { get; set; }
         public string PatientRecordId { get; set; }
 
-        
-        private string dosage;
         [Required(ErrorMessage = "Dosage is required.")]
-   public string Dosage
+        private string dosage;
+        public string Dosage
         {
             get => dosage;
             set { dosage = value; OnPropertyChanged(); }
 
         }
-
-      
         private string duration;
-        [Required(ErrorMessage = "Duration is required.")]
         public string Duration
         {
             get => duration;
             set { duration = value; OnPropertyChanged(); }
         }
-
-       
         private string instruction;
-        [Required(ErrorMessage = "Instruction is required.")]
         public string Instruction
         {
             get => instruction;
             set { instruction = value; OnPropertyChanged(); }
         }
-
-      
         private ObservableCollection<string> _medicineComboBoxItems;
-        
         public ObservableCollection<string> MedicineComboBoxItems
         {
             get { return _medicineComboBoxItems; }
@@ -155,15 +145,12 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
             set { _selectedMedicine = value; OnPropertyChanged(); }
         }
 
-        
         private string mquantity;
-     
         public string MQuantity
         {
             get => mquantity;
             set { mquantity = value; OnPropertyChanged(); }
         }
-
 
         private string _unit;
         public string Unit
@@ -172,7 +159,6 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
             set { _unit = value; OnPropertyChanged(); }
         }
 
-        [Required(ErrorMessage = "Remark is required.")]
         private string remark;
         public string Remark
         {
@@ -183,41 +169,23 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public MedicineDetail Medicine { get; set; }
 
         public string Date { get; set; }
-        public EditPrescriptionVM(Prescription prescription)
+        public AddPrescriptionVM()
         {
-            Prescription = prescription;
+
             _context = new DataContext();
 
-            var prescriptionDetails = _context.Prescriptions
-.Include(p => p.Patient_Record)
-.ThenInclude(pr => pr.Patient)
-.Include(p => p.Prescription_Medicines)
-                .ThenInclude(pm => pm.Medicine)
-.FirstOrDefault(p => p.PatientRecordId == Prescription.PatientRecordId);
-            if (prescriptionDetails != null)
-            {
-                Prescription = prescriptionDetails;
-                PatientName = Prescription.Patient_Record.Patient.Name;
-                Phone = Prescription.Patient_Record.Patient.Phone;
-                PatientRecordId = Prescription.PatientRecordId.ToString();
-                Dosage = Prescription.Dosage;
-                Duration = Prescription.Duration;
-                Instruction = Prescription.Instruction;
-                Remark = Prescription.Remark;
-                Date = Prescription.Date.ToString("d");
 
-                OnPropertyChanged(nameof(PatientName));
-                OnPropertyChanged(nameof(Phone));
-                OnPropertyChanged(nameof(PatientRecordId));
-                OnPropertyChanged(nameof(Dosage));
-                OnPropertyChanged(nameof(Duration));
-                OnPropertyChanged(nameof(Instruction));
-                OnPropertyChanged(nameof(Remark));
-                OnPropertyChanged(nameof(Date));
+            OnPropertyChanged(nameof(Dosage));
+            OnPropertyChanged(nameof(Duration));
+            OnPropertyChanged(nameof(Instruction));
+            OnPropertyChanged(nameof(Remark));
+         
 
+       
 
-
-                Medicines = new ObservableCollection<MedicineDetail>(
+             
+           
+            Medicines = new ObservableCollection<MedicineDetail>(
       _context.Prescription_Medicines
           .Include(pm => pm.Medicine)
           .Where(pm => pm.PrescriptionID == Prescription.Id)
@@ -233,10 +201,10 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
           .ToList()
   );
 
-                EditPrescriptionCommand = new RelayCommand(EditPrescription, CanSubmit);
+                AddPrescriptionCommand = new RelayCommand(AddPrescription, CanSubmit);
                 AddMedicineCommand = new RelayCommand(AddPrescriptionMedicine);
                 DeleteMedicineCommand = new RelayCommand(DeletePrescriptionMedicine);
-            }
+            
             var allMedicines = _context.Medicines
                     .Select(m => $"{m.Id} - {m.GenericName}")
                     .ToList();
@@ -244,8 +212,9 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
         }
 
-        private void EditPrescription(object parameter)
+        private void AddPrescription(object parameter)
         {
+
             try
             {
 
@@ -255,21 +224,25 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                     return;
                 }
 
-                Prescription.Dosage = Dosage;
-                Prescription.Duration = Duration;
-                Prescription.Instruction = Instruction;
-                Prescription.Remark = Remark;
+  
 
+                var newPrescription = new Prescription
+                {
+                    PatientRecordId = 1,
+                    Dosage = Dosage,
+                    Duration = Duration,
+                    Instruction = Instruction,
+                    Remark = Remark,
+                    Date = DateTime.Now,
+                };
 
-                // Lưu thay đổi vào cơ sở dữ liệu
-                _context.Prescriptions.Update(Prescription);
+                _context.Prescriptions.Add(newPrescription);
                 _context.SaveChanges();
-
-                MessageBox.Show("Prescription updated successfully.");
+                MessageBox.Show("Prescription added successfully");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error editing Prescription: {ex.Message}");
+                MessageBox.Show($"Error add Prescription: {ex.Message}");
             }
         }
         private bool CanSubmit(object obj)
@@ -369,8 +342,6 @@ _context.Prescription_Medicines
                     MessageBox.Show("Medicine deleted successfully.");
                 }
             }
-
-
         }
 
     }

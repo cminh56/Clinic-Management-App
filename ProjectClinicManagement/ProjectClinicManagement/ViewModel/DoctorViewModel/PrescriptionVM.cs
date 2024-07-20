@@ -7,40 +7,37 @@ using System.Threading.Tasks;
 using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Data;
 using ProjectClinicManagement.Models;
-
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
-using System.Collections.ObjectModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
     public class PrescriptionVM : BaseViewModel
     {
-      
-
         public static Prescription PrescriptionInstan;
-        private List<Prescription> _Prescriptions;
+
+        private List<Prescription> _prescriptions;
         public List<Prescription> Prescriptions
         {
-            get { return _Prescriptions; }
+            get { return _prescriptions; }
             set
             {
-                _Prescriptions = value;
+                _prescriptions = value;
                 OnPropertyChanged();
             }
         }
 
-        private Prescription _Prescription;
+        private Prescription _prescription;
         public Prescription Prescription
         {
-            get { return (Prescription)_Prescription; }
+            get { return _prescription; }
             set
             {
-                _Prescription = value;
+                _prescription = value;
                 OnPropertyChanged();
             }
         }
@@ -68,34 +65,31 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                 FilterPrescriptions();
             }
         }
-        private string searchText;
+
+        private string _searchText;
         public string SearchText
         {
-            get { return searchText; }
+            get { return _searchText; }
             set
             {
-                searchText = value;
+                _searchText = value;
                 OnPropertyChanged();
-                ApplyFilters(); // Thay đổi tên hàm gọi tới
+                ApplyFilters();
                 PlaceHolderText = string.Empty;
             }
         }
 
-        private string placeHolderText;
+        private string _placeHolderText;
         public string PlaceHolderText
         {
-            get { return placeHolderText; }
+            get { return _placeHolderText; }
             set
             {
-                placeHolderText = value;
+                _placeHolderText = value;
                 OnPropertyChanged();
-
-
             }
-
         }
 
-    
         public ICommand ViewPrescriptionCommand { get; set; }
         public ICommand EditPrescriptionCommand { get; set; }
         public ICommand FilterByStatusCommand { get; set; }
@@ -108,20 +102,58 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
         private readonly DataContext _context;
 
+        public int _currentPage = 1; // Current page
+        public int CurrentPage
+        {
+            get { return _currentPage; }
+            set
+            {
+                _currentPage = value;
+                OnPropertyChanged();
+                LoadPrescription(); // Load prescriptions when the current page changes
+            }
+        }
+
+        public int _itemsPerPage = 10; // Items per page
+        public int ItemsPerPage
+        {
+            get { return _itemsPerPage; }
+            set
+            {
+                _itemsPerPage = value;
+                OnPropertyChanged();
+                LoadPrescription(); // Reload prescriptions when items per page changes
+            }
+        }
+
+        public int _totalPage;
+        public int TotalPage
+        {
+            get { return _totalPage; }
+            set
+            {
+                _totalPage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand NextPageCommand { get; set; }
+        public ICommand PreviousPageCommand { get; set; }
 
         public PrescriptionVM()
         {
             _context = new DataContext();
             LoadPrescription();
-            placeHolderText = "Search by Patient Name, RecordID";
+            PlaceHolderText = "Search by Patient Name, RecordID";
             ViewPrescriptionCommand = new RelayCommand(NavigateToViewPrescriptionPage);
             EditPrescriptionCommand = new RelayCommand(NavigateToEditPrescriptionPage);
+            NextPageCommand = new RelayCommand(NextPage, CanNextPage);
+            PreviousPageCommand = new RelayCommand(PreviousPage, CanPreviousPage);
         }
 
-    
         private void NavigateToViewPrescriptionPage(object parameter)
         {
-            if (_Prescription != null)
+            if (_prescription != null)
             {
                 PrescriptionInstan = Prescription;
                 NavigationService.Navigate(new Uri("Views/Doctor/ViewPrescriptionDetail.xaml", UriKind.Relative));
@@ -130,60 +162,77 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
         private void NavigateToEditPrescriptionPage(object parameter)
         {
-            if (_Prescription != null)
+            if (_prescription != null)
             {
                 PrescriptionInstan = Prescription;
-                NavigationService.Navigate(new Uri("Views/Doctor/Editprescription.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("Views/Doctor/EditPrescription.xaml", UriKind.Relative));
             }
         }
 
         private void LoadPrescription()
         {
-            Prescriptions = new List<Prescription>(_context.Prescriptions);
+            var query = _context.Prescriptions.Include(p => p.Patient_Record).AsQueryable();
 
-        }
-
-
-        private void ApplyFilters()
-        {
-            // Filter by search text  if applicable
-            if (string.IsNullOrEmpty(SearchText))
+            if (!string.IsNullOrEmpty(SearchText))
             {
-                Prescriptions = new List<Prescription>(_context.Prescriptions.ToList());
+                query = query.Where(p =>
+                    p.PatientRecordId.ToString().Contains(SearchText) ||
+                    p.Patient_Record.Patient.Name.Contains(SearchText));
             }
-            else
-            {
-                Prescriptions = _context.Prescriptions
-                 .Include(p => p.Patient_Record)
-                 .Where(p =>
-                     p.PatientRecordId.ToString().Contains(searchText) ||
-                     p.Patient_Record.Patient.Name.Contains(searchText))
-                 .ToList();
-
-
-            }
-        }
-        private void FilterPrescriptions()
-        {
-            var filteredPrescriptions = _context.Prescriptions.Include(p => p.Patient_Record).AsQueryable();
 
             if (FromDate.HasValue)
             {
-                filteredPrescriptions = filteredPrescriptions.Where(p => p.Date >= FromDate.Value);
+                query = query.Where(p => p.Date >= FromDate.Value);
             }
 
             if (ToDate.HasValue)
             {
-                filteredPrescriptions = filteredPrescriptions.Where(p => p.Date <= ToDate.Value);
+                query = query.Where(p => p.Date <= ToDate.Value);
             }
 
-            Prescriptions = new List<Prescription>(filteredPrescriptions.ToList());
-            OnPropertyChanged(nameof(Prescriptions));
+            var totalItems = query.Count();
+            TotalPage = (totalItems + ItemsPerPage - 1) / ItemsPerPage;
+
+            Prescriptions = query
+                .Skip((CurrentPage - 1) * ItemsPerPage)
+                .Take(ItemsPerPage)
+                .ToList();
         }
 
+        private void ApplyFilters()
+        {
+            LoadPrescription(); // Reapply the filter and reload prescriptions
+        }
+
+        private void FilterPrescriptions()
+        {
+            LoadPrescription(); // Reload prescriptions based on date filters
+        }
+
+        private void NextPage(object parameter)
+        {
+            if (CurrentPage < TotalPage)
+            {
+                CurrentPage++;
+            }
+        }
+
+        private bool CanNextPage(object parameter)
+        {
+            return CurrentPage < TotalPage;
+        }
+
+        private void PreviousPage(object parameter)
+        {
+            if (CurrentPage > 1)
+            {
+                CurrentPage--;
+            }
+        }
+
+        private bool CanPreviousPage(object parameter)
+        {
+            return CurrentPage > 1;
+        }
     }
-
-
-
-
 }
