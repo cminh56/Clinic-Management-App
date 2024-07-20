@@ -6,35 +6,42 @@
       xmlns:local="clr-namespace:ProjectClinicManagement.Views.Admin"
         xmlns:va="clr-namespace:ProjectClinicManagement.Command"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="800"
-      Title="AddUser">
+      Title="AddUser"
+      Width="800" Height="700">
 
     <Grid Background="#FFF6F0F0" >
-
-        <StackPanel Margin="10,10,10,0" Height="647" VerticalAlignment="Top">
+        <StackPanel Margin="-239,-90,239,608">
+            <!-- Page Title -->
+            <TextBlock Text="Add User" FontSize="32" FontWeight="Bold" 
+           HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,105,0,0"
+           Foreground="#121518"/>
+        </StackPanel>
+        <StackPanel Margin="10,108,405,0" Height="549" VerticalAlignment="Top">
+            
             <!--Email-->
             <TextBlock Text="Email" Margin="5" FontSize="15" FontWeight="SemiBold"/>
-            <TextBox Style="{StaticResource TextBoxStyle}" VerticalContentAlignment="Center" Height="30" x:Name="EmailTextbox" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" Height="30" x:Name="EmailTextbox" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
             <Label  Content="{Binding ElementName=EmailTextbox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red" />
-          
-          <!--UserName-->
+
+            <!--UserName-->
             <TextBlock Text="Username" Margin="5" FontSize="15" FontWeight="SemiBold"/>
-            <TextBox Style="{StaticResource TextBoxStyle}" VerticalContentAlignment="Center" Height="30" x:Name="UsernameTextbox" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" Height="30" x:Name="UsernameTextbox" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Label  Content="{Binding ElementName=UsernameTextbox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-           
+
             <!--Fullname-->
             <TextBlock Text="Name" Margin="5" FontSize="15" FontWeight="SemiBold"/>
-            <TextBox Style="{StaticResource TextBoxStyle}" VerticalContentAlignment="Center" Height="30" x:Name="FullNameTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" Height="30" x:Name="FullNameTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Label  Content="{Binding ElementName=FullNameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
-
+        </StackPanel>
+        <StackPanel Margin="400,108,10,0" Height="647" VerticalAlignment="Top">
             <!--Dob-->
             <TextBlock Text="Date of Birth" Margin="5" FontSize="15" FontWeight="SemiBold"/>
             <DatePicker  Height="30" x:Name="DobPicker" Background="white" SelectedDate="{Binding Dob, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Label  Content="{Binding ElementName=DobPicker,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
-            
-            
+
+
             <!--Gender-->
             <TextBlock Text="Gender" Margin="5" FontSize="15" FontWeight="SemiBold"/>
             <ComboBox Height="30" x:Name="GenderCombobox"  SelectedIndex="{Binding Gender, UpdateSourceTrigger=PropertyChanged}" Margin="5">
@@ -52,18 +59,16 @@
                 <ComboBoxItem Content="Receipter"/>
             </ComboBox>
 
-         
 
-           <!--Salary-->
+
+            <!--Salary-->
             <TextBlock Text="Salary" Margin="5" FontSize="15" FontWeight="SemiBold"/>
-            <TextBox Style="{StaticResource TextBoxStyle}" VerticalContentAlignment="Center" Height="30" x:Name="SalaryTextBox" Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" Height="30" x:Name="SalaryTextBox" Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Label  Content="{Binding ElementName=SalaryTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-
+        </StackPanel>
+        <StackPanel Margin="0,448,0,-114">
             <Button Style="{StaticResource addButton}" Content="Add Account" Command="{Binding AddUserCommand}" Margin="5" HorizontalAlignment="Center"/>
-         
-          
-
         </StackPanel>
     </Grid>
 </Page>

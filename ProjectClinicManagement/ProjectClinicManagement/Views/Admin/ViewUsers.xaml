@@ -21,26 +21,8 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <!--Search Textbox-->
-        <Grid Width="300" HorizontalAlignment="Left">
-            <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
-      Panel.ZIndex="1" Text="Search here ..."
-           />
 
-            <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}"/>
 
-            <Icon:PackIconMaterial Kind="Magnify" Width="15" VerticalAlignment="Center"
-      Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
-        </Grid>
-
-        <!--Top Button-->
-        <Button Style="{StaticResource topButton}" Margin="0 0 20 0" Background="#dcdcdc" HorizontalAlignment="Right">
-            <Icon:PackIconMaterial Kind="Cog"/>
-        </Button>
-
-        <Button Style="{StaticResource topButton}" Margin="0 0 55 0" HorizontalAlignment="Right">
-            <Icon:PackIconMaterial Kind="Bell"/>
-        </Button>
 
         <!--Page Title-->
         <TextBlock Text="User List" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0"
