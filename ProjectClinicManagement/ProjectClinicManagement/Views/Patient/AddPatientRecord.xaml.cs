@@ -1,5 +1,4 @@
-﻿using ProjectClinicManagement.Models;
-using ProjectClinicManagement.ViewModel.PatientViewModel;
+﻿using ProjectClinicManagement.ViewModel.PatientViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,20 +17,26 @@ using System.Windows.Shapes;
 namespace ProjectClinicManagement.Views.Patient
 {
     /// <summary>
-    /// Interaction logic for EditPatientRecord.xaml
+    /// Interaction logic for AddPatientRecord.xaml
     /// </summary>
-    public partial class EditPatientRecord : Page
+    public partial class AddPatientRecord : Page
     {
-        private EditPatientRecordVM vm;
-        public EditPatientRecord()
+        private AddPatientRecordVM vm;
+        public AddPatientRecord()
         {
             InitializeComponent();
-            vm = new EditPatientRecordVM(PatientRecordVM.patientInstan);
+            vm = new AddPatientRecordVM(PatientVM.patientInstan);
             this.DataContext = vm;
         }
         private void ClickAdd(object sender, RoutedEventArgs e)
         {
             vm._navigationService = NavigationService;
+
+        }
+        private void ClickBack(object sender, RoutedEventArgs e)
+        {
+            vm._navigationService = NavigationService;
+
         }
     }
 }

@@ -55,6 +55,7 @@ namespace ProjectClinicManagement.ViewModel.AuthenViewModel
                     //Save in Application
                     Application.Current.Properties["UserName"] = user.UserName;
                     Application.Current.Properties["UserRole"] = user.Role.ToString();
+                    Application.Current.Properties["User"] = _context.Account.FirstOrDefault(u => u.UserName == user.UserName);
 
                     // Open main window (Window1)
                     MainWindow mainWindow = new MainWindow();

@@ -1,26 +1,26 @@
-﻿<Page x:Class="ProjectClinicManagement.Views.Patient.EditPatientRecord"
+﻿<Page x:Class="ProjectClinicManagement.Views.Patient.AddPatientRecord"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectClinicManagement.Views.Patient"
       mc:Ignorable="d" 
-                 Width="800" Height="700"
-      Title="EditPatientRecord">
+                       Width="800" Height="700"
+      Title="AddPatientRecord">
 
     <Grid Background="#eff2f7">
         <StackPanel Margin="0,42,38,0" VerticalAlignment="Top">
             <!--Button-->
-            
-        </StackPanel>
-        <StackPanel Margin="0,350,0,136" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Margin="0,0,50,0" Style="{StaticResource ResourceKey=addButton}" Content="Back To Record" Click="ClickAdd"  Command="{Binding PatientRecordCommand}"  FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
-            <Button Margin="0,0,0,0" Style="{StaticResource ResourceKey=addButton}" Content="Edit Patient" Command="{Binding EditPatientRecordCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
 
         </StackPanel>
-        
+        <StackPanel Margin="0,350,0,136" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="0,0,50,0" Style="{StaticResource ResourceKey=addButton}" Content="Back To Record" Click="ClickBack"  Command="{Binding PatientRecordCommand}"  FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <Button Margin="0,0,0,0" Style="{StaticResource ResourceKey=addButton}" Content="Add Patient" Click="ClickAdd" Command="{Binding EditPatientRecordCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
+
+        </StackPanel>
+
         <StackPanel Margin="-239,-90,239,373">
-           
+
             <!-- Page Title -->
             <TextBlock Text="Edit Patient" FontSize="32" FontWeight="Bold" 
    HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,105,0,0"
@@ -45,7 +45,7 @@
             <TextBlock Text="Disease" Margin="5" FontSize="15" FontWeight="SemiBold"/>
             <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="WeightTextBox" Text="{Binding Disease, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
             <!--Height-->
-            
+
 
         </StackPanel>
 
@@ -64,7 +64,7 @@
             <DatePicker Background="White" SelectedDate="{Binding Date, UpdateSourceTrigger=PropertyChanged}" Margin="5" IsEnabled="False" Height="30"/>
             <Label  Content="{Binding ElementName=AddressTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            
+
         </StackPanel>
     </Grid>
 </Page>

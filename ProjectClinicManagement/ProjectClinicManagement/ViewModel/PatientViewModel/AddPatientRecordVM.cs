@@ -2,25 +2,21 @@
 using ProjectClinicManagement.Data;
 using ProjectClinicManagement.Models;
 using ProjectClinicManagement.ViewModel.Common;
-using ProjectClinicManagement.Views.Patient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
-using static QRCoder.PayloadGenerator;
+using System.Windows;
 
 namespace ProjectClinicManagement.ViewModel.PatientViewModel
 {
-    internal class EditPatientRecordVM:BaseViewModel, INotifyDataErrorInfo
+    class AddPatientRecordVM : BaseViewModel, INotifyDataErrorInfo
     {
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
@@ -79,7 +75,7 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
 
 
         }
-        public static Patient_Record patientInstan;
+        public Patient patientInstan;
         private int id;
         private string patientName;
         private string doctorName;
@@ -88,7 +84,7 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         private string diagnosis;
         private DateTime date;
 
-        
+
 
 
         public string PatientName
@@ -156,19 +152,17 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
 
         public ICommand EditPatientRecordCommand { get; }
         public ICommand PatientRecordCommand { get; }
-        public EditPatientRecordVM(Patient_Record patient)
+        public AddPatientRecordVM(Patient patient)
         {
+            patientInstan=patient;
             _context = new DataContext();
             EditPatientRecordCommand = new RelayCommand(EditPatientRecord, CanSubmit);
             PatientRecordCommand = new RelayCommand(NavigateToEditPatientRecordPage);
+            patientName=patient.Name;
+            Account a = (Account)Application.Current.Properties["User"];
+            DoctorName = a.Name;
+            Date= DateTime.Today;
 
-            Patient = patient;
-            patientName = patient.Patient.Name;
-            doctorName = patient.Doctor.Name;
-            symptoms=patient.Symptoms;
-            diagnosis = patient.Diagnosis;
-            disease = patient.Disease;
-            date = patient.Date;
 
 
         }
@@ -177,21 +171,26 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
             try
             {
                 // Kiểm tra các trường thông tin cần thiết trước khi lưu vào cơ sở dữ liệu
+                var newPatient = new Patient_Record
+                {
+                    Symptoms = this.Symptoms,
+                    Diagnosis = this.Diagnosis,
+                    Date = this.Date,
+                    Disease = this.Disease,
+                    PatientId = patientInstan.Id
+                };
+                Account a = (Account)Application.Current.Properties["User"];
+                newPatient.DoctorId = a.Id;
 
-                Patient.Symptoms = Symptoms;
-                Patient.Diagnosis = Diagnosis;
-                Patient.Disease = Disease;
-
-                
 
 
-                _context.Patient_Records.Update(Patient);
+                _context.Patient_Records.Add(newPatient);
                 _context.SaveChanges();
-                MessageBox.Show("Patient updated successfully");
+                MessageBox.Show("Patient added successfully");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error editing patient: {ex.Message}");
+                MessageBox.Show($"Error patient record: {ex.Message}");
 
             }
 
@@ -203,7 +202,7 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         }
         private void NavigateToEditPatientRecordPage(object parameter)
         {
-            NavigationService?.Navigate(new Uri("Views/Patient/PatientRecord.xaml", UriKind.Relative));
+            NavigationService?.Navigate(new Uri("Views/Patient/ViewPatients.xaml", UriKind.Relative));
         }
     }
 }

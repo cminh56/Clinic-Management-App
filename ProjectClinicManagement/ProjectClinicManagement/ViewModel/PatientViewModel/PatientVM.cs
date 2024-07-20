@@ -151,7 +151,20 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
             if (SelectedPatient != null)
             {
                 patientInstan = this.SelectedPatient;
-                NavigationService?.Navigate(new Uri($"Views/Patient/PatientRecord.xaml", UriKind.Relative));
+                var x=_context.Patient_Records.Where(p=> p.PatientId == patientInstan.Id).FirstOrDefault();
+                if (x != null)
+                {
+                    NavigationService?.Navigate(new Uri($"Views/Patient/PatientRecord.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    MessageBoxResult result = MessageBox.Show("Do you want to create record for this patient?", "Confirm ", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        NavigationService?.Navigate(new Uri($"Views/Patient/AddPatientRecord.xaml", UriKind.Relative));
+
+                    }
+                }
             }
             
         }
