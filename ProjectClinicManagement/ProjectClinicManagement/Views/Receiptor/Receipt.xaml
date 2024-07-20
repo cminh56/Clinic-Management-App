@@ -29,7 +29,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
             <Label Grid.Column="0" Margin="5">Date From:</Label>
             <DatePicker Grid.Column="1" Margin="5" Name="dtpDateFrom" Width="200"/>
             <Label Grid.Column="2" Margin="5">Date To:</Label>
