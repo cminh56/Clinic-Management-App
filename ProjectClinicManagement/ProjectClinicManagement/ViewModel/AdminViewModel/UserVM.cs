@@ -160,6 +160,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             Nextpage = new RelayCommand(NextPage,CanNextPage);
             Prepage = new RelayCommand(PrePage,CanPrePage);
             ExportFileCommand = new RelayCommand(ExportToExel);
+
             // Initialize RoleButtons
             RoleButtons = new List<Button>
     {
@@ -216,7 +217,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
 
             }
-
+            
             Totalpage = query.ToList().Count / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage;
 
             Accounts = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
@@ -328,7 +329,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             if (saveFileDialog.ShowDialog() == true)
             {
                 File.WriteAllBytes(saveFileDialog.FileName, data);
-                MessageBox.Show("File Excel đã được tải xuống thành công.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("The Excel file has been downloaded successfully.", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

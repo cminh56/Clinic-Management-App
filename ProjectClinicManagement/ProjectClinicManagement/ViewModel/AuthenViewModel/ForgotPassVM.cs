@@ -92,11 +92,11 @@ namespace ProjectClinicManagement.ViewModel.AuthenViewModel
             }
         }
 
-        public ICommand SubmitCommand { get; set; }
+        public ICommand SubmitCommand { get; }
         public ForgotPassVM() {
             context = new DataContext();
             send = new SendEmail();
-            SubmitCommand = new RelayCommand(SendNewPasss, CanSubmit);
+            SubmitCommand = new RelayCommand(SendNewPasss);
         }
 
         private void SendNewPasss(object obj)
@@ -107,10 +107,11 @@ namespace ProjectClinicManagement.ViewModel.AuthenViewModel
             Account account = context.Account.FirstOrDefault( a => a.Email.Equals(Email));
             if (account != null)
             {
-                account.Password = Password;
+                account.Password = hashedPassword.ToString();
                 context.Update(account);
                 context.SaveChanges();
-
+                send.sendEmailForgotPass(account, Password.ToString());
+                MessageBox.Show("Your password has been changed. Please check your email");
             }
             else
             {

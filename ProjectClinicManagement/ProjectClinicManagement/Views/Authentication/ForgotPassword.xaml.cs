@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectClinicManagement.ViewModel.AuthenViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace ProjectClinicManagement.Views.Authentication
     /// </summary>
     public partial class ForgotPassWord : Page
     {
+        private ForgotPassVM ForgotPassVM;
         public ForgotPassWord()
         {
             InitializeComponent();
+            ForgotPassVM = new ForgotPassVM();
+            this.DataContext = ForgotPassVM;
         }
     }
 }
