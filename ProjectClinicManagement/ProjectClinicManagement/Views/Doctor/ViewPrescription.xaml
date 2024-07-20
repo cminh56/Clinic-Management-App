@@ -107,7 +107,7 @@
                                 <Button Style="{StaticResource gridEditButton}" Click="View_Click" Command="{Binding DataContext.ViewPrescriptionCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
                                     <Icon:PackIconMaterial Kind="EyeOutline"  Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
-                                <Button  Style="{StaticResource gridEditButton}" Click="Update_Click"  Command="{Binding DataContext.UpdatePrescriptionCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                <Button  Style="{StaticResource gridEditButton}" Click="Update_Click"  Command="{Binding DataContext.EditPrescriptionCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}" />
                                 </Button>
 
