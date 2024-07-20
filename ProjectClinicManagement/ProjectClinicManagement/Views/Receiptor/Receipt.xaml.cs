@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
 using ProjectClinicManagement.Data;
@@ -25,58 +27,109 @@ namespace ProjectClinicManagement.Views.Receiptor
     public partial class Receipt : Window
     {
         public DataContext context;
+        public ObservableCollection<ReceiptViewModel> AllReceipts { get; set; }
         public Receipt()
         {
             InitializeComponent();
             context = new DataContext();
+            AllReceipts = new ObservableCollection<ReceiptViewModel>();
+            DataContext = this; // Set DataContext to the current instance
         }
 
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
+           LoadData();
+        }
+        private void LoadData()
+        {
             var query = from prescription in context.Prescriptions
                         join patientRecord in context.Patient_Records on prescription.PatientRecordId equals patientRecord.Id
                         join patient in context.Patients on patientRecord.PatientId equals patient.Id
                         join prescriptionMedicine in context.Prescription_Medicines on prescription.Id equals prescriptionMedicine.PrescriptionID
                         join medicine in context.Medicines on prescriptionMedicine.MedicineID equals medicine.Id
                         join receipt in context.Receipts on patient.Id equals receipt.PatientId
-                        select new
+                        select new ReceiptViewModel
                         {
-                            Id = receipt.Id, // Assuming Id is used as No, adjust as needed
+                            Id = receipt.Id,
                             PatientName = patient.Name,
-                            Age = patient.Age, // Assuming Patient class has an Age property
-                            Weight = patient.Weight, // Assuming Patient class has a Weight property
-                            Height = patient.Height, // Assuming Patient class has a Height property
+                            Age = patient.Age,
+                            Weight = patient.Weight,
+                            Height = patient.Height,
                             Address = patient.Address,
-                            Symptoms = patientRecord.Symptoms, // Adjust as per your actual model
+                            Phone = patient.Phone,
+                            Symptoms = patientRecord.Symptoms,
                             MedicineName = medicine.Name,
-                            Quantity = prescriptionMedicine.Quantity, // Assuming Prescription_Medicine class has a Quantity property
-                            TotalPrice = receipt.TotalAmount, // Assuming Receipt class has a TotalPrice property
+                            Quantity = prescriptionMedicine.Quantity,
+                            TotalPrice = receipt.TotalAmount,
                             Date = receipt.Date,
-                            Status = receipt.Status // Assuming Receipt class has a Status property
+                            Status = receipt.Status
                         };
-            lvData.ItemsSource = query.ToList();
-        }
 
+            AllReceipts = new ObservableCollection<ReceiptViewModel>(query.ToList());
+            lvData.ItemsSource = AllReceipts;
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            FilterData();
         }
-
-        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public class ReceiptViewModel
         {
-            if (lvData.SelectedItem != null)
+            public int Id { get; set; }
+            public string PatientName { get; set; }
+            public int Age { get; set; }
+            public double Weight { get; set; }
+            public double Height { get; set; }
+            public string Address { get; set; }
+            public string Phone { get; set; }
+            public string Symptoms { get; set; }
+            public string MedicineName { get; set; }
+            public int Quantity { get; set; }
+            public float TotalPrice { get; set; }
+            public DateTime Date { get; set; }
+            public ProjectClinicManagement.Models.Receipt.StatusType Status { get; set; }
+        }
+        private void FilterData()
+        {
+            var filteredData = AllReceipts.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(tbSearchPatientName.Text))
             {
-                try
-                {
-                    var selectedItem = (dynamic)lvData.SelectedItem;
-                    DataContext = selectedItem;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"An error occurred: {ex.Message}");
-                }
+                filteredData = filteredData.Where(r => r.PatientName.Contains(tbSearchPatientName.Text, StringComparison.OrdinalIgnoreCase));
+            }
+
+            if (!string.IsNullOrWhiteSpace(tbSearchPhone.Text))
+            {
+                filteredData = filteredData.Where(r => r.Phone.Contains(tbSearchPhone.Text));
+            }
+            if (dtpDateFrom.SelectedDate.HasValue)
+            {
+                filteredData = filteredData.Where(r => r.Date >= dtpDateFrom.SelectedDate.Value);
+            }
+
+            if (dtpDateTo.SelectedDate.HasValue)
+            {
+                filteredData = filteredData.Where(r => r.Date <= dtpDateTo.SelectedDate.Value);
+            }
+            lvData.ItemsSource = new ObservableCollection<ReceiptViewModel>(filteredData.ToList());
+        }
+        private void btCheckOut_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbCash.IsChecked == true)
+            {
+                // Điều hướng đến form Invoices.xaml
+                Invoices invoices = new Invoices();
+                invoices.Show();
+            }
+            else if (cbCard.IsChecked == true)
+            {
+                VietQRPaymentAPI vietQRPaymentAPI = new VietQRPaymentAPI();
+                vietQRPaymentAPI.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select a payment method.");
             }
         }
     }
