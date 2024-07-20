@@ -17,28 +17,16 @@ using System.Windows.Shapes;
 namespace ProjectClinicManagement.Views.Doctor
 {
     /// <summary>
-    /// Interaction logic for ViewPrescription.xaml
+    /// Interaction logic for Editprescription.xaml
     /// </summary>
-    public partial class ViewPrescription : Page
+    public partial class Editprescription : Page
     {
-        private PrescriptionVM PrescriptionVM;
-        public ViewPrescription()
+        private EditPrescriptionVM vm;
+        public Editprescription()
         {
             InitializeComponent();
-            PrescriptionVM = new PrescriptionVM();
-            this.DataContext = PrescriptionVM;
-        }
-
-        private void View_Click(object sender, RoutedEventArgs e)
-        {
-            PrescriptionVM._navigationService = NavigationService;
-
-        }
-
-        private void Update_Click(object sender, RoutedEventArgs e)
-        {
-            PrescriptionVM._navigationService = NavigationService;
-
+            vm = new EditPrescriptionVM(PrescriptionVM.PrescriptionInstan);
+            this.DataContext = vm;
         }
     }
 }

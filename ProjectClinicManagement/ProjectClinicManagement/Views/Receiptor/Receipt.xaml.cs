@@ -28,6 +28,7 @@ namespace ProjectClinicManagement.Views.Receiptor
     {
         public DataContext context;
         public ObservableCollection<ReceiptViewModel> AllReceipts { get; set; }
+        private ReceiptViewModel selectedReceipt;
         public Receipt()
         {
             InitializeComponent();
@@ -119,18 +120,23 @@ namespace ProjectClinicManagement.Views.Receiptor
             if (cbCash.IsChecked == true)
             {
                 // Điều hướng đến form Invoices.xaml
-                Invoices invoices = new Invoices();
+                Invoices invoices = new Invoices(selectedReceipt);
                 invoices.Show();
             }
             else if (cbCard.IsChecked == true)
             {
-                VietQRPaymentAPI vietQRPaymentAPI = new VietQRPaymentAPI();
+                VietQRPaymentAPI vietQRPaymentAPI = new VietQRPaymentAPI(selectedReceipt);
                 vietQRPaymentAPI.Show();
             }
             else
             {
                 MessageBox.Show("Please select a payment method.");
             }
+        }
+
+        private void lvData_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedReceipt = (ReceiptViewModel)lvData.SelectedItem;
         }
     }
     }

@@ -15,7 +15,7 @@ namespace ProjectClinicManagement.Models
         [Required] public int PrescriptionID { get; set; }
         [Required] public int Quantity { get; set; }
         [Required] public string Unit { get; set; }
-        [Required] public int Price { get; set; }
+        [Required] public float Price { get; set; }
         [ForeignKey("MedicineID")] public virtual Medicine? Medicine { get; set; }
         [ForeignKey("PrescriptionID")] public virtual Prescription? Prescription { get; set; }
 

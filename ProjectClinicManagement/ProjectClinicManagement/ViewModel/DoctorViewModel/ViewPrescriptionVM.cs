@@ -20,7 +20,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
-    internal class ViewPrescriptionVM : BaseViewModel
+    public class ViewPrescriptionVM : BaseViewModel
     {
    
         private Prescription _Prescription;
