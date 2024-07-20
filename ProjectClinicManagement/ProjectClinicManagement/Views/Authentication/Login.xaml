@@ -40,8 +40,8 @@ Title="Login" Height="500" Width="550">
 
         <TextBox Style="{StaticResource StyledTextBox}" Name="passwordTextBox" HorizontalAlignment="Center" Margin="0,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="420" Height="35" Visibility="Collapsed" FontSize="14"/>
         <DockPanel Margin="65,465,65,45">
-            <Button Style="{StaticResource addButton}" Content="Forgot Password" DockPanel.Dock="Left" Width="208" Height="40"/>
-            <Button Style="{StaticResource addButton}" Content="Change Password" DockPanel.Dock="Right" Width="208" Height="40"/>
+            <Button Style="{StaticResource addButton}" Content="Forgot Password" DockPanel.Dock="Left" Width="208" Height="40" Click="Button_Click"/>
+            <Button Style="{StaticResource addButton}" Content="Change Password" DockPanel.Dock="Right" Width="208" Height="40" Click="Button_Click_1"/>
         </DockPanel>
 
     </Grid>

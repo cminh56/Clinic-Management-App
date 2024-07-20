@@ -22,9 +22,11 @@ namespace ProjectClinicManagement.Views.Authentication
     public partial class ChangePasswordTemplate : Page
     {
         private ChangePassVM ChangePassVM;
-        public ChangePasswordTemplate()
+        private AuthenWindow _authenWindow;
+        public ChangePasswordTemplate(Window window)
         {
             InitializeComponent();
+            _authenWindow = window as AuthenWindow;
             ChangePassVM = new ChangePassVM();
             this.DataContext = ChangePassVM;
         }
@@ -35,6 +37,11 @@ namespace ProjectClinicManagement.Views.Authentication
             ChangePassVM.Newpassword = txtNewPass.Password;
             ChangePassVM.ConfirmPassWord = txtConfirmPass.Password;
       
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            _authenWindow.MainFrame.Navigate(new Login(_authenWindow));
         }
     }
 }
