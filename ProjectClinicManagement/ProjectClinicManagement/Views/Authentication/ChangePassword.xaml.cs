@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectClinicManagement.Views.UI_Template;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace ProjectClinicManagement.Views.Authentication
     {
         public ChangePasswordTemplate()
         {
-            InitializeComponent();
+            InitializeComponent();          
         }
     }
 }
