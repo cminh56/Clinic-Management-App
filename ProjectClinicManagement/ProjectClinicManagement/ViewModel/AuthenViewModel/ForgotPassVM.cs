@@ -119,11 +119,7 @@ namespace ProjectClinicManagement.ViewModel.AuthenViewModel
             }
           
         }
-        private bool CanSubmit(object obj)
-        {
-            return Validator.TryValidateObject(this, new ValidationContext(this), null) && Errors.Count == 0;
-
-        }
+    
         private string GenerateRandomPassword()
         {
             // Độ dài của mật khẩu ngẫu nhiên

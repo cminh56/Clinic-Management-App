@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectClinicManagement.ViewModel.AuthenViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,20 @@ namespace ProjectClinicManagement.Views.Authentication
     /// </summary>
     public partial class ChangePasswordTemplate : Page
     {
+        private ChangePassVM ChangePassVM;
         public ChangePasswordTemplate()
         {
             InitializeComponent();
+            ChangePassVM = new ChangePassVM();
+            this.DataContext = ChangePassVM;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePassVM.CurrPassword = txtOldPass.Password;
+            ChangePassVM.Newpassword = txtNewPass.Password;
+            ChangePassVM.ConfirmPassWord = txtConfirmPass.Password;
+      
         }
     }
 }
