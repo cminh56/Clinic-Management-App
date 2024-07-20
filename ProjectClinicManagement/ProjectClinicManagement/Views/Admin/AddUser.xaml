@@ -9,7 +9,7 @@
       Title="AddUser"
       Width="800" Height="700">
 
-    <Grid Background="White" Margin="-100,0,0,0" >
+    <Grid Background="#eff2f7" Margin="-100,0,0,0" >
         <StackPanel Margin="-239,-90,239,608">
             <!-- Page Title -->
             <TextBlock Text="Add User" FontSize="32" FontWeight="Bold" 
