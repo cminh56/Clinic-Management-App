@@ -55,6 +55,5 @@ namespace ProjectClinicManagement.Views.Authentication
 
         }
 
-      
     }
 }

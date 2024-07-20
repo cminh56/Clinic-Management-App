@@ -25,20 +25,20 @@ Title="Login" Height="500" Width="550">
         <TextBlock Text="Login" FontSize="32" FontWeight="Bold" 
        HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,105,0,0"
        Foreground="#121518"/>
-        <PasswordBox Style="{StaticResource PasswordBoxStyle}" x:Name="PasswordBox" HorizontalAlignment="Center" Margin="0,335,0,0" VerticalAlignment="Top" Width="420" PasswordChanged="PasswordBox_PasswordChanged" Height="35" FontSize="14"/>
+        <PasswordBox Style="{StaticResource PasswordBoxStyle}" x:Name="PasswordBox" HorizontalAlignment="Center" Margin="0,335,0,0" VerticalAlignment="Top" Width="420" PasswordChanged="PasswordBox_PasswordChanged" Height="35" FontSize="14" VerticalContentAlignment="Center"/>
         <TextBox Style="{StaticResource StyledTextBox}" HorizontalAlignment="Center" Margin="0,236,0,0" TextWrapping="Wrap" Text="{Binding Username}" VerticalAlignment="Top" Width="420" Height="36" FontSize="14" />
         <Button Style="{StaticResource addButton}" Command="{Binding LoginCommand}" Content="Login" HorizontalAlignment="Center" Margin="0,445,0,0" VerticalAlignment="Top" Width="422" Height="40"  />
         <Label Content="User Name" HorizontalAlignment="Left" Margin="65,186,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="65,290,0,0" VerticalAlignment="Top" Height="52" Width="133" FontSize="20" FontWeight="SemiBold"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="348,395,0,0" VerticalAlignment="Top">
             <Border Width="Auto" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <CheckBox Style="{StaticResource CheckBoxStyle2}" x:Name="showpass" Content="" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
+                <CheckBox Style="{StaticResource CheckBoxStyle1}" x:Name="showpass" Content="" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
             </Border>
             <TextBlock Text="Show Password" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="16"/>
         </StackPanel>
 
 
-        <TextBox Name="passwordTextBox" HorizontalAlignment="Left"  Margin="10,263,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="420" Height="35" Visibility="Collapsed" FontSize="14"/>
+        <TextBox Style="{StaticResource StyledTextBox}" Name="passwordTextBox" HorizontalAlignment="Center" Margin="0,335,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="420" Height="35" Visibility="Collapsed" FontSize="14"/>
         <DockPanel Margin="65,465,65,45">
             <Button Style="{StaticResource addButton}" Content="Forgot Password" DockPanel.Dock="Left" Width="208" Height="40"/>
             <Button Style="{StaticResource addButton}" Content="Change Password" DockPanel.Dock="Right" Width="208" Height="40"/>

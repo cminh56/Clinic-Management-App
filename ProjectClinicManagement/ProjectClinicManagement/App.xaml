@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:ProjectClinicManagement"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              StartupUri="Views/Authentication/AuthenWindow.xaml"
+
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Application.Resources>
 
