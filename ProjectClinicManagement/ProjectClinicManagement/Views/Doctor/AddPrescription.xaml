@@ -42,23 +42,24 @@
                 <!-- Generic Name -->
                 <TextBlock Text="Dosage" Margin="5" Grid.Row="2" Grid.Column="1"/>
                 <TextBox x:Name="Dosage"  Text="{Binding Dosage}" Margin="5" Grid.Row="3" Grid.Column="1"/>
-                <Label Grid.Row="5"  Content="{Binding ElementName=SalaryTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                <Label  Content="{Binding ElementName=Dosage,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
                 <!-- Type -->
                 <TextBlock Text="Duration" Margin="5" Grid.Row="0" Grid.Column="1"/>
-                <TextBox x:Name="Duration" IsReadOnly="True" Text="{Binding Duration}" Margin="5" Grid.Row="1" Grid.Column="1"/>
-
+                <TextBox x:Name="Duration"  Text="{Binding Duration}" Margin="5" Grid.Row="1" Grid.Column="1"/>
+                <Label  Content="{Binding ElementName=Duration,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
                 <!-- Category -->
                 <TextBlock Text="Instruction" Margin="5" Grid.Row="0" Grid.Column="0"/>
                 <TextBox x:Name="Instruction"  Text="{Binding Instruction}" Margin="5" Grid.Row="1" Grid.Column="0"/>
-
+                <Label  Content="{Binding ElementName=Instruction,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
                 <!-- Unit -->
                 <TextBlock Text="Remark" Margin="5" Grid.Row="2" Grid.Column="0"/>
                 <TextBox x:Name="Remark" Text="{Binding Remark}" Margin="5" Grid.Row="3" Grid.Column="0"/>
-
+                <Label  Content="{Binding ElementName=Remark,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+                
                 <TextBlock Text="PrescriptionID" Margin="5" Grid.Row="4" Grid.Column="0" Visibility="Collapsed"/>
                 <TextBox x:Name="PrescriptionID" Text="{Binding PrescriptionID}" Margin="5" Grid.Row="5" Grid.Column="0" Visibility="Collapsed"/>
-
+                <Label  Content="{Binding ElementName=PrescriptionID,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red" Visibility="Collapsed"/>
 
                 <Button Content="Add Prescription" Command="{Binding AddPrescriptionCommand}" Grid.Row="9" Grid.ColumnSpan="2" Margin="5"/>
                 <TextBlock Text="List Medicines" Margin="5" Grid.Row="10" Grid.Column="0"/>

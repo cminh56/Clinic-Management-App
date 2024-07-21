@@ -74,6 +74,46 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
             {
                 CommandManager.InvalidateRequerySuggested();
             };
+           
+
+
+        }
+
+        public void Validate2(string propertyName, object propertyValue)
+        {
+            var results = new List<ValidationResult>();
+
+            Validator.TryValidateProperty(propertyValue, new ValidationContext(this) { MemberName = propertyName }, results);
+
+
+            if (results.Any())
+            {
+
+                // Check if propertyName already exists in Errors
+                if (Errors.ContainsKey(propertyName))
+                {
+                    // Update existing errors for propertyName
+                    Errors[propertyName] = results.Select(r => r.ErrorMessage).ToList();
+                }
+                else
+                {
+                    // Add new entry for propertyName
+                    Errors.Add(propertyName, results.Select(r => r.ErrorMessage).ToList());
+                }
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            }
+            else
+            {
+                Errors.Remove(propertyName);
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            }
+
+
+
+            AddMedicineCommand.CanExecuteChanged += (sender, e) =>
+            {
+                CommandManager.InvalidateRequerySuggested();
+            };
 
 
 

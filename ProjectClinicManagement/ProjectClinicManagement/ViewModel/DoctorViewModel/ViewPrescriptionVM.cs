@@ -76,17 +76,6 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                 Remark = Prescription.Remark;
                 Date = Prescription.Date.ToString("d");
 
-                OnPropertyChanged(nameof(PatientName));
-                OnPropertyChanged(nameof(Phone));
-                OnPropertyChanged(nameof(PatientRecordId));
-                OnPropertyChanged(nameof(Dosage));
-                OnPropertyChanged(nameof(Duration));
-                OnPropertyChanged(nameof(Instruction));
-                OnPropertyChanged(nameof(Remark));
-                OnPropertyChanged(nameof(Date));
-
-
-
                 Medicines = new ObservableCollection<MedicineDetail>(
       _context.Prescription_Medicines
           .Include(pm => pm.Medicine)

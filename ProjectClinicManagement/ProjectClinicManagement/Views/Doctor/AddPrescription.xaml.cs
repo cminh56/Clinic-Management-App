@@ -21,9 +21,10 @@ namespace ProjectClinicManagement.Views.Doctor
     /// </summary>
     public partial class AddPrescription : Page
     {
+        AddPrescriptionVM vm;
         public AddPrescription()
         {
-            AddPrescriptionVM vm;
+  
             InitializeComponent();
             vm = new AddPrescriptionVM();
             this.DataContext = vm;

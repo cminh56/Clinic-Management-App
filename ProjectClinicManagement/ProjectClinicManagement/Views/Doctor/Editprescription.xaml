@@ -52,7 +52,7 @@
 
                 <!-- Type -->
                 <TextBlock Text="Duration" Margin="5" Grid.Row="4" Grid.Column="1"/>
-                <TextBox x:Name="Duration" IsReadOnly="True" Text="{Binding Duration}" Margin="5" Grid.Row="5" Grid.Column="1"/>
+                <TextBox x:Name="Duration"  Text="{Binding Duration}" Margin="5" Grid.Row="5" Grid.Column="1"/>
                 <Label  Content="{Binding ElementName=Duration,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
                 <!-- Category -->
                 <TextBlock Text="Instruction" Margin="5" Grid.Row="0" Grid.Column="1"/>
@@ -75,7 +75,7 @@
                     <TextBlock Text="Quantity" Margin="5" Grid.Row="6" Grid.Column="0"/>
                     <TextBox x:Name="MQuantity"  Text="{Binding MQuantity}" Margin="5" Grid.Row="7" Grid.Column="0"/>
                     <TextBlock Text="Unit" Margin="5" Grid.Row="8" Grid.Column="0"/>
-                    <TextBox x:Name="Unit"  Text="{Binding Unit}" Margin="5" Grid.Row="9" Grid.Column="0"/>
+                    <TextBox x:Name="Unit"  Text="{Binding Unit }" Margin="5" Grid.Row="9" Grid.Column="0"/>
                     <Button Content="Add medicine" Command="{Binding AddMedicineCommand}" Grid.Row="10" Grid.Column="0" Margin="5"/>
                 </StackPanel>
                 <StackPanel Grid.Row="11" Grid.ColumnSpan="2" Margin="200,0,0,-214" >
