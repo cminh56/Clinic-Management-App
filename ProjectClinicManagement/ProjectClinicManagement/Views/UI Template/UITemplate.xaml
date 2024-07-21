@@ -115,7 +115,7 @@
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
                     Panel.ZIndex="1" Text="Search here ..."
 
-                    Visibility="{Binding ElementName=txtSearch, Path=Text.IsEmty,Converter={StaticResource BoolToVis}}"/>
+                    Visibility="{Binding ElementName=txtSearch,Converter={StaticResource BoolToVis}}"/>
 
                     
                     <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}"/>
