@@ -5,44 +5,71 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectClinicManagement.Views.Patient"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+            Width="800" Height="700"
       Title="EditPatient">
 
-    <Grid Background="#FFF8F8F8">
+    <Grid Background="#eff2f7">
+        <StackPanel Margin="0,42,38,0" VerticalAlignment="Top">
+            <!--Button-->
+            <Button  Style="{StaticResource addButton}" Command="{Binding ChangeStatusCommand}"  RenderTransformOrigin="0.587,-3.548">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Change Status"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <StackPanel Margin="0,486,0,0" VerticalAlignment="Top">
+            <Button Style="{StaticResource ResourceKey=addButton}" Content="Edit Patient" Command="{Binding EditPatientCommand}" FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Margin="-239,-90,239,373">
+            <!-- Page Title -->
+            <TextBlock Text="Edit Patient" FontSize="32" FontWeight="Bold" 
+   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,105,0,0"
+   Foreground="#121518"/>
+        </StackPanel>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel Margin="10,105,400,10" VerticalAlignment="Top">
 
-            <StackPanel Margin="10,105,10,10">
-                <!--Email-->
-                <TextBlock Text="Name" Margin="5"/>
-                <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <!--Name-->
+            <TextBlock Text="Name" Margin="5"  FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="NameTextBox" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
+            <Label  Content="{Binding ElementName=NameTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-                <TextBlock Text="Age" Margin="5"/>
-                <TextBox Text="{Binding Age, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
-                <TextBlock Text="Weight" Margin="5"/>
-                <TextBox Text="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <!--Age-->
+            <TextBlock Text="Age" Margin="5"  FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="AgeTextBox" Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
+            <Label  Content="{Binding ElementName=AgeTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-                <TextBlock Text="Height" Margin="5"/>
-                <TextBox Text="{Binding Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
 
-                <TextBlock Text="Phone" Margin="5"/>
-                <TextBox Text="{Binding Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <!--Weight-->
+            <TextBlock Text="Weight" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="WeightTextBox" Text="{Binding Weight, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
+            <Label  Content="{Binding ElementName=WeightTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+            <!--Height-->
+            <TextBlock Text="Height" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="HeightTextBox" Text="{Binding Height, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
+            <Label  Content="{Binding ElementName=HeightTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-                <TextBlock Text="Email" Margin="5"/>
-                <TextBox Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        </StackPanel>
 
-                <TextBlock Text="Address" Margin="5"/>
-                <TextBox Text="{Binding Address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        <StackPanel Margin="405,105,10,10" VerticalAlignment="Top">
+            <!--Gender-->
 
-                <TextBlock Text="Emergency" Margin="5"/>
-                <TextBox Text="{Binding Emergency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Phone" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="PhoneTextBox" Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
+            <Label  Content="{Binding ElementName=PhoneTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-                <TextBlock Text="Status" Margin="5"/>
-                <TextBox Text="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-                <Button Content="Edit Patient" Command="{Binding EditPatientCommand}" Margin="5"/>
+            <TextBlock Text="Email" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="EmailTextBox" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
+            <Label  Content="{Binding ElementName=EmailTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            </StackPanel>
-        </ScrollViewer>
+            <TextBlock Text="Address" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="AddressTextBox" Text="{Binding Address, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
+            <Label  Content="{Binding ElementName=AddressTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+
+            <TextBlock Text="Emergency" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="EmergencyTextBox" Text="{Binding Emergency, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
+            <Label  Content="{Binding ElementName=EmergencyTextBox,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/> 
+        </StackPanel>
     </Grid>
 </Page>

@@ -109,63 +109,66 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public string Name
         {
             get => name;
-            set { name = value; OnPropertyChanged(); }
+            set { name = value; OnPropertyChanged();  }
         }
 
+        [Required(ErrorMessage = "ATCCode is required.")]
         public string ATCCode
         {
             get => atcCode;
             set { atcCode = value; OnPropertyChanged(); }
         }
-
+        [Required(ErrorMessage = "GenericName is required.")]
         public string GenericName
         {
             get => genericName;
-            set { genericName = value; OnPropertyChanged(); }
+            set { genericName = value; OnPropertyChanged();   }
         }
-
+        [Required(ErrorMessage = "Description is required.")]
         public string Description
         {
             get => description;
-            set { description = value; OnPropertyChanged(); }
+            set { description = value; OnPropertyChanged();  }
         }
-
+        [Required(ErrorMessage = "Manufacturer is required.")]
         public string Manufacturer
         {
             get => manufacturer;
-            set { manufacturer = value; OnPropertyChanged(); }
+            set { manufacturer = value; OnPropertyChanged();  }
         }
-
+        [Required(ErrorMessage = "Type is required.")]
         public string Type
         {
             get => type;
             set { type = value; OnPropertyChanged(); }
         }
-
+        [Required(ErrorMessage = "Category is required.")]
         public string Category
         {
             get => category;
             set { category = value; OnPropertyChanged(); }
         }
-
+        [Required(ErrorMessage = "Unit is required.")]
         public string Unit
         {
             get => unit;
             set { unit = value; OnPropertyChanged(); }
         }
+        [Required(ErrorMessage = "Price is required.")]
 
         public float Price
         {
             get => price;
-            set { price = value; OnPropertyChanged(); }
+            set { price = value; OnPropertyChanged(); ;}
         }
-
+        [Required(ErrorMessage = "Quantity is required.")]
+        
         public int Quantity
         {
             get => quantity;
             set { quantity = value; OnPropertyChanged(); }
         }
-
+       
         public string Status
         {
             get => status;

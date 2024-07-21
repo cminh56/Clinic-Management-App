@@ -18,6 +18,10 @@ using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
 using ProjectClinicManagement.Data;
 using ProjectClinicManagement.Models;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using Microsoft.Win32;
+using System.IO;
 
 namespace ProjectClinicManagement.Views.Receiptor
 {
@@ -41,7 +45,7 @@ namespace ProjectClinicManagement.Views.Receiptor
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-           LoadData();
+            LoadData();
         }
         private void LoadData()
         {
@@ -51,21 +55,35 @@ namespace ProjectClinicManagement.Views.Receiptor
                         join prescriptionMedicine in context.Prescription_Medicines on prescription.Id equals prescriptionMedicine.PrescriptionID
                         join medicine in context.Medicines on prescriptionMedicine.MedicineID equals medicine.Id
                         join receipt in context.Receipts on patient.Id equals receipt.PatientId
+                        group new { prescription, patientRecord, patient, prescriptionMedicine, medicine, receipt } by new
+                        {
+                            receipt.Id,
+                            patient.Name,
+                            patient.Age,
+                            patient.Weight,
+                            patient.Height,
+                            patient.Address,
+                            patient.Phone,
+                            patientRecord.Symptoms,
+                            receipt.TotalAmount,
+                            receipt.Date,
+                            receipt.Status
+                        } into grouped
                         select new ReceiptViewModel
                         {
-                            Id = receipt.Id,
-                            PatientName = patient.Name,
-                            Age = patient.Age,
-                            Weight = patient.Weight,
-                            Height = patient.Height,
-                            Address = patient.Address,
-                            Phone = patient.Phone,
-                            Symptoms = patientRecord.Symptoms,
-                            MedicineName = medicine.Name,
-                            Quantity = prescriptionMedicine.Quantity,
-                            TotalPrice = receipt.TotalAmount,
-                            Date = receipt.Date,
-                            Status = receipt.Status
+                            Id = grouped.Key.Id,
+                            PatientName = grouped.Key.Name,
+                            Age = grouped.Key.Age,
+                            Weight = grouped.Key.Weight,
+                            Height = grouped.Key.Height,
+                            Address = grouped.Key.Address,
+                            Phone = grouped.Key.Phone,
+                            Symptoms = grouped.Key.Symptoms,
+                            MedicineName = string.Join(", ", grouped.Select(g => g.medicine.Name).Distinct()),
+                            Quantity = grouped.Sum(g => g.prescriptionMedicine.Quantity),
+                            TotalPrice = grouped.Sum(g => g.prescriptionMedicine.Quantity * g.prescriptionMedicine.Price),
+                            Date = grouped.Key.Date,
+                            Status = grouped.Key.Status
                         };
 
             AllReceipts = new ObservableCollection<ReceiptViewModel>(query.ToList());
@@ -138,5 +156,60 @@ namespace ProjectClinicManagement.Views.Receiptor
         {
             selectedReceipt = (ReceiptViewModel)lvData.SelectedItem;
         }
+
+        private void btnExportExcel_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                using (ExcelPackage package = new ExcelPackage())
+                {
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Receipts");
+
+                    // Add header
+                    worksheet.Cells[1, 1].Value = "No";
+                    worksheet.Cells[1, 2].Value = "Patients Name";
+                    worksheet.Cells[1, 3].Value = "Age";
+                    worksheet.Cells[1, 4].Value = "Weight";
+                    worksheet.Cells[1, 5].Value = "Height";
+                    worksheet.Cells[1, 6].Value = "Address";
+                    worksheet.Cells[1, 7].Value = "Phone";
+                    worksheet.Cells[1, 8].Value = "Symptoms";
+                    worksheet.Cells[1, 9].Value = "Medicines";
+                    worksheet.Cells[1, 10].Value = "Quantity";
+                    worksheet.Cells[1, 11].Value = "Total Price";
+                    worksheet.Cells[1, 12].Value = "Date";
+                    worksheet.Cells[1, 13].Value = "Status";
+
+                    // Add data
+                    for (int i = 0; i < AllReceipts.Count; i++)
+                    {
+                        worksheet.Cells[i + 2, 1].Value = AllReceipts[i].Id;
+                        worksheet.Cells[i + 2, 2].Value = AllReceipts[i].PatientName;
+                        worksheet.Cells[i + 2, 3].Value = AllReceipts[i].Age;
+                        worksheet.Cells[i + 2, 4].Value = AllReceipts[i].Weight;
+                        worksheet.Cells[i + 2, 5].Value = AllReceipts[i].Height;
+                        worksheet.Cells[i + 2, 6].Value = AllReceipts[i].Address;
+                        worksheet.Cells[i + 2, 7].Value = AllReceipts[i].Phone;
+                        worksheet.Cells[i + 2, 8].Value = AllReceipts[i].Symptoms;
+                        worksheet.Cells[i + 2, 9].Value = AllReceipts[i].MedicineName;
+                        worksheet.Cells[i + 2, 10].Value = AllReceipts[i].Quantity;
+                        worksheet.Cells[i + 2, 11].Value = AllReceipts[i].TotalPrice;
+                        worksheet.Cells[i + 2, 12].Value = AllReceipts[i].Date.ToString("dd/MM/yyyy");
+                        worksheet.Cells[i + 2, 13].Value = AllReceipts[i].Status.ToString();
+                    }
+
+                    // Auto fit columns
+                    worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                    // Save file
+                    var file = new FileInfo(saveFileDialog.FileName);
+                    package.SaveAs(file);
+
+                    MessageBox.Show("Export successful ! Let's check it !", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
     }
-    }
+}

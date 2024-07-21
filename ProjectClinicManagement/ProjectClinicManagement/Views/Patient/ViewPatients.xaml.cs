@@ -39,5 +39,19 @@ namespace ProjectClinicManagement.Views.Patient
             patientVM._navigationService = NavigationService;
 
         }
+        private void ClickPatientRecord(object sender, RoutedEventArgs e)
+        {
+            patientVM._navigationService = NavigationService;
+
+        }
+        private void change(object sender, RoutedEventArgs e)
+        {
+            test.Text = SortCombobox2.SelectedIndex.ToString() ;
+            
+            patientVM = new PatientVM(SortCombobox.SelectedIndex, SortCombobox2.SelectedIndex);
+            this.DataContext = patientVM;
+
+        }
+
     }
 }

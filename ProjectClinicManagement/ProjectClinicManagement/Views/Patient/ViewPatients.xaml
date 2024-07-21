@@ -10,6 +10,7 @@
       Title="ViewPatients">
 
     <Grid Background="#FFFAF9F9">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -42,7 +43,7 @@
         </Button>
 
         <!--Page Title-->
-        <TextBlock Text="Patient List" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0"
+        <TextBlock Text="Patient List" Name="test" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0"
              HorizontalAlignment="Left" Foreground="#121518"/>
 
         <!--Add Button-->
@@ -64,15 +65,26 @@
         <!--Separator-->
         <Separator Height="1" Grid.Row="3" Background="#dae2ea" Margin="0 -1 0 10"/>
 
-        
-       
+
+
 
         <!--Filter Textbox-->
-        <Grid Width="200" HorizontalAlignment="Right" Grid.Row="4">
-            <TextBlock Margin="15,0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
+        <Grid Width="800" HorizontalAlignment="Center" Grid.Row="4">
+            <TextBlock Text="Sort" Width="40"  FontSize="15" FontWeight="SemiBold" RenderTransformOrigin="-5.865,0.465" Margin="10,8,750,3"/>
+            <ComboBox Width="180" Height="30" x:Name="SortCombobox" SelectionChanged="change"  SelectedIndex="{Binding sort}" Margin="50,4,550,16">
+                <ComboBoxItem Content="New"   />
+                <ComboBoxItem Content="Age"/>
+                <ComboBoxItem Content="Weight"/>
+                <ComboBoxItem Content="Height"/>
+            </ComboBox>
+            <ComboBox Width="80" Height="30" x:Name="SortCombobox2" SelectionChanged="change" SelectedIndex="{Binding by}" Margin="265,3,455,17">
+                <ComboBoxItem Content="Increase"/>
+                <ComboBoxItem Content="Decrease"/>
+            </ComboBox>
+            <TextBlock Width="200" Margin="581,0,19,0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False"
                Panel.ZIndex="1" Text="{Binding PlaceHolderText, UpdateSourceTrigger=PropertyChanged}" />
 
-            <TextBox x:Name="txtFilter" Style="{StaticResource textboxFilter}" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Width="200" x:Name="txtFilter" Style="{StaticResource textboxFilter}" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Margin="581,0,19,0" />
         </Grid>
 
 
@@ -97,8 +109,11 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button  Style="{StaticResource gridEditButton}" Click="ClickUpdate"  Command="{Binding DataContext.UpdatePatientCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                <Button  Style="{StaticResource gridEditButton}" Click="ClickUpdate"  Command="{Binding DataContext.EditPatientCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
                                     <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}" />
+                                </Button>
+                                <Button  Style="{StaticResource gridEditButton}" Click="ClickPatientRecord"  Command="{Binding DataContext.PatientRecordCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
+                                    <Icon:PackIconMaterial Kind="ViewList" Style="{StaticResource gridButtonIcon}" />
                                 </Button>
 
                             </StackPanel>
