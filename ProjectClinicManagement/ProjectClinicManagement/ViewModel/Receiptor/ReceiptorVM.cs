@@ -128,6 +128,11 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
                 MessageBox.Show("Please Choose one Receipt to check out");
                 return;
             }
+            if(receipt.Status != Receipt.StatusType.Unpaid)
+            {
+                MessageBox.Show("Please Choose other Receipt to check out");
+                return;
+            }
             receiptInsta = receipt;
             if (isCashChecked)
             {
@@ -135,8 +140,9 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
                 Invoices invoices = new Invoices();
                 invoices.Show();
             }
-            if(isCashChecked) { 
-            
+            if(IsCardChecked) { 
+              VietQRPaymentAPI paymentAPI = new VietQRPaymentAPI();
+                paymentAPI.Show();
             }
         }
         private void ReceiptDetails(Object pra)
@@ -164,6 +170,8 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
         private void ExportToExel(Object pra)
         {
             //Export here
+
+
             using (var package = new OfficeOpenXml.ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Receipts");
@@ -203,6 +211,7 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
                     MessageBox.Show("Export to Excel successful!");
                 }
             }
+
         }
         private void Search(Object pra)
         {
