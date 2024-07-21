@@ -4,6 +4,7 @@ using ProjectClinicManagement.ViewModel.Common;
 using ProjectClinicManagement.Views;
 using ProjectClinicManagement.Views.Authentication;
 using ProjectClinicManagement.Views.Doctor;
+using ProjectClinicManagement.Views.Receiptor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,8 +61,8 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
         private void NavigateToReceiptor()
         {
-            DoctorWindow doctorWindow = new DoctorWindow();
-            doctorWindow.Show();
+            ReceiptorWindow receiptor = new ReceiptorWindow();
+            receiptor.Show();
         }
 
 

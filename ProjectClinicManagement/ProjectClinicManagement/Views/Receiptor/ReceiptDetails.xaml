@@ -83,6 +83,12 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
+                    <StackPanel Orientation="Horizontal" Margin="25,8,212,8" Grid.RowSpan="2" Grid.Row="1">
+                        <TextBlock Margin="5">Payment method:</TextBlock>
+                        <CheckBox Style="{StaticResource CheckBoxStyle1}" Margin="5" Content="Cash" x:Name="cbCash"  IsChecked="{Binding IsCashChecked}"/>
+                        <CheckBox Style="{StaticResource CheckBoxStyle1}" Margin="5" Content="Card" x:Name="cbCard" IsChecked="{Binding IsCardChecked}"/>
+                        <Button Command="{Binding CheckoutCommand}" Style="{StaticResource addButton}" x:Name="btCheckOut" Content="Check Out" Margin="1" Width="100" Height="25"></Button>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal"  >
                         <Button  Style="{StaticResource addButton}" Click="Back_Click" Command="{Binding BackCommand}" >
                             <StackPanel Orientation="Horizontal" >

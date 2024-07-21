@@ -62,7 +62,18 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
 
             receipt.Status = receipt.Status == Receipt.StatusType.Paid ? Receipt.StatusType.Unpaid : Receipt.StatusType.Paid;
             OnPropertyChanged(nameof(Status));
-
+            var receiptToUpdate = context.Receipts.FirstOrDefault(r => r.Id == receipt.Id);
+            if (receiptToUpdate != null)
+            {
+                receiptToUpdate.Status = receipt.Status;
+                context.SaveChanges();
+                MessageBox.Show("Status changed and saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Failed to change status.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            StatusChangedNotifier.NotifyStatusChanged();
         }
      
         public void getData()

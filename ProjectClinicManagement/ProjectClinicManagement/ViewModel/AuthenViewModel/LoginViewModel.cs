@@ -1,10 +1,12 @@
 ﻿using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Data;
 using ProjectClinicManagement.ViewModel.Common;
+using ProjectClinicManagement.ViewModel.Receiptor;
 using ProjectClinicManagement.Views;
 using ProjectClinicManagement.Views.Admin;
 using ProjectClinicManagement.Views.Authentication;
 using ProjectClinicManagement.Views.Doctor;
+using ProjectClinicManagement.Views.Receiptor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,8 +73,8 @@ namespace ProjectClinicManagement.ViewModel.AuthenViewModel
                     }
                     else if (user.Role.ToString() == "Receipter")
                     {
-                        DoctorWindow doctorWindow = new DoctorWindow();
-                        doctorWindow.Show();
+                        ReceiptorWindow receiptor = new ReceiptorWindow();
+                        receiptor.Show();
                     }
 
                     _loginWindow.Close();

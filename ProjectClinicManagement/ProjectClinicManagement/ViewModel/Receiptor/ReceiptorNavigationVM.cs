@@ -1,4 +1,5 @@
 ﻿using ProjectClinicManagement.Command;
+using ProjectClinicManagement.Models;
 using ProjectClinicManagement.ViewModel.Common;
 using ProjectClinicManagement.Views.Authentication;
 using ProjectClinicManagement.Views.Doctor;
@@ -25,7 +26,7 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
                 OnPropertyChanged(nameof(CurrentPage));
             }
         }
-
+        public string Name { get; set; }
         public ICommand LogoutCommand { get; }
         public ICommand DoctorPage { get; }
         public ICommand ReceiptPage { get; }
@@ -33,6 +34,8 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
 
         public ReceiptorNavigationVM()
         {
+            Account User = (Account)Application.Current.Properties["User"];
+            Name = User.Name;
             CurrentPage = new Views.Receiptor.ViewReceipts();
             PatientPage = new RelayCommand(NavigateToPatientPage);
             ReceiptPage = new RelayCommand(NavigateToReceiptPage);

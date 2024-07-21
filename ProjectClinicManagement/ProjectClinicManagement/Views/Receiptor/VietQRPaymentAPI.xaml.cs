@@ -21,11 +21,11 @@ namespace ProjectClinicManagement.Views.Receiptor
     public partial class VietQRPaymentAPI : Window
     {
         private Receipt receipt;
-        public VietQRPaymentAPI()
+        public VietQRPaymentAPI(Receipt _receipt)
         {
             InitializeComponent();
             Loaded += Window_Loaded;
-               receipt = ReceiptorVM.receiptInsta;
+               receipt = _receipt;
         }
     
         private BitmapImage GenerateQRCodeImage(string qrCodeData)
@@ -126,7 +126,7 @@ namespace ProjectClinicManagement.Views.Receiptor
 
         private void btTest_Click(object sender, RoutedEventArgs e)
         {
-            Invoices invoices = new Invoices();
+            Invoices invoices = new Invoices(receipt);
             invoices.Show();
         }
     }

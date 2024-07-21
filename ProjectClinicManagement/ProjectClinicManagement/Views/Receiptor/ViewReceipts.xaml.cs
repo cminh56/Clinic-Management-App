@@ -28,12 +28,14 @@ namespace ProjectClinicManagement.Views.Receiptor
             InitializeComponent();
             receiptorVM = new ReceiptorVM();
             this.DataContext = receiptorVM;
+        
         }
+        
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             receiptorVM._navigationService = NavigationService;
 
         }
-
+       
     }
 }

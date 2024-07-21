@@ -4,12 +4,14 @@ using ProjectClinicManagement.Data;
 using ProjectClinicManagement.Models;
 using ProjectClinicManagement.ViewModel.Common;
 using ProjectClinicManagement.ViewModel.DoctorViewModel;
+using ProjectClinicManagement.Views.Receiptor;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 
@@ -51,6 +53,28 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
                 OnPropertyChanged();
             }
         }
+        private bool isCashChecked;
+        private bool isCardChecked;
+
+        public bool IsCashChecked
+        {
+            get { return isCashChecked; }
+            set
+            {
+                isCashChecked = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsCardChecked
+        {
+            get { return isCardChecked; }
+            set
+            {
+                isCardChecked = value;
+                OnPropertyChanged();
+            }
+        }
         private readonly DataContext context;
         public string PatientName { get; set; }
         public string Phone { get; set; }
@@ -61,6 +85,7 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
         public string Remark { get; set; }
         public string Date { get; set; }
         public ICommand BackCommand { get; }
+        public ICommand CheckoutCommand { get; }
         public ReceiptDetailsVM(Receipt receiptInst)
         {
 
@@ -108,14 +133,35 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
 
 
                 BackCommand = new RelayCommand(NavigateToBackPage);
+                CheckoutCommand = new RelayCommand(NavigateToCheckout);
 
             }
 
         }
+
+
         private void NavigateToBackPage(object parameter)
         {
             NavigationService?.Navigate(new Uri("Views/Receiptor/ViewReceipts.xaml", UriKind.Relative));
         }
+
+        private void NavigateToCheckout(object parameter)
+        {
+
+           
+            if (isCashChecked)
+            {
+
+                Invoices invoices = new Invoices(receipt);
+                invoices.Show();
+            }
+            if (IsCardChecked)
+            {
+                VietQRPaymentAPI paymentAPI = new VietQRPaymentAPI(receipt);
+                paymentAPI.Show();
+            }
+        }
+
 
 
     }
