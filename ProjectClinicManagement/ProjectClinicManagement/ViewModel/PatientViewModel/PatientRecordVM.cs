@@ -95,6 +95,9 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         public ICommand EditPatientRecordCommand { get; set; }
 
         public ICommand ViewPatientCommand { get; }
+        public ICommand PrinterCommand { get; set; }
+        public ICommand BackCommand { get; set; }
+
 
         public PatientRecordVM(Patient patient)
         {
@@ -103,7 +106,8 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
             ViewPrescriptionCommand = new RelayCommand(NavigateToViewPrescriptionPage);
             EditPatientRecordCommand=new RelayCommand(NavigateToEditPatientRecordPage);
             ViewPatientCommand = new RelayCommand(NavigateToPatientPage);
-
+            PrinterCommand=new RelayCommand(NavigateToPrinterPage);
+            BackCommand=new RelayCommand(NavigateToBackPage);
             var _patient = _context.Patient_Records.Where(x=>x.PatientId==patient.Id).Include(x=>x.Patient).Include(x=>x.Doctor).FirstOrDefault();
             if (_patient != null)
             {
@@ -137,6 +141,14 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         private void NavigateToPatientPage(object parameter)
         {
             NavigationService?.Navigate(new Uri("Views/Patient/ViewPatients.xaml", UriKind.Relative));
+        }
+        private void NavigateToPrinterPage(object parameter)
+        {
+            NavigationService?.Navigate(new Uri("Views/Patient/PatientPrinter.xaml", UriKind.Relative));
+        }
+        private void NavigateToBackPage(object parameter)
+        {
+            NavigationService?.Navigate(new Uri("Views/Patient/PatientRecord.xaml", UriKind.Relative));
         }
     }
 }

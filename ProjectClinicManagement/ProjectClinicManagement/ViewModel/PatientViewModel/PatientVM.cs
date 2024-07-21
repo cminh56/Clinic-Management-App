@@ -128,7 +128,7 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         {
             _context = new DataContext();
             sort = 0;
-            by = 0;
+            by = 1;
             exelService = new ExelService();
             var query = _context.Patients.AsQueryable();
             Patients=query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
