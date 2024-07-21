@@ -108,7 +108,7 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="1">
-                            <TextBlock x:Name="tbStatus" Text="{Binding Receipt.Status}" FontSize="25" Margin="5" Foreground="Red"/>
+                            <TextBlock x:Name="tbStatus" Text="{Binding Status}" FontSize="25" Margin="5" Foreground="Red"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2">
                             <TextBlock x:Name="tbTotalPrice" Text="{Binding Receipt.TotalAmount}" FontSize="25" Margin="5" HorizontalAlignment="Right" Foreground="#FF62013C" FontWeight="Bold"/>
