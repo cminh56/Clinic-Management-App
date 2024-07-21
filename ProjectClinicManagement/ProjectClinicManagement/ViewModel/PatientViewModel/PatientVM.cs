@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ProjectClinicManagement.ViewModel.PatientViewModel
 {
@@ -109,6 +110,11 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         public ICommand Prepage { get; set; }
         public ICommand ExportFilePatientCommand { get; set; }
 
+       
+        
+
+        public static int sort { get; set; }
+        public static int by { get; set; }
         public NavigationService _navigationService;
         public NavigationService NavigationService
         {
@@ -122,12 +128,84 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         {
             _context = new DataContext();
             Application.Current.Properties["User"] = _context.Account.FirstOrDefault(u => u.UserName == "Admin");
-
+            sort = 0;
+            by = 0;
             exelService = new ExelService();
             var query = _context.Patients.AsQueryable();
             Patients=query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
             int totalCount = query.ToList().Count;
             Totalpage= (totalCount + _itemsPerPage - 1) / _itemsPerPage;
+
+            
+
+            placeHolderText = "Search by name, email,...";
+
+
+            AddPatientCommand = new RelayCommand(NavigateToAddPatientPage);
+            EditPatientCommand = new RelayCommand(NavigateToEditPatientPage, CanExecuteUserCommand);
+            PatientRecordCommand = new RelayCommand(NavigateToPatientRecordPage, CanExecuteUserCommand);
+            Nextpage = new RelayCommand(NextPage, CanNextPage);
+            Prepage = new RelayCommand(PrePage, CanPrePage);
+            ExportFilePatientCommand = new RelayCommand(ExportToExel);
+        }
+       
+            
+        public PatientVM(int a,int b)
+        {
+            _context = new DataContext();
+            Application.Current.Properties["User"] = _context.Account.FirstOrDefault(u => u.UserName == "Admin");
+            sort = a;
+            by = b;
+            exelService = new ExelService();
+            var query = _context.Patients.AsQueryable();
+            if(by==0)
+            {
+                if(sort==0)
+                {
+                    query = query.OrderBy(x => x.Id);
+                }
+                else if (sort==1)
+                {
+                    query = query.OrderBy(x => x.Age);
+
+                }
+                else if(sort == 2)
+                {
+                    query = query.OrderBy(x => x.Height);
+
+                }
+                else
+                {
+                    query = query.OrderBy(x => x.Weight);
+
+                }
+            }
+            else if (by==1)
+            {
+                if (sort==0)
+                {
+                    query = query.OrderByDescending(x => x.Id);
+                }
+                else if (sort==1)
+                {
+                    query = query.OrderByDescending(x => x.Age);
+
+                }
+                else if (sort==2)
+                {
+                    query = query.OrderByDescending(x => x.Height);
+
+                }
+                else
+                {
+                    query = query.OrderByDescending(x => x.Weight);
+
+
+                }
+            }
+            Patients = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
+            int totalCount = query.ToList().Count;
+            Totalpage = (totalCount + _itemsPerPage - 1) / _itemsPerPage;
 
 
             placeHolderText = "Search by name, email,...";
@@ -205,6 +283,51 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
                 || x.Name.Contains(SearchText));
 
 
+            }
+            if (by == 0)
+            {
+                if (sort == 0)
+                {
+                    query = query.OrderBy(x => x.Id);
+                }
+                else if (sort == 1)
+                {
+                    query = query.OrderBy(x => x.Age);
+
+                }
+                else if (sort == 2)
+                {
+                    query = query.OrderBy(x => x.Height);
+
+                }
+                else
+                {
+                    query = query.OrderBy(x => x.Weight);
+
+                }
+            }
+            else if (by == 1)
+            {
+                if (sort == 0)
+                {
+                    query = query.OrderByDescending(x => x.Id);
+                }
+                else if (sort == 1)
+                {
+                    query = query.OrderByDescending(x => x.Age);
+
+                }
+                else if (sort == 2)
+                {
+                    query = query.OrderByDescending(x => x.Height);
+
+                }
+                else
+                {
+                    query = query.OrderByDescending(x => x.Weight);
+
+
+                }
             }
             Patients = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
             int totalCount = query.ToList().Count;
