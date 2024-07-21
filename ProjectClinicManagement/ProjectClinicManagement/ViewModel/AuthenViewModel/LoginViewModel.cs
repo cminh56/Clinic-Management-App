@@ -2,7 +2,9 @@
 using ProjectClinicManagement.Data;
 using ProjectClinicManagement.ViewModel.Common;
 using ProjectClinicManagement.Views;
+using ProjectClinicManagement.Views.Admin;
 using ProjectClinicManagement.Views.Authentication;
+using ProjectClinicManagement.Views.Doctor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,12 +59,23 @@ namespace ProjectClinicManagement.ViewModel.AuthenViewModel
                     Application.Current.Properties["UserRole"] = user.Role.ToString();
                     Application.Current.Properties["User"] = _context.Account.FirstOrDefault(u => u.UserName == user.UserName);
 
-                    // Open main window (Window1)
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
+                   
+                    if(user.Role.ToString() == "Admin")
+                    {
+                        AdminWindow adminWindow = new AdminWindow();
+                        adminWindow.Show();
+                    }else if(user.Role.ToString() == "Doctor")
+                    {
+                        DoctorWindow doctorWindow = new DoctorWindow();
+                        doctorWindow.Show();
+                    }
+                    else if (user.Role.ToString() == "Receipter")
+                    {
+                        DoctorWindow doctorWindow = new DoctorWindow();
+                        doctorWindow.Show();
+                    }
 
-
-                     _loginWindow.Close();
+                    _loginWindow.Close();
                
 
                 }

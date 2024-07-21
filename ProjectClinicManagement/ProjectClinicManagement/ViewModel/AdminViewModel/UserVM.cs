@@ -39,7 +39,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             }
 
         }
-        public int _itemsPerPage = 3; // Số mục trên mỗi trang
+        public int _itemsPerPage = 8; // Số mục trên mỗi trang
         public int totalpage;
         public int Totalpage
         {
@@ -151,7 +151,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
             placeHolderText = "Search by name, email,...";
             //Cacular total page
-            Totalpage = query.ToList().Count / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage;
+            Totalpage = query.ToList().Count-1 / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage+1;
 
             // Initialize list (command)
             AddUserCommand = new RelayCommand(NavigateToAddUserPage);
@@ -217,8 +217,8 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
 
             }
-            
-            Totalpage = query.ToList().Count / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage;
+          
+            Totalpage = query.ToList().Count / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage+1;
 
             Accounts = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
         }
@@ -245,7 +245,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
             }
 
-            Totalpage = query.ToList().Count / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage;
+            Totalpage = query.ToList().Count-1 / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage;
 
             Accounts = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
         }

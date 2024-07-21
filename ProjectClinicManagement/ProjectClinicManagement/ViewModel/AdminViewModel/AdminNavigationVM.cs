@@ -2,6 +2,7 @@
 using ProjectClinicManagement.ViewModel.Common;
 using ProjectClinicManagement.Views;
 using ProjectClinicManagement.Views.Authentication;
+using ProjectClinicManagement.Views.Doctor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,12 +29,14 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
         public RelayCommand NavigateToPage1Command { get; }
         public RelayCommand NavigateToPage2Command { get; }
+        public RelayCommand NavigateToDoctorCommand { get; }
+        public RelayCommand NavigateToReceiptorCommand { get; }
         public ICommand LogoutCommand { get; }
 
         public AdminNavigationVM()
         {
             NavigateToPage1Command = new RelayCommand(_ => NavigateToPage1());
-            NavigateToPage2Command = new RelayCommand(_ => NavigateToPage2());
+            NavigateToDoctorCommand= new RelayCommand(_ => NavigateToDoctor());
             LogoutCommand = new RelayCommand(Logout);
             CurrentPage = new Views.Admin.ViewUsers();
         }
@@ -42,11 +45,19 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         {
             CurrentPage = new Views.Admin.ViewUsers();
         }
-
-        private void NavigateToPage2()
+        private void NavigateToDoctor()
         {
-            //CurrentPage = new Views.Page2();
+            DoctorWindow doctorWindow = new DoctorWindow();
+            doctorWindow.Show();
         }
+
+        private void NavigateToReceiptor()
+        {
+           
+        }
+
+
+
         private void Logout(object? parameter)
         {
             // Clear user information
