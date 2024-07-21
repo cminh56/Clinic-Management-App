@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -121,6 +122,11 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
 
         public void Checkout(Object pra)
         {
+            if (receipt == null)
+            {
+                MessageBox.Show("Please Choose one Receipt to check out");
+                return;
+            }
             receiptInsta = receipt;
             if (isCashChecked)
             {

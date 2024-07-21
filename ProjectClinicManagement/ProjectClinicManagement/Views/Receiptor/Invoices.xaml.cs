@@ -30,20 +30,10 @@ namespace ProjectClinicManagement.Views.Receiptor
             this.DataContext = vm;
         }
 
-        //private void Window_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    tbDate.DataContext = receipt.Date.ToString("dd/MM/yyyy");
-        //    tbId.DataContext = receipt.Id;
-        //    tbPatientName.DataContext = receipt.PatientName;
-        //    tbAddress.DataContext = receipt.Address;
-        //    tbPhone.DataContext = receipt.Phone;
-        //    tbStatus.DataContext = receipt.Status;
-        //    tbTotalPrice.DataContext = receipt.TotalPrice;
-        //    tbSymtoms.DataContext = receipt.Symptoms;
-        //    tbTotalP.DataContext = receipt.TotalPrice;
-        //    tbMedicines.DataContext = receipt.MedicineName;
-        //    tbQuantity.DataContext = receipt.Quantity;
-        //}
+       private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            vm.getData();
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
