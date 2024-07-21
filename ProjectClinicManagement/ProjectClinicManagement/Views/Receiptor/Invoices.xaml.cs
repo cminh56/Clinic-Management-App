@@ -26,15 +26,15 @@ namespace ProjectClinicManagement.Views.Receiptor
         public Invoices()
         {
             InitializeComponent();
-            vm = new InVoicesVM(ReceiptorVM.receiptInsta);   
+            vm = new InVoicesVM(ReceiptorVM.receiptInsta);
             this.DataContext = vm;
         }
 
-       private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                 vm.getData();
+                vm.getData();
             }
             catch (Exception ex)
             {
@@ -63,35 +63,36 @@ namespace ProjectClinicManagement.Views.Receiptor
         {
             this.Close();
 
-        //private void btnChangeStatus_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (receipt.Status == ProjectClinicManagement.Models.Receipt.StatusType.Paid)
-        //    {
-        //        receipt.Status = ProjectClinicManagement.Models.Receipt.StatusType.Unpaid;
-        //    }
-        //    else
-        //    {
-        //        receipt.Status = ProjectClinicManagement.Models.Receipt.StatusType.Paid;
-        //    }
+            //private void btnChangeStatus_Click(object sender, RoutedEventArgs e)
+            //{
+            //    if (receipt.Status == ProjectClinicManagement.Models.Receipt.StatusType.Paid)
+            //    {
+            //        receipt.Status = ProjectClinicManagement.Models.Receipt.StatusType.Unpaid;
+            //    }
+            //    else
+            //    {
+            //        receipt.Status = ProjectClinicManagement.Models.Receipt.StatusType.Paid;
+            //    }
 
-        //    // Cập nhật giao diện người dùng
-        //    tbStatus.Text = receipt.Status.ToString();
+            //    // Cập nhật giao diện người dùng
+            //    tbStatus.Text = receipt.Status.ToString();
 
-        //    // Lưu thay đổi vào cơ sở dữ liệu
-        //    using (var context = new DataContext())
-        //    {
-        //        var receiptToUpdate = context.Receipts.FirstOrDefault(r => r.Id == receipt.Id);
-        //        if (receiptToUpdate != null)
-        //        {
-        //            receiptToUpdate.Status = receipt.Status;
-        //            context.SaveChanges();
-        //            MessageBox.Show("Status changed successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("Failed to change status.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        //        }
-        //    }
-        //}
+            //    // Lưu thay đổi vào cơ sở dữ liệu
+            //    using (var context = new DataContext())
+            //    {
+            //        var receiptToUpdate = context.Receipts.FirstOrDefault(r => r.Id == receipt.Id);
+            //        if (receiptToUpdate != null)
+            //        {
+            //            receiptToUpdate.Status = receipt.Status;
+            //            context.SaveChanges();
+            //            MessageBox.Show("Status changed successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Failed to change status.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //        }
+            //    }
+            //}
+        }
     }
 }
