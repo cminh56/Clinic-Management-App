@@ -22,7 +22,8 @@ namespace ProjectClinicManagement.Models
         public enum StatusType
         {
             Paid,
-            Unpaid
+            Unpaid,
+            Cancel
         }
     }
 }

@@ -20,8 +20,7 @@ namespace ProjectClinicManagement.Models
 
         [ForeignKey("PatientRecordId")] public virtual Patient_Record? Patient_Record { get; set; }
         public virtual ICollection<Prescription_Medicine>? Prescription_Medicines { get; set; }
-
-
-
+        
+             
     }
 }

@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ProjectClinicManagement.Data;
-using static ProjectClinicManagement.Views.Receiptor.Receipt;
+using ProjectClinicManagement.ViewModel.Receiptor;
+
 
 namespace ProjectClinicManagement.Views.Receiptor
 {
@@ -21,27 +22,28 @@ namespace ProjectClinicManagement.Views.Receiptor
     /// </summary>
     public partial class Invoices : Window
     {
-        private ReceiptViewModel receipt;
-        public Invoices(ReceiptViewModel receipt)
+        private InVoicesVM vm;
+        public Invoices()
         {
             InitializeComponent();
-            this.receipt = receipt;
+            vm = new InVoicesVM(ReceiptorVM.receiptInsta);   
+            this.DataContext = vm;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            tbDate.DataContext = receipt.Date.ToString("dd/MM/yyyy");
-            tbId.DataContext = receipt.Id;
-            tbPatientName.DataContext = receipt.PatientName;
-            tbAddress.DataContext = receipt.Address;
-            tbPhone.DataContext = receipt.Phone;
-            tbStatus.DataContext = receipt.Status;
-            tbTotalPrice.DataContext = receipt.TotalPrice;
-            tbSymtoms.DataContext = receipt.Symptoms;
-            tbTotalP.DataContext = receipt.TotalPrice;
-            tbMedicines.DataContext = receipt.MedicineName;
-            tbQuantity.DataContext = receipt.Quantity;
-        }
+        //private void Window_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    tbDate.DataContext = receipt.Date.ToString("dd/MM/yyyy");
+        //    tbId.DataContext = receipt.Id;
+        //    tbPatientName.DataContext = receipt.PatientName;
+        //    tbAddress.DataContext = receipt.Address;
+        //    tbPhone.DataContext = receipt.Phone;
+        //    tbStatus.DataContext = receipt.Status;
+        //    tbTotalPrice.DataContext = receipt.TotalPrice;
+        //    tbSymtoms.DataContext = receipt.Symptoms;
+        //    tbTotalP.DataContext = receipt.TotalPrice;
+        //    tbMedicines.DataContext = receipt.MedicineName;
+        //    tbQuantity.DataContext = receipt.Quantity;
+        //}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -60,35 +62,35 @@ namespace ProjectClinicManagement.Views.Receiptor
             }
         }
 
-        private void btnChangeStatus_Click(object sender, RoutedEventArgs e)
-        {
-            if (receipt.Status == ProjectClinicManagement.Models.Receipt.StatusType.Paid)
-            {
-                receipt.Status = ProjectClinicManagement.Models.Receipt.StatusType.Unpaid;
-            }
-            else
-            {
-                receipt.Status = ProjectClinicManagement.Models.Receipt.StatusType.Paid;
-            }
+        //private void btnChangeStatus_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (receipt.Status == ProjectClinicManagement.Models.Receipt.StatusType.Paid)
+        //    {
+        //        receipt.Status = ProjectClinicManagement.Models.Receipt.StatusType.Unpaid;
+        //    }
+        //    else
+        //    {
+        //        receipt.Status = ProjectClinicManagement.Models.Receipt.StatusType.Paid;
+        //    }
 
-            // Cập nhật giao diện người dùng
-            tbStatus.Text = receipt.Status.ToString();
+        //    // Cập nhật giao diện người dùng
+        //    tbStatus.Text = receipt.Status.ToString();
 
-            // Lưu thay đổi vào cơ sở dữ liệu
-            using (var context = new DataContext())
-            {
-                var receiptToUpdate = context.Receipts.FirstOrDefault(r => r.Id == receipt.Id);
-                if (receiptToUpdate != null)
-                {
-                    receiptToUpdate.Status = receipt.Status;
-                    context.SaveChanges();
-                    MessageBox.Show("Status changed successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Failed to change status.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
+        //    // Lưu thay đổi vào cơ sở dữ liệu
+        //    using (var context = new DataContext())
+        //    {
+        //        var receiptToUpdate = context.Receipts.FirstOrDefault(r => r.Id == receipt.Id);
+        //        if (receiptToUpdate != null)
+        //        {
+        //            receiptToUpdate.Status = receipt.Status;
+        //            context.SaveChanges();
+        //            MessageBox.Show("Status changed successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Failed to change status.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        //        }
+        //    }
+        //}
     }
 }

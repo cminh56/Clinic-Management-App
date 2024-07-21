@@ -73,7 +73,8 @@ Command="{Binding FilterByRoleCommand}" CommandParameter="All"/>
 
 
         <!--Memeber Datagrid-->
-        <DataGrid ItemsSource="{Binding Accounts}" SelectedItem="{Binding Account}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" x:Name="membersDataGrid">
+        <DataGrid ItemsSource="{Binding Accounts}" SelectedItem="{Binding Account}" 
+                  Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" x:Name="membersDataGrid">
             <DataGrid.Columns>
                
         

@@ -1,7 +1,5 @@
 ﻿using ProjectClinicManagement.Command;
-using ProjectClinicManagement.Models;
 using ProjectClinicManagement.ViewModel.Common;
-using ProjectClinicManagement.Views;
 using ProjectClinicManagement.Views.Authentication;
 using ProjectClinicManagement.Views.Doctor;
 using System;
@@ -13,9 +11,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace ProjectClinicManagement.ViewModel.AdminViewModel
+namespace ProjectClinicManagement.ViewModel.Receiptor
 {
-    class AdminNavigationVM : BaseViewModel
+    public class ReceiptorNavigationVM : BaseViewModel
     {
         private Page _currentPage;
         public Page CurrentPage
@@ -27,42 +25,32 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
                 OnPropertyChanged(nameof(CurrentPage));
             }
         }
-        public string Name { get; set; }
 
-
-        public RelayCommand NavigateToPage1Command { get; }
-        public RelayCommand NavigateToPage2Command { get; }
-        public RelayCommand NavigateToDoctorCommand { get; }
-        public RelayCommand NavigateToReceiptorCommand { get; }
         public ICommand LogoutCommand { get; }
+        public ICommand DoctorPage { get; }
+        public ICommand ReceiptPage { get; }
+        public ICommand PatientPage { get; }
 
-        public AdminNavigationVM()
+        public ReceiptorNavigationVM()
         {
-            Account User = (Account)Application.Current.Properties["User"];
-            Name = User.Name;
-
-            NavigateToPage1Command = new RelayCommand(_ => NavigateToPage1());
-            NavigateToDoctorCommand= new RelayCommand(_ => NavigateToDoctor());
-            NavigateToReceiptorCommand = new RelayCommand(_ => NavigateToReceiptor());
-            LogoutCommand = new RelayCommand(Logout);
-            CurrentPage = new Views.Admin.ViewUsers();
+            CurrentPage = new Views.Receiptor.ViewReceipts();
+            PatientPage = new RelayCommand(NavigateToPatientPage);
+            ReceiptPage = new RelayCommand(NavigateToReceiptPage);
+            DoctorPage = new RelayCommand(NavigateToDoctorPage);
+        }
+        private void NavigateToDoctorPage(Object pra)
+        {
+            CurrentPage = new Views.Receiptor.ViewReceipts();
+        }
+        private void NavigateToPatientPage(Object pra)
+        {
+            CurrentPage = new Views.Receiptor.ViewReceipts();
+        }
+        private void NavigateToReceiptPage(Object pra)
+        {
+            CurrentPage = new Views.Receiptor.ViewReceipts();
         }
 
-        private void NavigateToPage1()
-        {
-            CurrentPage = new Views.Admin.ViewUsers();
-        }
-        private void NavigateToDoctor()
-        {
-            DoctorWindow doctorWindow = new DoctorWindow();
-            doctorWindow.Show();
-        }
-
-        private void NavigateToReceiptor()
-        {
-            DoctorWindow doctorWindow = new DoctorWindow();
-            doctorWindow.Show();
-        }
 
 
 

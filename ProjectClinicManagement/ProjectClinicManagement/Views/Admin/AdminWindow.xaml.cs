@@ -20,10 +20,14 @@ namespace ProjectClinicManagement.Views.Admin
     /// </summary>
     public partial class AdminWindow : Window
     {
+        private AdminNavigationVM adminNavigation;
         public AdminWindow()
         {
             InitializeComponent();
-           
+            adminNavigation = new AdminNavigationVM();
+            this.DataContext = adminNavigation;
+
+
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
