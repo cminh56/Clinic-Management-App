@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10">Presriptions</TextBlock>
+        <TextBlock Grid.Row="0" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10">Presriptions</TextBlock>
 
         <Grid Grid.Row="1" Margin="0,10">
             <Grid.ColumnDefinitions>
@@ -35,11 +35,10 @@
             <DatePicker Grid.Column="3" Margin="5" Name="dtpDateTo" Width="200"/>
 
             <Label Grid.Column="0" Grid.Row="2" Margin="5">Search by Phone's Patient:</Label>
-            <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Name="tbSearchPhone" Width="200"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" Grid.Column="1" Grid.Row="2" Margin="5" Name="tbSearchPhone" Width="200"/>
             <Label Grid.Column="2" Grid.Row="2" Margin="5">Search by Patient'name :</Label>
-            <TextBox Grid.Column="3" Grid.Row="2" Margin="5" x:Name="tbSearchPatientName" Width="200"/>
-            <Button Style="{StaticResource addButton}" Grid.Column="3" Grid.Row="3" Width="90" Content="Search" Click="Button_Click" HorizontalAlignment="Center" Margin="0,10,0,10">
-            </Button>
+            <TextBox Style="{StaticResource TextBoxStyle69}" Grid.Column="3" Grid.Row="2" Margin="5" x:Name="tbSearchPatientName" Width="200"/>
+            <Button Style="{StaticResource addButton}" Grid.Column="3" Grid.Row="3" Width="90" Content="Search" Click="Button_Click" HorizontalAlignment="Center" Margin="0,10,0,10"/>
         </Grid>
 
         <ListView Grid.Row="2" Margin="0,10,0,0" Name="lvData" SelectionChanged="lvData_SelectionChanged">

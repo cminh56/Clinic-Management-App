@@ -22,22 +22,22 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Ngân hàng:" Grid.Row="0" Grid.Column="0" Margin="10"/>
+        <Label FontWeight="SemiBold" Content="Ngân hàng:" Grid.Row="0" Grid.Column="0" Margin="10"/>
         <ComboBox Name="cbBank" Grid.Row="0" Grid.Column="1" Margin="10"/>
 
-        <Label Content="Số tài khoản:" Grid.Row="0" Grid.Column="2" Margin="10"/>
-        <TextBox Name="tbTaiKhoan" Grid.Row="0" Grid.Column="3" Margin="10"/>
+        <Label FontWeight="SemiBold" Content="Số tài khoản:" Grid.Row="0" Grid.Column="2" Margin="10"/>
+        <TextBox Style="{StaticResource TextBoxStyle69}" Name="tbTaiKhoan" Grid.Row="0" Grid.Column="3" Margin="10"/>
 
-        <Label Content="Số tiền:" Grid.Row="1" Grid.Column="0" Margin="10"/>
-        <TextBox Name="tbMonney" Grid.Row="1" Grid.Column="1" Margin="10"/>
+        <Label FontWeight="SemiBold" Content="Số tiền:" Grid.Row="1" Grid.Column="0" Margin="10"/>
+        <TextBox Style="{StaticResource TextBoxStyle69}" Name="tbMonney" Grid.Row="1" Grid.Column="1" Margin="10"/>
 
-        <Label Content="Tên tài khoản:" Grid.Row="1" Grid.Column="2" Margin="10"/>
-        <TextBox Name="tbTen" Grid.Row="1" Grid.Column="3" Margin="10"/>
+        <Label FontWeight="SemiBold" Content="Tên tài khoản:" Grid.Row="1" Grid.Column="2" Margin="10"/>
+        <TextBox Style="{StaticResource TextBoxStyle69}" Name="tbTen" Grid.Row="1" Grid.Column="3" Margin="10"/>
         <Button Style="{StaticResource addButton}" Name="btTest" Content="Create Invoices" Grid.Row="2" Grid.Column="3" Margin="0,10,0,10" Click="btTest_Click" HorizontalAlignment="Center" Width="223"/>
 
 
 
-        <Label Content="VietQR Payment:" Grid.Row="4" Grid.ColumnSpan="4" Margin="10"/>
+        <Label FontWeight="SemiBold" Content="VietQR Payment:" Grid.Row="4" Grid.ColumnSpan="4" Margin="10"/>
         <Border Grid.Row="5" Grid.ColumnSpan="4" Margin="10" BorderBrush="Black" BorderThickness="1">
             <Image x:Name="qrGrid"/>
         </Border>

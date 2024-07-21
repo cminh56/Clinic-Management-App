@@ -211,5 +211,10 @@ namespace ProjectClinicManagement.Views.Receiptor
                 }
             }
         }
+
+        private void tbSearchPhone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
