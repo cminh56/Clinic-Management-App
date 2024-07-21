@@ -52,6 +52,11 @@ namespace ProjectClinicManagement.Views.Receiptor
             }
         }
 
+        private void btnChangeStatus_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         //private void btnChangeStatus_Click(object sender, RoutedEventArgs e)
         //{
         //    if (receipt.Status == ProjectClinicManagement.Models.Receipt.StatusType.Paid)

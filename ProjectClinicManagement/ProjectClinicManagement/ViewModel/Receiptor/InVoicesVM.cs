@@ -74,6 +74,7 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
                     context.SaveChanges();
                     MessageBox.Show("Status changed successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Receipt.Status = receipt.Status;
+
                 }
                 else
                 {
