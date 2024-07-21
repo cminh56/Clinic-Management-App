@@ -189,8 +189,8 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
             if (!string.IsNullOrEmpty(SearchText))
             {
                 query = query.Where(p =>
-                    p.PatientRecordId.ToString().Contains(SearchText) ||
-                    p.Patient_Record.Patient.Name.Contains(SearchText));
+                    p.Duration.Contains(SearchText) ||
+                    p.Remark.Contains(SearchText));
             }
 
             if (FromDate.HasValue)

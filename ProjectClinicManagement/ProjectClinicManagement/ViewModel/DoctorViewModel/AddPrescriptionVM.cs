@@ -20,7 +20,7 @@ using System.Windows.Navigation;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
-    public class AddPrescriptionVM : BaseViewModel
+    public class AddPrescriptionVM : BaseViewModel, INotifyDataErrorInfo
     {
         int _PrescriptionID = 0;
         public static Patient_Record patientInstan;
@@ -122,25 +122,28 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public string Phone { get; set; }
         public string PatientRecordId { get; set; }
 
-        [Required(ErrorMessage = "Dosage is required.")]
         private string dosage;
+
+        [Required(ErrorMessage = "Dosage is required.")]
         public string Dosage
         {
             get => dosage;
-            set { dosage = value; OnPropertyChanged(); }
+            set { dosage = value; Validate(nameof(Dosage), value); }
 
         }
         private string duration;
+        [Required(ErrorMessage = "Duration is required.")]
         public string Duration
         {
             get => duration;
-            set { duration = value; OnPropertyChanged(); }
+            set { duration = value; Validate(nameof(Duration), value); }
         }
         private string instruction;
+        [Required(ErrorMessage = "Instruction is required.")]
         public string Instruction
         {
             get => instruction;
-            set { instruction = value; OnPropertyChanged(); }
+            set { instruction = value; Validate(nameof(Instruction), value); }
         }
         private ObservableCollection<string> _medicineComboBoxItems;
         public ObservableCollection<string> MedicineComboBoxItems
@@ -174,10 +177,11 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         }
 
         private string remark;
+        [Required(ErrorMessage = "Remark is required.")]
         public string Remark
         {
             get => remark;
-            set { remark = value; OnPropertyChanged(); }
+            set { remark = value; Validate(nameof(Remark), value); }
         }
 
         public MedicineDetail Medicine { get; set; }
@@ -196,11 +200,6 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
             _context = new DataContext();
             Patient = patient;
-
-            OnPropertyChanged(nameof(Dosage));
-            OnPropertyChanged(nameof(Duration));
-            OnPropertyChanged(nameof(Instruction));
-            OnPropertyChanged(nameof(Remark));
 
 
             int Prescriptionid = 0;
@@ -309,6 +308,19 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
                 _context.Prescription_Medicines.Add(newPrescription_Medicine);
                 _context.SaveChanges();
+
+                var newReceipt= new Receipt
+                {
+                    PatientId = Patient.PatientId,
+                    TotalAmount = 0,
+                    ReceptionistId = 2,
+                    Date = DateTime.Now,
+                    Status = Receipt.StatusType.Unpaid,
+              
+                };
+                _context.Receipts.Add(newReceipt);
+                _context.SaveChanges();
+
 
                 Medicines = new ObservableCollection<MedicineDetail>(
 _context.Prescription_Medicines

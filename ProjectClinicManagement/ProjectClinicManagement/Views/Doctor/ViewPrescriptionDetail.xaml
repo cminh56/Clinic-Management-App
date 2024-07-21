@@ -86,6 +86,7 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
+                    
                     <StackPanel Orientation="Horizontal"  >
                         <Button  Style="{StaticResource addButton}" Click="Back_Click" Command="{Binding BackCommand}" >
                             <StackPanel Orientation="Horizontal" >

@@ -20,7 +20,7 @@ using System.Windows.Navigation;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
-    public class EditPrescriptionVM : BaseViewModel
+    public class EditPrescriptionVM : BaseViewModel, INotifyDataErrorInfo
     {
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
@@ -80,45 +80,10 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
         }
 
-        public void Validate2(string propertyName, object propertyValue)
-        {
-            var results = new List<ValidationResult>();
-
-            Validator.TryValidateProperty(propertyValue, new ValidationContext(this) { MemberName = propertyName }, results);
+       
 
 
-            if (results.Any())
-            {
-
-                // Check if propertyName already exists in Errors
-                if (Errors.ContainsKey(propertyName))
-                {
-                    // Update existing errors for propertyName
-                    Errors[propertyName] = results.Select(r => r.ErrorMessage).ToList();
-                }
-                else
-                {
-                    // Add new entry for propertyName
-                    Errors.Add(propertyName, results.Select(r => r.ErrorMessage).ToList());
-                }
-                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
-            }
-            else
-            {
-                Errors.Remove(propertyName);
-                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
-            }
-
-
-
-            AddMedicineCommand.CanExecuteChanged += (sender, e) =>
-            {
-                CommandManager.InvalidateRequerySuggested();
-            };
-
-
-
-        }
+        
         public ICommand EditPrescriptionCommand { get; }
         public ICommand AddMedicineCommand { get; }
         public ICommand DeleteMedicineCommand { get; }
@@ -155,7 +120,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
    public string Dosage
         {
             get => dosage;
-            set { dosage = value; OnPropertyChanged(); }
+            set { dosage = value; Validate(nameof(Dosage), value); }
 
         }
 
@@ -165,7 +130,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public string Duration
         {
             get => duration;
-            set { duration = value; OnPropertyChanged(); }
+            set { duration = value; Validate(nameof(Duration), value); }
         }
 
        
@@ -174,7 +139,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public string Instruction
         {
             get => instruction;
-            set { instruction = value; OnPropertyChanged(); }
+            set { instruction = value; Validate(nameof(Instruction), value); }
         }
 
       
@@ -202,7 +167,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public string MQuantity
         {
             get => mquantity;
-            set { mquantity = value; OnPropertyChanged(); }
+            set { mquantity = value; Validate(nameof(MQuantity), value); }
         }
 
 
@@ -210,15 +175,16 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public string Unit
         {
             get => _unit;
-            set { _unit = value; OnPropertyChanged(); }
+            set { _unit = value; Validate(nameof(Unit), value); }
         }
 
-        [Required(ErrorMessage = "Remark is required.")]
+        
         private string remark;
+        [Required(ErrorMessage = "Remark is required.")]
         public string Remark
         {
             get => remark;
-            set { remark = value; OnPropertyChanged(); }
+            set { remark = value; Validate(nameof(Remark), value); ; }
         }
 
         public MedicineDetail Medicine { get; set; }
@@ -250,10 +216,10 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                 PatientName = Prescription.Patient_Record.Patient.Name;
                 Phone = Prescription.Patient_Record.Patient.Phone;
                 PatientRecordId = Prescription.PatientRecordId.ToString();
-                Dosage = Prescription.Dosage;
-                Duration = Prescription.Duration;
-                Instruction = Prescription.Instruction;
-                Remark = Prescription.Remark;
+                dosage = Prescription.Dosage;
+                duration = Prescription.Duration;
+                instruction = Prescription.Instruction;
+                remark = Prescription.Remark;
                 Date = Prescription.Date.ToString("d");
 
                 OnPropertyChanged(nameof(PatientName));
@@ -328,7 +294,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
             return Validator.TryValidateObject(this, new ValidationContext(this), null) && Errors.Count == 0;
 
         }
-
+        
         private void AddPrescriptionMedicine(object parameter)
         {
             try
