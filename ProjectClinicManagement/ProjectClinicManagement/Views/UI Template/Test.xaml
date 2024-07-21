@@ -1,0 +1,36 @@
+﻿<Window x:Class="ProjectClinicManagement.Views.UI_Template.Test"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectClinicManagement.Views.UI_Template"
+        mc:Ignorable="d"
+        Title="Test" Height="450" Width="800">
+    <Grid>
+        <ListView Style="{StaticResource ListViewStyle1}" ItemContainerStyle="{StaticResource ListViewItemStyle1}" Margin="0,41,0,0">
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ListViewColumnHeaderStyle1}">
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Age}" />
+                    <GridViewColumn Header="City" DisplayMemberBinding="{Binding City}" />
+                </GridView>
+            </ListView.View>
+            <!-- Sample data -->
+            <ListViewItem>
+                <ListViewItem.Content>
+                    <local:Person Name="John Doe" Age="30" City="New York" />
+                </ListViewItem.Content>
+            </ListViewItem>
+            <ListViewItem>
+                <ListViewItem.Content>
+                    <local:Person Name="Jane Smith" Age="25" City="Los Angeles" />
+                </ListViewItem.Content>
+            </ListViewItem>
+            <ListViewItem>
+                <ListViewItem.Content>
+                    <local:Person Name="Sam Brown" Age="35" City="Chicago" />
+                </ListViewItem.Content>
+            </ListViewItem>
+        </ListView>
+    </Grid>
+</Window>
