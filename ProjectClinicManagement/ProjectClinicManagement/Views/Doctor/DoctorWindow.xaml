@@ -49,10 +49,10 @@
                             </Ellipse>
                         </Border>
                         <!--Menu Titles-->
-                        <TextBlock Text="Silvers Club" Foreground="White" FontSize="22" FontWeight="SemiBold"
-                        DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10"/>
-                        <TextBlock Text="Members, France" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
-                        DockPanel.Dock="Top" TextAlignment="Center"/>
+                        <TextBlock Text="Health Care Center" Foreground="White" FontSize="22" FontWeight="SemiBold"
+DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10"/>
+                        <TextBlock Text="Hanoi, Viet Nam" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
+DockPanel.Dock="Top" TextAlignment="Center"/>
 
                         <!--Menu Seprator-->
                         <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>

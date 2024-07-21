@@ -3,9 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:ProjectClinicManagement.Views.Receiptor"
         mc:Ignorable="d"
            Title="ReceiptForm" Height="747" Width="1080" Loaded="Window_Loaded">
+    
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,7 +16,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10">Presriptions</TextBlock>
+        <TextBlock Grid.Row="0" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10">Presriptions</TextBlock>
 
         <Grid Grid.Row="1" Margin="0,10">
             <Grid.ColumnDefinitions>
@@ -35,14 +37,13 @@
             <DatePicker Grid.Column="3" Margin="5" Name="dtpDateTo" Width="200"/>
 
             <Label Grid.Column="0" Grid.Row="2" Margin="5">Search by Phone's Patient:</Label>
-            <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Name="tbSearchPhone" Width="200"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" Grid.Column="1" Grid.Row="2" Margin="5" Name="tbSearchPhone" Width="200"/>
             <Label Grid.Column="2" Grid.Row="2" Margin="5">Search by Patient'name :</Label>
-            <TextBox Grid.Column="3" Grid.Row="2" Margin="5" x:Name="tbSearchPatientName" Width="200"/>
-            <Button Grid.Column="3" Grid.Row="3" Width="90" Content="Search" Click="Button_Click">
-            </Button>
+            <TextBox Style="{StaticResource TextBoxStyle69}" Grid.Column="3" Grid.Row="2" Margin="5" x:Name="tbSearchPatientName" Width="200"/>
+            <Button Style="{StaticResource addButton}" Grid.Column="3" Grid.Row="3" Width="90" Content="Search" Click="Button_Click" HorizontalAlignment="Center" Margin="0,10,0,10"/>
         </Grid>
 
-        <ListView Grid.Row="2" Margin="0,10,0,0" Name="lvData" SelectionChanged="lvData_SelectionChanged">
+        <ListView Grid.Row="2" Margin="0,10,0,0" Name="lvData" SelectionChanged="lvData_SelectionChanged" Style="{StaticResource ListViewStyle1}" ItemContainerStyle="{StaticResource ListViewItemStyle1}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="No" Width="50" DisplayMemberBinding="{Binding Id}"/>
@@ -77,14 +78,14 @@
             </Grid.RowDefinitions>
 
 
-           
-            <StackPanel Orientation="Horizontal" Margin="20,0,217,17" Grid.RowSpan="2" Grid.Row="1">
+
+            <StackPanel Orientation="Horizontal" Margin="25,8,212,8" Grid.RowSpan="2" Grid.Row="1">
                 <TextBlock Margin="5">Payment method:</TextBlock>
-                <CheckBox Margin="5" Content="Cash" x:Name="cbCash"/>
-                <CheckBox Margin="5" Content="Card" x:Name="cbCard"/>
-                <Button x:Name="btCheckOut" Content="Check Out" Margin="1" Width="100" Click="btCheckOut_Click"></Button>
+                <CheckBox Style="{StaticResource CheckBoxStyle1}" Margin="5" Content="Cash" x:Name="cbCash"/>
+                <CheckBox Style="{StaticResource CheckBoxStyle1}" Margin="5" Content="Card" x:Name="cbCard"/>
+                <Button Style="{StaticResource addButton}" x:Name="btCheckOut" Content="Check Out" Margin="1" Width="100" Click="btCheckOut_Click" Height="25"></Button>
             </StackPanel>
-            <Button Margin="515,2,13,19" Content="Export to Excel file" Grid.RowSpan="2" Grid.Row="1" x:Name="btnExportExcel" Click="btnExportExcel_Click"/>
+            <Button Style="{StaticResource addButton}" Margin="0,11,113,10" Content="Export to Excel file" Grid.RowSpan="2" Grid.Row="1" x:Name="btnExportExcel" Click="btnExportExcel_Click" Width="239" Height="25"/>
         </Grid>
     </Grid>
 </Window>

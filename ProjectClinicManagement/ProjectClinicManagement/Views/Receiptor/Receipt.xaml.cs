@@ -211,5 +211,6 @@ namespace ProjectClinicManagement.Views.Receiptor
                 }
             }
         }
+
     }
 }
