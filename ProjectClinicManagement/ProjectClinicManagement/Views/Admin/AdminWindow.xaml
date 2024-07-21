@@ -7,9 +7,9 @@
         xmlns:vm="clr-namespace:ProjectClinicManagement.ViewModel.AdminViewModel"
           xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800">
-    
-   
+        Title="AdminWindow"  Height="{x:Static SystemParameters.PrimaryScreenHeight}" 
+        Width="{x:Static SystemParameters.PrimaryScreenWidth}">
+
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     </Window.Resources>

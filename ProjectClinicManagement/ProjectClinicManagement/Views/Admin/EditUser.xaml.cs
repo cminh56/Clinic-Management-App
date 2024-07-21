@@ -33,6 +33,10 @@ namespace ProjectClinicManagement.Views.Admin
           
 
         }
-       
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            vm._navigationService = NavigationService;
+
+        }
     }
 }

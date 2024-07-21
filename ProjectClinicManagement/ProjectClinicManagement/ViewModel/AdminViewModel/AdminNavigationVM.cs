@@ -72,18 +72,19 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             Application.Current.Properties["UserName"] = null;
             Application.Current.Properties["UserRole"] = null;
             Application.Current.Properties["User"] = null;
+            var currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
             // Reopen login window
             AuthenWindow loginWindow = new AuthenWindow();
             loginWindow.Show();
 
-            // Close current window
-            if (Application.Current.MainWindow != null)
-            {
-                Application.Current.MainWindow.Close();
-            }
+             
+    if (currentWindow != null)
+    {
+        currentWindow.Close();
+    }
 
-            // Set current window to login window
-            Application.Current.MainWindow = loginWindow;
+    // Set the current main window to the login window
+    Application.Current.MainWindow = loginWindow;
         }
     }
 }

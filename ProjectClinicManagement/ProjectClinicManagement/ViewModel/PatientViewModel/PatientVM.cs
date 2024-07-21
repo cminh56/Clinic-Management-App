@@ -127,9 +127,8 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         public PatientVM()
         {
             _context = new DataContext();
-            Application.Current.Properties["User"] = _context.Account.FirstOrDefault(u => u.UserName == "Admin");
             sort = 0;
-            by = 0;
+            by = 1;
             exelService = new ExelService();
             var query = _context.Patients.AsQueryable();
             Patients=query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
@@ -153,7 +152,6 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         public PatientVM(int a,int b)
         {
             _context = new DataContext();
-            Application.Current.Properties["User"] = _context.Account.FirstOrDefault(u => u.UserName == "Admin");
             sort = a;
             by = b;
             exelService = new ExelService();

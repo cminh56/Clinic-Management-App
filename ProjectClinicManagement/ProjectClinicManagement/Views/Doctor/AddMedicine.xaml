@@ -5,52 +5,72 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectClinicManagement.Views.Doctor"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+   Height="700" Width="800"
       Title="AddMedicine">
 
-    <Grid Background="#FFF6F0F0">
-        <StackPanel Margin="10">
-            <TextBlock FontWeight="SemiBold" Text="Name" Margin="5"/>
-            <TextBox Height="30" Style="{StaticResource TextBoxStyle69}" x:Name="Name" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+    <Grid Background="#eff2f7">
+
+        <StackPanel Margin="0,570,0,0" VerticalAlignment="Top">
+            <Button Style="{StaticResource ResourceKey=addButton}" Content="Add Medicine" Command="{Binding AddMedicineCommand}" FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Margin="-239,-90,239,373">
+            <!-- Page Title -->
+            <TextBlock Text="Add Medicine" FontSize="32" FontWeight="Bold" 
+HorizontalAlignment="Center" Margin="0,105,0,0"
+Foreground="#121518" Width="265"/>
+        </StackPanel>
+
+        <StackPanel Margin="10,105,400,10" VerticalAlignment="Top">
+
+            <!--Name-->
+            <TextBlock Text="Name" Margin="5"  FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="Name" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
             <Label  Content="{Binding ElementName=Name,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock FontWeight="SemiBold" Text="ATC Code" Margin="5"/>
-            <TextBox Height="30" Style="{StaticResource TextBoxStyle69}" x:Name="ATCCode" Text="{Binding ATCCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+
+            <!--Age-->
+            <TextBlock Text="ATC Code" Margin="5"  FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="ATCCode" Text="{Binding ATCCode, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
             <Label  Content="{Binding ElementName=ATCCode,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock FontWeight="SemiBold" Text="Generic Name" Margin="5"/>
-            <TextBox Height="30" Style="{StaticResource TextBoxStyle69}" x:Name="GenericName" Text="{Binding GenericName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            <Label  Content="{Binding ElementName=GenericName,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock FontWeight="SemiBold" Text="Description" Margin="5"/>
-            <TextBox Height="30" Style="{StaticResource TextBoxStyle69}" x:Name="Description" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <!--Weight-->
+            <TextBlock Text="Generic Name" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="GenericName" Text="{Binding GenericName, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
+            <Label  Content="{Binding ElementName=GenericName,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+            <!--Height-->
+            <TextBlock Text="Description" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="Description" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
             <Label  Content="{Binding ElementName=Description,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock FontWeight="SemiBold" Text="Manufacturer" Margin="5"/>
-            <TextBox Height="30" Style="{StaticResource TextBoxStyle69}" x:Name="Manufacturer" Text="{Binding Manufacturer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Price" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="Price" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
+            <Label  Content="{Binding ElementName=Price,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
+        </StackPanel>
+
+        <StackPanel Margin="405,105,10,10" VerticalAlignment="Top">
+            <!--Gender-->
+
+            <TextBlock Text="Manufacturer" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="Manufacturer" Text="{Binding Manufacturer, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
             <Label  Content="{Binding ElementName=Manufacturer,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock FontWeight="SemiBold" Text="Type" Margin="5"/>
-            <TextBox Height="30" Style="{StaticResource TextBoxStyle69}" x:Name="Type" Text="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Type" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="Type" Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
             <Label  Content="{Binding ElementName=Type,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock FontWeight="SemiBold" Text="Category" Margin="5"/>
-            <TextBox Height="30" Style="{StaticResource TextBoxStyle69}" x:Name="Category" Text="{Binding Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Category" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="Category" Text="{Binding Category, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
             <Label  Content="{Binding ElementName=Category,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock FontWeight="SemiBold" Text="Unit" Margin="5"/>
-            <TextBox Height="30" Style="{StaticResource TextBoxStyle69}" x:Name="Unit" Text="{Binding Unit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Unit" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="Unit" Text="{Binding Unit, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
             <Label  Content="{Binding ElementName=Unit,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
 
-            <TextBlock FontWeight="SemiBold" Text="Price" Margin="5"/>
-            <TextBox Height="30" Style="{StaticResource TextBoxStyle69}" x:Name="Price" Text="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            <Label  Content="{Binding ElementName=Price,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
-
-            <TextBlock FontWeight="SemiBold" Text="Quantity" Margin="5"/>
-            <TextBox Height="30" Style="{StaticResource TextBoxStyle69}" x:Name="Quantity" Text="{Binding Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBlock Text="Quantity" Margin="5" FontSize="15" FontWeight="SemiBold"/>
+            <TextBox Style="{StaticResource TextBoxStyle69}" VerticalContentAlignment="Center" x:Name="Quantity" Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" Margin="5" Height="30"/>
             <Label  Content="{Binding ElementName=Quantity,Path=(Validation.Errors)[0].ErrorContent}" Foreground="Red"/>
-
-            <Button HorizontalAlignment="Center" Style="{StaticResource addButton}" Content="Add Medicine" Command="{Binding AddMedicineCommand}" Margin="5" Width="270"/>
         </StackPanel>
     </Grid>
 </Page>

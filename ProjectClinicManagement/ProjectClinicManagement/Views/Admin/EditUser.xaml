@@ -84,5 +84,13 @@
             <DatePicker Background="White" SelectedDate="{Binding JoinDate, UpdateSourceTrigger=PropertyChanged}" Margin="5" IsEnabled="False" Height="30"/>
 
         </StackPanel>
+        <StackPanel Orientation="Horizontal"  Margin="0,448,0,-114"  >
+            <Button  Style="{StaticResource addButton}" Click="Back_Click" Command="{Binding BackCommand}" >
+                <StackPanel Orientation="Horizontal" >
+
+                    <TextBlock Text="Back to User List"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
     </Grid>
 </Page>

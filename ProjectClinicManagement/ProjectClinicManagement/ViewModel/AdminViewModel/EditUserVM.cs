@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using static ProjectClinicManagement.Models.Account;
 
 namespace ProjectClinicManagement.ViewModel.AdminViewModel
@@ -187,8 +188,15 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         public ICommand EditUserCommand { get; }
         public ICommand ChangeStatusCommand { get; }
 
-    
 
+        public ICommand BackCommand { get; }
+
+        public NavigationService _navigationService;
+        public NavigationService NavigationService
+        {
+            get { return _navigationService; }
+            set { _navigationService = value; }
+        }
         public EditUserVM(Account account)
         {
             
@@ -205,7 +213,8 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
 
             _context = new DataContext();
             EditUserCommand = new RelayCommand(EditUser, CanSubmit);
-            ChangeStatusCommand = new RelayCommand(ChangeStatusUser); 
+            ChangeStatusCommand = new RelayCommand(ChangeStatusUser);
+            BackCommand = new RelayCommand(NavigateToBackPage);
         }
         private void ChangeStatusUser(object parameter)
         {
@@ -268,6 +277,10 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         {
             return Validator.TryValidateObject(this, new ValidationContext(this), null ) && Errors.Count == 0;
 
+        }
+        private void NavigateToBackPage(object parameter)
+        {
+            NavigationService?.Navigate(new Uri("Views/Admin/ViewUsers.xaml", UriKind.Relative));
         }
 
     }

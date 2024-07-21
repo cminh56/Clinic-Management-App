@@ -164,8 +164,9 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
 
             Patient = patient;
             patientName = patient.Patient.Name;
-            doctorName = patient.Doctor.Name;
-            symptoms=patient.Symptoms;
+            Account a = (Account)Application.Current.Properties["User"];
+            doctorName = a.Name;
+            symptoms =patient.Symptoms;
             diagnosis = patient.Diagnosis;
             disease = patient.Disease;
             date = patient.Date;
@@ -177,17 +178,18 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
             try
             {
                 // Kiểm tra các trường thông tin cần thiết trước khi lưu vào cơ sở dữ liệu
-
+                Account a = (Account)Application.Current.Properties["User"];
                 Patient.Symptoms = Symptoms;
                 Patient.Diagnosis = Diagnosis;
                 Patient.Disease = Disease;
-
+                Patient.DoctorId = a.Id;
+                Patient.Doctor = a;
                 
 
 
                 _context.Patient_Records.Update(Patient);
                 _context.SaveChanges();
-                MessageBox.Show("Patient updated successfully");
+                MessageBox.Show("Patient Record updated successfully");
             }
             catch (Exception ex)
             {

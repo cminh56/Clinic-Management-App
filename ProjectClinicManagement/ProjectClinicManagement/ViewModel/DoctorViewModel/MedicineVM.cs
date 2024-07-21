@@ -155,7 +155,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         {
             _context = new DataContext();
             LoadMedicines();
-            placeHolderText = "Search by Name";
+            placeHolderText = "Search by Name and ATC code";
             //Cacular total page
 
             exelService = new ExelService();
@@ -201,14 +201,16 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         }
         private void LoadMedicines()
         {
-            var query = _context.Medicines.Where(m => m.Status != Medicine.StatusType.Inactive);
+            var query = _context.Medicines
+                       .Where(m => m.Status != Medicine.StatusType.Inactive)
+                       .OrderByDescending(m => m.Id);
             if (!string.IsNullOrEmpty(SearchText))
             {
-                query = query.Where(x => x.Name.Contains(SearchText) || x.GenericName.Contains(SearchText));
+                query = query.Where(x => x.Name.Contains(SearchText) || x.ATCCode.Contains(SearchText)).OrderByDescending(m => m.Id);
             }
             if (!string.IsNullOrEmpty(SelectedCategory) && SelectedCategory != "All")
             {
-                query = query.Where(m => m.Category == SelectedCategory);
+                query = query.Where(m => m.Category == SelectedCategory).OrderByDescending(m => m.Id);
             }
 
             var totalItems = query.Count();

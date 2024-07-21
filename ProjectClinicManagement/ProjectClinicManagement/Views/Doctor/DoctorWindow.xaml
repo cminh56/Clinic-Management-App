@@ -7,7 +7,8 @@
         xmlns:vm="clr-namespace:ProjectClinicManagement.ViewModel.DoctorViewModel"
           xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
-        Title="DoctorWindow" Height="450" Width="800">
+        Title="DoctorWindow"       Height="{x:Static SystemParameters.PrimaryScreenHeight}" 
+        Width="{x:Static SystemParameters.PrimaryScreenWidth}">
     <Window.DataContext>
         <vm:DoctorNavigationVM />
     </Window.DataContext>
@@ -51,7 +52,7 @@
                         <!--Menu Titles-->
                         <TextBlock Text="Health Care Center" Foreground="White" FontSize="22" FontWeight="SemiBold"
 DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10"/>
-                        <TextBlock Text="Hanoi, Viet Nam" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
+                        <TextBlock Text="{Binding Title}" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
 DockPanel.Dock="Top" TextAlignment="Center"/>
 
                         <!--Menu Seprator-->
@@ -73,28 +74,12 @@ DockPanel.Dock="Top" TextAlignment="Center"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}" Background="#7b5cd6" Foreground="White">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Members"/>
-                                </StackPanel>
-                            </Button>
 
-                            <Button Style="{StaticResource menuButton}" >
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="CashMultiple" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Wallet"/>
-                                </StackPanel>
-                            </Button>
+                          
 
-                            <Button Style="{StaticResource menuButton}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="ForumOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Messages"/>
-                                </StackPanel>
-                            </Button>
+                      
                         </StackPanel>
-                        <Button Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
+                        <Button Command="{Binding LogoutCommand}" Style="{StaticResource menuButton}" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Logout"/>
