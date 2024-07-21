@@ -73,7 +73,9 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
             {
                 MessageBox.Show("Failed to change status.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
             StatusChangedNotifier.NotifyStatusChanged();
+
         }
      
         public void getData()

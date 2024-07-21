@@ -342,7 +342,15 @@ _context.Prescription_Medicines
     })
     .ToList()
      );
+                var receipt = _context.Receipts
+                         .Where(receipt => receipt.PatientId == Prescription.Patient_Record.PatientId)
+                         .FirstOrDefault();
 
+                receipt.TotalAmount = Medicines.Sum(m => m.TotalPrice);
+
+
+                _context.Receipts.Update(receipt);
+                _context.SaveChanges();
                 MessageBox.Show("Medicine added successfully.");
             }
             catch (Exception ex)
@@ -382,6 +390,22 @@ _context.Prescription_Medicines
                                 })
                                 .ToList()
                         );
+
+                        var receipt = _context.Receipts
+                          .Where(receipt => receipt.PatientId == Prescription.Patient_Record.PatientId)
+                          .FirstOrDefault();
+
+                        receipt.TotalAmount = Medicines.Sum(m => m.TotalPrice);
+
+
+                        _context.Receipts.Update(receipt);
+                        _context.SaveChanges();
+
+                        receipt.TotalAmount = Medicines.Sum(m => m.TotalPrice);
+
+
+                        _context.Receipts.Update(receipt);
+                        _context.SaveChanges();
                     }
                     MessageBox.Show("Medicine deleted successfully.");
                 }

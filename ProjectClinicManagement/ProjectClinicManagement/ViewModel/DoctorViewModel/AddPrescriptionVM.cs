@@ -23,6 +23,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
     public class AddPrescriptionVM : BaseViewModel, INotifyDataErrorInfo
     {
         int _PrescriptionID = 0;
+        float total = 0;
         public static Patient_Record patientInstan;
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
@@ -224,7 +225,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
           })
           .ToList()
   );
-
+          
             AddPrescriptionCommand = new RelayCommand(AddPrescription, CanExecuteAddPrescription);
             AddMedicineCommand = new RelayCommand(AddPrescriptionMedicine, CanExecuteAddMedicine);
           
@@ -264,6 +265,17 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                 _context.Prescriptions.Add(newPrescription);
                 _context.SaveChanges();
                 _PrescriptionID = newPrescription.Id;
+                var newReceipt = new Receipt
+                {
+                    PatientId = Patient.PatientId,
+                    TotalAmount = total,
+                    ReceptionistId = 2,
+                    Date = DateTime.Now,
+                    Status = Receipt.StatusType.Unpaid,
+
+                };
+                _context.Receipts.Add(newReceipt);
+                _context.SaveChanges();
                 MessageBox.Show("Prescription added successfully with ID: " + _PrescriptionID);
             }
             catch (Exception ex)
@@ -309,19 +321,9 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                 _context.Prescription_Medicines.Add(newPrescription_Medicine);
                 _context.SaveChanges();
 
-                var newReceipt= new Receipt
-                {
-                    PatientId = Patient.PatientId,
-                    TotalAmount = 0,
-                    ReceptionistId = 2,
-                    Date = DateTime.Now,
-                    Status = Receipt.StatusType.Unpaid,
-              
-                };
-                _context.Receipts.Add(newReceipt);
-                _context.SaveChanges();
 
 
+               
                 Medicines = new ObservableCollection<MedicineDetail>(
 _context.Prescription_Medicines
     .Include(pm => pm.Medicine)
@@ -337,7 +339,19 @@ _context.Prescription_Medicines
     })
     .ToList()
      );
+              
+             
+                    var receipt = _context.Receipts
+           .Where(receipt => receipt.PatientId == Patient.PatientId)
+           .FirstOrDefault();
 
+                receipt.TotalAmount = Medicines.Sum(m => m.TotalPrice);
+
+
+                _context.Receipts.Update(receipt);
+                    _context.SaveChanges();
+                
+               
                 MessageBox.Show("Medicine added successfully.");
             }
             catch (Exception ex)
@@ -384,7 +398,22 @@ _context.Prescription_Medicines
                                 })
                                 .ToList()
                         );
+                        
                     }
+                   
+                
+                    
+
+                    var receipt = _context.Receipts
+           .Where(receipt => receipt.PatientId == Patient.PatientId)
+           .FirstOrDefault();
+
+                    receipt.TotalAmount = Medicines.Sum(m => m.TotalPrice);
+
+
+                    _context.Receipts.Update(receipt);
+                    _context.SaveChanges();
+
                     MessageBox.Show("Medicine deleted successfully.");
                 }
             }
