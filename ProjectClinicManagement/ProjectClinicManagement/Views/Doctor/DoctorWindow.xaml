@@ -62,14 +62,14 @@ DockPanel.Dock="Top" TextAlignment="Center"/>
                             <Button Style="{StaticResource menuButton}"  Command="{Binding NavigateToPage1Command}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Medicine"/>
+                                    <TextBlock Text="Patient"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}"  Command="{Binding NavigateToPage2Command}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Prescription"/>
+                                    <TextBlock Text="Medicine"/>
                                 </StackPanel>
                             </Button>
 

@@ -44,5 +44,10 @@ namespace ProjectClinicManagement.Views.Patient
             vm._navigationService = NavigationService;
 
         }
+        private void addPres(object sender, RoutedEventArgs e)
+        {
+            vm._navigationService = NavigationService;
+
+        }
     }
 }

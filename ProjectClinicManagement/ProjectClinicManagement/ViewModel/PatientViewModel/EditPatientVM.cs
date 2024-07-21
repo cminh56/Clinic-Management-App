@@ -181,7 +181,6 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
             Weight = Patient.Weight;
             status = Patient.Status.ToString();
 
-            
         }
         private void ChangeStatusPatient(object parameter)
         {

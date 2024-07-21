@@ -29,18 +29,18 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         {
             NavigateToPage1Command = new RelayCommand(_ => NavigateToPage1());
             NavigateToPage2Command = new RelayCommand(_ => NavigateToPage2());
-            CurrentPage = new Views.Doctor.ViewMedicine();
+            CurrentPage = new Views.Patient.ViewPatients();
         }
 
         private void NavigateToPage1()
         {
-            CurrentPage = new Views.Doctor.ViewMedicine();
+            CurrentPage = new Views.Patient.ViewPatients();
         }
 
         private void NavigateToPage2()
         {
 
-            CurrentPage = new Views.Doctor.ViewPrescription();
+            CurrentPage = new Views.Doctor.ViewMedicine();
 
         }
     }

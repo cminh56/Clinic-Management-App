@@ -136,17 +136,30 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                 OnPropertyChanged();
             }
         }
+        private Patient_Record _patient;
+        public Patient_Record Patient
+        {
+            get { return (Patient_Record)_patient; }
+            set
+            {
+                _patient = value;
+                OnPropertyChanged();
+
+            }
+        }
 
         public ICommand NextPageCommand { get; set; }
         public ICommand PreviousPageCommand { get; set; }
-
-        public PrescriptionVM()
+        public ICommand PatientRecordCommand { get; }
+        public PrescriptionVM(Patient_Record patient)
         {
+            Patient = patient;
             _context = new DataContext();
             LoadPrescription();
             PlaceHolderText = "Search by Patient Name, RecordID";
             ViewPrescriptionCommand = new RelayCommand(NavigateToViewPrescriptionPage);
             EditPrescriptionCommand = new RelayCommand(NavigateToEditPrescriptionPage);
+            PatientRecordCommand = new RelayCommand(NavigateToEditPatientRecordPage);
             NextPageCommand = new RelayCommand(NextPage, CanNextPage);
             PreviousPageCommand = new RelayCommand(PreviousPage, CanPreviousPage);
         }
@@ -171,7 +184,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
         private void LoadPrescription()
         {
-            var query = _context.Prescriptions.Include(p => p.Patient_Record).AsQueryable();
+            var query = _context.Prescriptions.Include(p => p.Patient_Record).Where(p => p.PatientRecordId == Patient.Id).AsQueryable();
 
             if (!string.IsNullOrEmpty(SearchText))
             {
@@ -233,6 +246,10 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         private bool CanPreviousPage(object parameter)
         {
             return CurrentPage > 1;
+        }
+        private void NavigateToEditPatientRecordPage(object parameter)
+        {
+            NavigationService?.Navigate(new Uri("Views/Patient/PatientRecord.xaml", UriKind.Relative));
         }
     }
 }

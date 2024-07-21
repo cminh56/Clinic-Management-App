@@ -17,7 +17,7 @@ using static ProjectClinicManagement.Models.Medicine;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
-    class EditMedicineVM : BaseViewModel
+    class EditMedicineVM : BaseViewModel, INotifyDataErrorInfo
     {
 
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
@@ -76,6 +76,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
 
         }
+     
         private Medicine _medicine;
         public Medicine Medicine
         {
@@ -109,95 +110,96 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public string Name
         {
             get => name;
-            set { name = value; OnPropertyChanged();  }
+            set { name = value; Validate(nameof(Name), value);  }
         }
 
         [Required(ErrorMessage = "ATCCode is required.")]
         public string ATCCode
         {
             get => atcCode;
-            set { atcCode = value; OnPropertyChanged(); }
+            set { atcCode = value; Validate(nameof(ATCCode), value);  }
         }
         [Required(ErrorMessage = "GenericName is required.")]
         public string GenericName
         {
             get => genericName;
-            set { genericName = value; OnPropertyChanged();   }
+            set { genericName = value; Validate(nameof(GenericName), value);}
         }
         [Required(ErrorMessage = "Description is required.")]
         public string Description
         {
             get => description;
-            set { description = value; OnPropertyChanged();  }
+            set { description = value; Validate(nameof(Description), value); }
         }
         [Required(ErrorMessage = "Manufacturer is required.")]
         public string Manufacturer
         {
             get => manufacturer;
-            set { manufacturer = value; OnPropertyChanged();  }
+            set { manufacturer = value; Validate(nameof(Manufacturer), value);  }
         }
         [Required(ErrorMessage = "Type is required.")]
         public string Type
         {
             get => type;
-            set { type = value; OnPropertyChanged(); }
+            set { type = value; Validate(nameof(Type), value); }
         }
         [Required(ErrorMessage = "Category is required.")]
         public string Category
         {
             get => category;
-            set { category = value; OnPropertyChanged(); }
+            set { category = value; Validate(nameof(Category), value); }
         }
         [Required(ErrorMessage = "Unit is required.")]
         public string Unit
         {
             get => unit;
-            set { unit = value; OnPropertyChanged(); }
+            set { unit = value; Validate(nameof(Unit), value); }
         }
         [Required(ErrorMessage = "Price is required.")]
-
+        [Range(0, double.MaxValue, ErrorMessage = "Price must be greater than 0.")]
         public float Price
         {
             get => price;
-            set { price = value; OnPropertyChanged(); ;}
+            set { price = value; Validate(nameof(Price), value);  }
         }
         [Required(ErrorMessage = "Quantity is required.")]
-        
+        [Range(0, double.MaxValue, ErrorMessage = "Quantity must be greater than 0.")]
         public int Quantity
         {
             get => quantity;
-            set { quantity = value; OnPropertyChanged(); }
+            set { quantity = value; Validate(nameof(Quantity), value); }
         }
-       
+
         public string Status
         {
             get => status;
             set { status = value; OnPropertyChanged(); }
         }
+        private readonly DataContext _context;
+        public ICommand EditMedicineCommand { get; }
+        public ICommand ChangeStatusCommand { get; }
         public EditMedicineVM(Medicine medicine)
         {
 
             Medicine = medicine;
 
-            Name = Medicine.Name;
-            ATCCode = Medicine.ATCCode;
-            GenericName = Medicine.GenericName;
-            Description = Medicine.Description;
-            Manufacturer = Medicine.Manufacturer;
-            Type = Medicine.Type;
-            Category = Medicine.Category;
-            Unit = Medicine.Unit;
-            Price = Medicine.Price;
-            Quantity = Medicine.Quantity;
-            Status = Medicine.Status.ToString();
+            name = Medicine.Name;
+            atcCode = Medicine.ATCCode;
+            genericName = Medicine.GenericName;
+            description = Medicine.Description;
+            manufacturer = Medicine.Manufacturer;
+            type = Medicine.Type;
+            category = Medicine.Category;
+            unit = Medicine.Unit;
+            price = Medicine.Price;
+            quantity = Medicine.Quantity;
+            status = Medicine.Status.ToString();
 
             _context = new DataContext();
             EditMedicineCommand = new RelayCommand(EditMedicine, CanSubmit);
             ChangeStatusCommand = new RelayCommand(ChangeStatusMedicine);
         }
-        private readonly DataContext _context;
-        public ICommand EditMedicineCommand { get; }
-        public ICommand ChangeStatusCommand { get; }
+      
 
         private void ChangeStatusMedicine(object parameter)
         {

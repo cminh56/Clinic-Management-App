@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks">
+                    xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+>
+    
 
 
 
@@ -563,6 +565,7 @@ BorderThickness="1"
         </Setter>
     </Style>
 
+    <!-- Styles defined here -->
     <Style x:Key="ListViewItemStyle1" TargetType="{x:Type ListViewItem}">
         <Setter Property="Background" Value="White"/>
         <Setter Property="Margin" Value="0 4 0 0"/>
@@ -613,9 +616,6 @@ BorderThickness="1"
             </Setter.Value>
         </Setter>
     </Style>
-
-    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FF000000"/>
-    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#FF000000"/>
 
     <Style x:Key="ListViewCellStyle1" TargetType="{x:Type ListViewItem}">
         <Setter Property="Background" Value="Transparent"/>

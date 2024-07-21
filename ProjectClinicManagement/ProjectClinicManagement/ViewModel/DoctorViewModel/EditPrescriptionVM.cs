@@ -16,6 +16,7 @@ using System.Windows.Input;
 using ZXing.Aztec.Internal;
 using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Views.Doctor;
+using System.Windows.Navigation;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
@@ -71,6 +72,46 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
 
             EditPrescriptionCommand.CanExecuteChanged += (sender, e) =>
+            {
+                CommandManager.InvalidateRequerySuggested();
+            };
+           
+
+
+        }
+
+        public void Validate2(string propertyName, object propertyValue)
+        {
+            var results = new List<ValidationResult>();
+
+            Validator.TryValidateProperty(propertyValue, new ValidationContext(this) { MemberName = propertyName }, results);
+
+
+            if (results.Any())
+            {
+
+                // Check if propertyName already exists in Errors
+                if (Errors.ContainsKey(propertyName))
+                {
+                    // Update existing errors for propertyName
+                    Errors[propertyName] = results.Select(r => r.ErrorMessage).ToList();
+                }
+                else
+                {
+                    // Add new entry for propertyName
+                    Errors.Add(propertyName, results.Select(r => r.ErrorMessage).ToList());
+                }
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            }
+            else
+            {
+                Errors.Remove(propertyName);
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            }
+
+
+
+            AddMedicineCommand.CanExecuteChanged += (sender, e) =>
             {
                 CommandManager.InvalidateRequerySuggested();
             };
@@ -183,17 +224,26 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public MedicineDetail Medicine { get; set; }
 
         public string Date { get; set; }
+        public ICommand BackCommand { get; }
+
+        public NavigationService _navigationService;
+        public NavigationService NavigationService
+        {
+            get { return _navigationService; }
+            set { _navigationService = value; }
+        }
+
         public EditPrescriptionVM(Prescription prescription)
         {
             Prescription = prescription;
             _context = new DataContext();
 
             var prescriptionDetails = _context.Prescriptions
-.Include(p => p.Patient_Record)
-.ThenInclude(pr => pr.Patient)
-.Include(p => p.Prescription_Medicines)
-                .ThenInclude(pm => pm.Medicine)
-.FirstOrDefault(p => p.PatientRecordId == Prescription.PatientRecordId);
+      .Include(p => p.Patient_Record)
+      .ThenInclude(pr => pr.Patient)
+      .Include(p => p.Prescription_Medicines)
+                      .ThenInclude(pm => pm.Medicine)
+      .FirstOrDefault(p => p.Id == Prescription.Id);
             if (prescriptionDetails != null)
             {
                 Prescription = prescriptionDetails;
@@ -236,12 +286,13 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                 EditPrescriptionCommand = new RelayCommand(EditPrescription, CanSubmit);
                 AddMedicineCommand = new RelayCommand(AddPrescriptionMedicine);
                 DeleteMedicineCommand = new RelayCommand(DeletePrescriptionMedicine);
+              
             }
             var allMedicines = _context.Medicines
                     .Select(m => $"{m.Id} - {m.GenericName}")
                     .ToList();
             MedicineComboBoxItems = new ObservableCollection<string>(allMedicines);
-
+            BackCommand = new RelayCommand(NavigateToBackPage);
         }
 
         private void EditPrescription(object parameter)
@@ -372,6 +423,11 @@ _context.Prescription_Medicines
 
 
         }
+        private void NavigateToBackPage(object parameter)
+        {
+            NavigationService?.Navigate(new Uri("Views/Doctor/ViewPrescription.xaml", UriKind.Relative));
+        }
+
 
     }
 

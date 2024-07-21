@@ -16,11 +16,14 @@ using System.Windows.Input;
 using ZXing.Aztec.Internal;
 using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Views.Doctor;
+using System.Windows.Navigation;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
     public class AddPrescriptionVM : BaseViewModel
     {
+        int _PrescriptionID = 0;
+        public static Patient_Record patientInstan;
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
         public bool HasErrors => Errors.Count > 0;
@@ -82,6 +85,17 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public ICommand AddMedicineCommand { get; }
         public ICommand DeleteMedicineCommand { get; }
 
+        private Patient_Record _patient;
+        public Patient_Record Patient
+        {
+            get { return (Patient_Record)_patient; }
+            set
+            {
+                _patient = value;
+                OnPropertyChanged();
+
+            }
+        }
         private Prescription _Prescription;
         public Prescription Prescription
         {
@@ -169,26 +183,37 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public MedicineDetail Medicine { get; set; }
 
         public string Date { get; set; }
-        public AddPrescriptionVM()
+        public ICommand BackCommand { get; }
+
+        public NavigationService _navigationService;
+        public NavigationService NavigationService
+        {
+            get { return _navigationService; }
+            set { _navigationService = value; }
+        }
+        public AddPrescriptionVM(Patient_Record patient)
         {
 
             _context = new DataContext();
-
+            Patient = patient;
 
             OnPropertyChanged(nameof(Dosage));
             OnPropertyChanged(nameof(Duration));
             OnPropertyChanged(nameof(Instruction));
             OnPropertyChanged(nameof(Remark));
-         
 
-       
 
-             
-           
+            int Prescriptionid = 0;
+            if(_PrescriptionID != 0)
+            {
+                Prescriptionid = _PrescriptionID;
+            }
+
+
             Medicines = new ObservableCollection<MedicineDetail>(
       _context.Prescription_Medicines
           .Include(pm => pm.Medicine)
-          .Where(pm => pm.PrescriptionID == Prescription.Id)
+          .Where(pm => pm.PrescriptionID == Prescriptionid)
           .Select(pm => new MedicineDetail
           {
               MedicineId = pm.Medicine.Id,
@@ -201,15 +226,16 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
           .ToList()
   );
 
-                AddPrescriptionCommand = new RelayCommand(AddPrescription, CanSubmit);
-                AddMedicineCommand = new RelayCommand(AddPrescriptionMedicine);
-                DeleteMedicineCommand = new RelayCommand(DeletePrescriptionMedicine);
+            AddPrescriptionCommand = new RelayCommand(AddPrescription, CanExecuteAddPrescription);
+            AddMedicineCommand = new RelayCommand(AddPrescriptionMedicine, CanExecuteAddMedicine);
+          
+            DeleteMedicineCommand = new RelayCommand(DeletePrescriptionMedicine);
             
             var allMedicines = _context.Medicines
                     .Select(m => $"{m.Id} - {m.GenericName}")
                     .ToList();
             MedicineComboBoxItems = new ObservableCollection<string>(allMedicines);
-
+            BackCommand = new RelayCommand(NavigateToBackPage);
         }
 
         private void AddPrescription(object parameter)
@@ -228,7 +254,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
                 var newPrescription = new Prescription
                 {
-                    PatientRecordId = 1,
+                    PatientRecordId = Patient.Id,
                     Dosage = Dosage,
                     Duration = Duration,
                     Instruction = Instruction,
@@ -238,11 +264,12 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
                 _context.Prescriptions.Add(newPrescription);
                 _context.SaveChanges();
-                MessageBox.Show("Prescription added successfully");
+                _PrescriptionID = newPrescription.Id;
+                MessageBox.Show("Prescription added successfully with ID: " + _PrescriptionID);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error add Prescription: {ex.Message}");
+              
             }
         }
         private bool CanSubmit(object obj)
@@ -274,7 +301,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                 var newPrescription_Medicine = new Prescription_Medicine
                 {
                     MedicineID = medicineId,
-                    PrescriptionID = Prescription.Id,
+                    PrescriptionID = _PrescriptionID,
                     Quantity = int.Parse(MQuantity),
                     Unit = Unit,
                     Price = (float.Parse(MQuantity) * medicine.Price)
@@ -286,7 +313,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                 Medicines = new ObservableCollection<MedicineDetail>(
 _context.Prescription_Medicines
     .Include(pm => pm.Medicine)
-    .Where(pm => pm.PrescriptionID == Prescription.Id)
+    .Where(pm => pm.PrescriptionID == _PrescriptionID)
     .Select(pm => new MedicineDetail
     {
         MedicineId = pm.Medicine.Id,
@@ -307,7 +334,14 @@ _context.Prescription_Medicines
             }
         }
 
-
+        private bool CanExecuteAddPrescription(object obj)
+        {
+            return _PrescriptionID == 0 && !HasErrors;
+        }
+        private bool CanExecuteAddMedicine(object obj)
+        {
+            return _PrescriptionID != 0;
+        }
         private void DeletePrescriptionMedicine(object parameter)
         {
             var medicineDetail = parameter as MedicineDetail;
@@ -317,7 +351,7 @@ _context.Prescription_Medicines
                 if (result == MessageBoxResult.Yes)
                 {
                     var prescriptionMedicine = _context.Prescription_Medicines
-                        .FirstOrDefault(pm => pm.MedicineID == medicineDetail.MedicineId && pm.PrescriptionID == Prescription.Id);
+                        .FirstOrDefault(pm => pm.MedicineID == medicineDetail.MedicineId && pm.PrescriptionID == _PrescriptionID);
 
                     if (prescriptionMedicine != null)
                     {
@@ -326,7 +360,7 @@ _context.Prescription_Medicines
                         Medicines = new ObservableCollection<MedicineDetail>(
                             _context.Prescription_Medicines
                                 .Include(pm => pm.Medicine)
-                                .Where(pm => pm.PrescriptionID == Prescription.Id)
+                                .Where(pm => pm.PrescriptionID == _PrescriptionID)
                                 .Select(pm => new MedicineDetail
                                 {
                                     MedicineId = pm.Medicine.Id,
@@ -343,7 +377,10 @@ _context.Prescription_Medicines
                 }
             }
         }
-
+        private void NavigateToBackPage(object parameter)
+        {
+            NavigationService?.Navigate(new Uri("Views/Doctor/ViewPrescription.xaml", UriKind.Relative));
+        }
     }
 
 }

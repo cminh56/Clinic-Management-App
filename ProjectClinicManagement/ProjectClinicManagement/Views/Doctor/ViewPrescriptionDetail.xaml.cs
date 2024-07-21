@@ -28,5 +28,11 @@ namespace ProjectClinicManagement.Views.Doctor
             vm = new ViewPrescriptionVM(PrescriptionVM.PrescriptionInstan);
             this.DataContext = vm;
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            vm._navigationService = NavigationService;
+
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ProjectClinicManagement.ViewModel.DoctorViewModel;
+using ProjectClinicManagement.ViewModel.PatientViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace ProjectClinicManagement.Views.Doctor
         public ViewPrescription()
         {
             InitializeComponent();
-            PrescriptionVM = new PrescriptionVM();
+            PrescriptionVM = new PrescriptionVM(PatientRecordVM.patientInstan);
             this.DataContext = PrescriptionVM;
         }
 
@@ -36,6 +37,12 @@ namespace ProjectClinicManagement.Views.Doctor
         }
 
         private void Update_Click(object sender, RoutedEventArgs e)
+        {
+            PrescriptionVM._navigationService = NavigationService;
+
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
             PrescriptionVM._navigationService = NavigationService;
 

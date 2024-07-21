@@ -16,7 +16,7 @@ using System.Diagnostics;
 using System.Security.AccessControl;
 using System.Xml.Linq;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-
+using ProjectClinicManagement.Command;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
@@ -53,6 +53,14 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public string Instruction { get; set; }
         public string Remark { get; set; }
         public string Date { get; set; }
+        public ICommand BackCommand { get; }
+
+        public NavigationService _navigationService;
+        public NavigationService NavigationService
+        {
+            get { return _navigationService; }
+            set { _navigationService = value; }
+        }
         public ViewPrescriptionVM(Prescription prescription)
         {
             Prescription = prescription;
@@ -63,7 +71,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 .ThenInclude(pr => pr.Patient)
 .Include(p => p.Prescription_Medicines)
                 .ThenInclude(pm => pm.Medicine)
-.FirstOrDefault(p => p.PatientRecordId == Prescription.PatientRecordId);
+.FirstOrDefault(p => p.Id == Prescription.Id);
             if (prescriptionDetails != null)
             {
                 Prescription = prescriptionDetails;
@@ -75,17 +83,6 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                 Instruction = Prescription.Instruction;
                 Remark = Prescription.Remark;
                 Date = Prescription.Date.ToString("d");
-
-                OnPropertyChanged(nameof(PatientName));
-                OnPropertyChanged(nameof(Phone));
-                OnPropertyChanged(nameof(PatientRecordId));
-                OnPropertyChanged(nameof(Dosage));
-                OnPropertyChanged(nameof(Duration));
-                OnPropertyChanged(nameof(Instruction));
-                OnPropertyChanged(nameof(Remark));
-                OnPropertyChanged(nameof(Date));
-
-
 
                 Medicines = new ObservableCollection<MedicineDetail>(
       _context.Prescription_Medicines
@@ -102,13 +99,16 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
           })
           .ToList()
   );
-          
 
+                BackCommand = new RelayCommand(NavigateToBackPage);
 
             }
 
         }
-
+        private void NavigateToBackPage(object parameter)
+        {
+            NavigationService?.Navigate(new Uri("Views/Doctor/ViewPrescription.xaml", UriKind.Relative));
+        }
 
 
 

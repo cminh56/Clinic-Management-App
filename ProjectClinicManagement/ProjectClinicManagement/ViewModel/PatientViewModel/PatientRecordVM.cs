@@ -91,6 +91,7 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
             set { _navigationService = value; }
         }
         public ICommand ViewPrescriptionCommand { get; set; }
+        public ICommand AddPrescriptionCommand { get; set; }
         public ICommand EditPatientRecordCommand { get; set; }
 
         public ICommand ViewPatientCommand { get; }
@@ -100,6 +101,7 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
             _context = new DataContext();
             Account a = (Account)Application.Current.Properties["User"];
             name = a.Name;
+            AddPrescriptionCommand = new RelayCommand(NavigateToAddPrescriptionPage);
             ViewPrescriptionCommand = new RelayCommand(NavigateToViewPrescriptionPage);
             EditPatientRecordCommand=new RelayCommand(NavigateToEditPatientRecordPage);
             ViewPatientCommand = new RelayCommand(NavigateToPatientPage);
@@ -117,6 +119,12 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
                 Date= _patient.Date;
             }
            
+        }
+
+        private void NavigateToAddPrescriptionPage(object parameter)
+        {
+            patientInstan = _patient;
+            NavigationService?.Navigate(new Uri("Views/Doctor/AddPrescription.xaml", UriKind.Relative));
         }
         private void NavigateToViewPrescriptionPage(object parameter)
         {
