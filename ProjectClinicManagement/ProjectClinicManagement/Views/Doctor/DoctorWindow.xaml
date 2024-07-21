@@ -51,7 +51,7 @@
                         <!--Menu Titles-->
                         <TextBlock Text="Health Care Center" Foreground="White" FontSize="22" FontWeight="SemiBold"
 DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10"/>
-                        <TextBlock Text="Hanoi, Viet Nam" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
+                        <TextBlock Text="{Binding Title}" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
 DockPanel.Dock="Top" TextAlignment="Center"/>
 
                         <!--Menu Seprator-->
