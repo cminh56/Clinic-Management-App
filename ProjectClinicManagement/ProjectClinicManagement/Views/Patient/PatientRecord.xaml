@@ -11,11 +11,11 @@
     <Grid Background="#eff2f7" >
 
         <StackPanel Margin="0,350,0,136" Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Button Margin="0,0,20,0"  Style="{StaticResource ResourceKey=addButton}" Click="ViewPatient" Content="Back To List" Command="{Binding ViewPatientCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
-            <Button Margin="0,0,20,0" Style="{StaticResource ResourceKey=addButton}" Click="addPres" Content="Add Prescription" Command="{Binding AddPrescriptionCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
-            <Button Margin="0,0,20,0" Style="{StaticResource ResourceKey=addButton}" Click="ViewPres" Content="View Prescription" Command="{Binding ViewPrescriptionCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
-            <Button Margin="0,0,20,0" Style="{StaticResource ResourceKey=addButton}" Click="UpdatePatientRecord" Content="Edit Record" Command="{Binding EditPatientRecordCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
-            <Button Margin="0,0,0,0" Style="{StaticResource ResourceKey=addButton}" Click="Printer" Content="Print Record" Command="{Binding PrinterCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <Button Margin="0,0,15,0"  Style="{StaticResource ResourceKey=addButton}" Click="ViewPatient" Content="Back To List" Command="{Binding ViewPatientCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center" Width="140"/>
+            <Button Margin="0,0,15,0" Style="{StaticResource ResourceKey=addButton}" Click="addPres" Content="Add Prescription" Command="{Binding AddPrescriptionCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <Button Margin="0,0,15,0" Style="{StaticResource ResourceKey=addButton}" Click="ViewPres" Content="View Prescription" Command="{Binding ViewPrescriptionCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <Button Margin="0,0,15,0" Style="{StaticResource ResourceKey=addButton}" Click="UpdatePatientRecord" Content="Edit Record" Command="{Binding EditPatientRecordCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center"/>
+            <Button Margin="0,0,0,0" Style="{StaticResource ResourceKey=addButton}" Click="Printer" Content="Print Record" Command="{Binding PrinterCommand}" FontSize="15" FontWeight="SemiBold" VerticalAlignment="Center" Width="140"/>
 
         </StackPanel>
         <StackPanel Margin="-239,-90,239,373">
