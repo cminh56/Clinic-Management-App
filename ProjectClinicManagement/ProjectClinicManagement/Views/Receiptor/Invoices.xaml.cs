@@ -32,7 +32,14 @@ namespace ProjectClinicManagement.Views.Receiptor
 
        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            vm.getData();
+            try
+            {
+                 vm.getData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading data: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

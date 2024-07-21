@@ -7,6 +7,7 @@ using ProjectClinicManagement.Views.Receiptor;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -169,6 +170,47 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
         private void ExportToExel(Object pra)
         {
             //Export here
+
+
+            using (var package = new OfficeOpenXml.ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Receipts");
+
+                // Thêm tiêu đề cột
+                worksheet.Cells[1, 1].Value = "Receipt ID";
+                worksheet.Cells[1, 2].Value = "Patient Name";
+                worksheet.Cells[1, 3].Value = "Patient Phone";
+                worksheet.Cells[1, 4].Value = "Date";
+                worksheet.Cells[1, 5].Value = "Status";
+                worksheet.Cells[1, 6].Value = "Total Amount";
+
+                // Thêm dữ liệu vào worksheet
+                for (int i = 0; i < Receipts.Count; i++)
+                {
+                    var receipt = Receipts[i];
+                    worksheet.Cells[i + 2, 1].Value = receipt.Id;
+                    worksheet.Cells[i + 2, 2].Value = receipt.Patient.Name;
+                    worksheet.Cells[i + 2, 3].Value = receipt.Patient.Phone;
+                    worksheet.Cells[i + 2, 4].Value = receipt.Date.ToString("yyyy-MM-dd");
+                    worksheet.Cells[i + 2, 5].Value = receipt.Status.ToString();
+                    worksheet.Cells[i + 2, 6].Value = receipt.TotalAmount;
+                }
+
+                // Lưu file Excel
+                var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+                {
+                    Filter = "Excel files (*.xlsx)|*.xlsx",
+                    FilterIndex = 2,
+                    FileName = "Receipts.xlsx"
+                };
+
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    string filePath = saveFileDialog.FileName;
+                    File.WriteAllBytes(filePath, package.GetAsByteArray());
+                    MessageBox.Show("Export to Excel successful!");
+                }
+            }
 
         }
         private void Search(Object pra)

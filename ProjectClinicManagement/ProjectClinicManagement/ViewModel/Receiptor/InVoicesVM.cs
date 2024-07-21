@@ -39,9 +39,11 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
             {
                 receipt = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(Status));
             }
         }
- 
+        public string Status => receipt?.Status.ToString();
+
         public ICommand CheckoutCommand { get; set; }
 
         public InVoicesVM(Receipt receiptIns) {
@@ -57,6 +59,7 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
 
         private void Checkout(Object pra)
         {
+
             if (receipt.Status == ProjectClinicManagement.Models.Receipt.StatusType.Paid)
             {
                 receipt.Status = ProjectClinicManagement.Models.Receipt.StatusType.Unpaid;
@@ -82,6 +85,10 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
                 }
             }
             
+
+            receipt.Status = receipt.Status == Receipt.StatusType.Paid ? Receipt.StatusType.Unpaid : Receipt.StatusType.Paid;
+            OnPropertyChanged(nameof(Status));
+ 
         }
      
         public void getData()
