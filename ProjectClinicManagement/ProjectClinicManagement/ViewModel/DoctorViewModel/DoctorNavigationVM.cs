@@ -1,6 +1,7 @@
 ﻿using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Models;
 using ProjectClinicManagement.ViewModel.Common;
+using ProjectClinicManagement.Views.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
@@ -27,12 +29,14 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public RelayCommand NavigateToPage1Command { get; }
         public RelayCommand NavigateToPage2Command { get; }
 
+        public ICommand LogoutCommand { get; }
         public DoctorNavigationVM()
         {
            Account a= (Account)Application.Current.Properties["User"];
             Title = a.Role + ": " + a.Name;
             NavigateToPage1Command = new RelayCommand(_ => NavigateToPage1());
             NavigateToPage2Command = new RelayCommand(_ => NavigateToPage2());
+            LogoutCommand = new RelayCommand(Logout);
             CurrentPage = new Views.Patient.ViewPatients();
         }
 
@@ -46,6 +50,26 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
             CurrentPage = new Views.Doctor.ViewMedicine();
 
+        }
+
+        private void Logout(object? parameter)
+        {
+            // Clear user information
+            Application.Current.Properties["UserName"] = null;
+            Application.Current.Properties["UserRole"] = null;
+            var currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
+            // Reopen login window
+            AuthenWindow loginWindow = new AuthenWindow();
+            loginWindow.Show();
+
+
+            if (currentWindow != null)
+            {
+                currentWindow.Close();
+            }
+
+            // Set the current main window to the login window
+            Application.Current.MainWindow = loginWindow;
         }
     }
 }

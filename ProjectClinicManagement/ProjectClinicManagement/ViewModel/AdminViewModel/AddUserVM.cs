@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace ProjectClinicManagement.ViewModel.AdminViewModel
 {
@@ -174,10 +175,20 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
         private readonly DataContext _context;
 
         public ICommand AddUserCommand { get; }
+
+        public ICommand BackCommand { get; }
+
+        public NavigationService _navigationService;
+        public NavigationService NavigationService
+        {
+            get { return _navigationService; }
+            set { _navigationService = value; }
+        }
         public AddUserVM()
         {
             _context = new DataContext();
             AddUserCommand = new RelayCommand(AddUser, CanSubmit);
+            BackCommand = new RelayCommand(NavigateToBackPage);
         }
 
         private void AddUser(object parameter)
@@ -248,6 +259,10 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             return new string(Enumerable.Repeat(validChars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-
+        private void NavigateToBackPage(object parameter)
+        {
+            NavigationService?.Navigate(new Uri("Views/Admin/ViewUsers.xaml", UriKind.Relative));
+        }
     }
+  
 }

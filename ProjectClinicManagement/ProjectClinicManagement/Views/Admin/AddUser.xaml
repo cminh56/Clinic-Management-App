@@ -70,5 +70,13 @@
         <StackPanel Margin="0,448,0,-114">
             <Button Style="{StaticResource addButton}" Content="Add Account" Command="{Binding AddUserCommand}" Margin="5" HorizontalAlignment="Center"/>
         </StackPanel>
+        <StackPanel Orientation="Horizontal"  Margin="0,448,0,-114"  >
+      <Button  Style="{StaticResource addButton}" Click="Back_Click" Command="{Binding BackCommand}" >
+          <StackPanel Orientation="Horizontal" >
+
+              <TextBlock Text="Back to User List"/>
+          </StackPanel>
+      </Button>
+  </StackPanel>
     </Grid>
 </Page>

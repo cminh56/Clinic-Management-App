@@ -184,23 +184,23 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
         private void LoadPrescription()
         {
-            var query = _context.Prescriptions.Include(p => p.Patient_Record).Where(p => p.PatientRecordId == Patient.Id).AsQueryable();
+            var query = _context.Prescriptions.Include(p => p.Patient_Record).Where(p => p.PatientRecordId == Patient.Id).AsQueryable().OrderByDescending(p => p.Id);
 
             if (!string.IsNullOrEmpty(SearchText))
             {
                 query = query.Where(p =>
                     p.Duration.Contains(SearchText) ||
-                    p.Remark.Contains(SearchText));
+                    p.Remark.Contains(SearchText)).OrderByDescending(p => p.Id);
             }
 
             if (FromDate.HasValue)
             {
-                query = query.Where(p => p.Date >= FromDate.Value);
+                query = query.Where(p => p.Date >= FromDate.Value).OrderByDescending(p => p.Id);
             }
 
             if (ToDate.HasValue)
             {
-                query = query.Where(p => p.Date <= ToDate.Value);
+                query = query.Where(p => p.Date <= ToDate.Value).OrderByDescending(p => p.Id);
             }
 
             var totalItems = query.Count();

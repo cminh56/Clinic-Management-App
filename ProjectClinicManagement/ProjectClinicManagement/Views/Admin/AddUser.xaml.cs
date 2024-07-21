@@ -28,6 +28,10 @@ namespace ProjectClinicManagement.Views.Admin
             addUserVM = new AddUserVM();
             this.DataContext = addUserVM;
         }
-      
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            addUserVM._navigationService = NavigationService;
+
+        }
     }
 }

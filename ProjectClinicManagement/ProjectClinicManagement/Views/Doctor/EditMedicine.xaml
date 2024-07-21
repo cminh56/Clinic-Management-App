@@ -11,7 +11,7 @@ Height="700" Width="800"
 
     <Grid Background="#eff2f7">
 
-        <StackPanel Margin="0,486,0,0" VerticalAlignment="Top">
+        <StackPanel Margin="0,570,0,0" VerticalAlignment="Top">
             <Button Style="{StaticResource ResourceKey=addButton}" Content="Edit Medicine" Command="{Binding EditMedicineCommand}" FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel Margin="-239,-90,239,373">
