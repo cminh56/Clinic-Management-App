@@ -125,8 +125,7 @@
                             <TextBlock Text="Thank you!" VerticalAlignment="Center" FontSize="20" Margin="5" FontWeight="bold"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                            <Button Command="{Binding CheckoutCommand}" Style="{StaticResource addButton}" Content="Change Status" x:Name="btnChangeStatus" VerticalAlignment="Center" FontSize="8" Margin="5" FontWeight="Light" Width="110" Height="30" Click="btnChangeStatus_Click"/>
-                            
+                            <Button Command="{Binding CheckoutCommand}" Style="{StaticResource addButton}" Content="Change Status" x:Name="btnChangeStatus" VerticalAlignment="Center" FontSize="8" Margin="5" FontWeight="Light" Width="110" Height="30"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
