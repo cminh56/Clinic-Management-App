@@ -30,7 +30,7 @@ namespace ProjectClinicManagement.Views.Receiptor
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            tbDate.DataContext = receipt.Date;
+            tbDate.DataContext = receipt.Date.ToString("dd/MM/yyyy");
             tbId.DataContext = receipt.Id;
             tbPatientName.DataContext = receipt.PatientName;
             tbAddress.DataContext = receipt.Address;

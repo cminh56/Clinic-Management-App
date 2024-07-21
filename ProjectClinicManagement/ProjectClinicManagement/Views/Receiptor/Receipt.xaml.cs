@@ -55,21 +55,35 @@ namespace ProjectClinicManagement.Views.Receiptor
                         join prescriptionMedicine in context.Prescription_Medicines on prescription.Id equals prescriptionMedicine.PrescriptionID
                         join medicine in context.Medicines on prescriptionMedicine.MedicineID equals medicine.Id
                         join receipt in context.Receipts on patient.Id equals receipt.PatientId
+                        group new { prescription, patientRecord, patient, prescriptionMedicine, medicine, receipt } by new
+                        {
+                            receipt.Id,
+                            patient.Name,
+                            patient.Age,
+                            patient.Weight,
+                            patient.Height,
+                            patient.Address,
+                            patient.Phone,
+                            patientRecord.Symptoms,
+                            receipt.TotalAmount,
+                            receipt.Date,
+                            receipt.Status
+                        } into grouped
                         select new ReceiptViewModel
                         {
-                            Id = receipt.Id,
-                            PatientName = patient.Name,
-                            Age = patient.Age,
-                            Weight = patient.Weight,
-                            Height = patient.Height,
-                            Address = patient.Address,
-                            Phone = patient.Phone,
-                            Symptoms = patientRecord.Symptoms,
-                            MedicineName = medicine.Name,
-                            Quantity = prescriptionMedicine.Quantity,
-                            TotalPrice = receipt.TotalAmount,
-                            Date = receipt.Date,
-                            Status = receipt.Status
+                            Id = grouped.Key.Id,
+                            PatientName = grouped.Key.Name,
+                            Age = grouped.Key.Age,
+                            Weight = grouped.Key.Weight,
+                            Height = grouped.Key.Height,
+                            Address = grouped.Key.Address,
+                            Phone = grouped.Key.Phone,
+                            Symptoms = grouped.Key.Symptoms,
+                            MedicineName = string.Join(", ", grouped.Select(g => g.medicine.Name).Distinct()),
+                            Quantity = grouped.Sum(g => g.prescriptionMedicine.Quantity),
+                            TotalPrice = grouped.Sum(g => g.prescriptionMedicine.Quantity * g.prescriptionMedicine.Price),
+                            Date = grouped.Key.Date,
+                            Status = grouped.Key.Status
                         };
 
             AllReceipts = new ObservableCollection<ReceiptViewModel>(query.ToList());
@@ -193,7 +207,7 @@ namespace ProjectClinicManagement.Views.Receiptor
                     var file = new FileInfo(saveFileDialog.FileName);
                     package.SaveAs(file);
 
-                    MessageBox.Show("Export successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Export successful ! Let's check it !", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
         }
