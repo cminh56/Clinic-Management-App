@@ -30,7 +30,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!-- Name -->
@@ -86,10 +86,18 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
+                    <StackPanel Orientation="Horizontal"  >
+                        <Button  Style="{StaticResource addButton}" Click="Back_Click" Command="{Binding BackCommand}" >
+                            <StackPanel Orientation="Horizontal" >
 
+                                <TextBlock Text="Back to Prescription"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
 
                     <!--Memeber Datagrid-->
                 </StackPanel>
+               
             </Grid>
 
         </ScrollViewer>

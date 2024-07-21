@@ -1,4 +1,5 @@
 ﻿using ProjectClinicManagement.ViewModel.DoctorViewModel;
+using ProjectClinicManagement.ViewModel.PatientViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,13 @@ namespace ProjectClinicManagement.Views.Doctor
         {
   
             InitializeComponent();
-            vm = new AddPrescriptionVM();
+            vm = new AddPrescriptionVM(PatientRecordVM.patientInstan);
             this.DataContext = vm;
+        }
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            vm._navigationService = NavigationService;
+
         }
     }
 }

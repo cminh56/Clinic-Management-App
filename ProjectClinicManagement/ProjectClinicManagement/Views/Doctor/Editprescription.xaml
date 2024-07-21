@@ -77,6 +77,14 @@
                     <TextBlock Text="Unit" Margin="5" Grid.Row="8" Grid.Column="0"/>
                     <TextBox x:Name="Unit"  Text="{Binding Unit }" Margin="5" Grid.Row="9" Grid.Column="0"/>
                     <Button Content="Add medicine" Command="{Binding AddMedicineCommand}" Grid.Row="10" Grid.Column="0" Margin="5"/>
+                    <StackPanel Orientation="Horizontal"  >
+                        <Button  Style="{StaticResource addButton}" Click="Back_Click" Command="{Binding BackCommand}" >
+                            <StackPanel Orientation="Horizontal" >
+
+                                <TextBlock Text="Back to Prescription"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel Grid.Row="11" Grid.ColumnSpan="2" Margin="200,0,0,-214" >
                     <DataGrid ItemsSource="{Binding Medicines}" SelectedItem="{Binding SelectedMedicine}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Width="1000"  >

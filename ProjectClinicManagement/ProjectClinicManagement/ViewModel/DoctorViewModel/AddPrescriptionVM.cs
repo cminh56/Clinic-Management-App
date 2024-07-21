@@ -16,12 +16,14 @@ using System.Windows.Input;
 using ZXing.Aztec.Internal;
 using ProjectClinicManagement.Command;
 using ProjectClinicManagement.Views.Doctor;
+using System.Windows.Navigation;
 
 namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 {
     public class AddPrescriptionVM : BaseViewModel
     {
         int _PrescriptionID = 0;
+        public static Patient_Record patientInstan;
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
         public bool HasErrors => Errors.Count > 0;
@@ -83,6 +85,17 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public ICommand AddMedicineCommand { get; }
         public ICommand DeleteMedicineCommand { get; }
 
+        private Patient_Record _patient;
+        public Patient_Record Patient
+        {
+            get { return (Patient_Record)_patient; }
+            set
+            {
+                _patient = value;
+                OnPropertyChanged();
+
+            }
+        }
         private Prescription _Prescription;
         public Prescription Prescription
         {
@@ -170,11 +183,19 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
         public MedicineDetail Medicine { get; set; }
 
         public string Date { get; set; }
-        public AddPrescriptionVM()
+        public ICommand BackCommand { get; }
+
+        public NavigationService _navigationService;
+        public NavigationService NavigationService
+        {
+            get { return _navigationService; }
+            set { _navigationService = value; }
+        }
+        public AddPrescriptionVM(Patient_Record patient)
         {
 
             _context = new DataContext();
-
+            Patient = patient;
 
             OnPropertyChanged(nameof(Dosage));
             OnPropertyChanged(nameof(Duration));
@@ -214,7 +235,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
                     .Select(m => $"{m.Id} - {m.GenericName}")
                     .ToList();
             MedicineComboBoxItems = new ObservableCollection<string>(allMedicines);
-
+            BackCommand = new RelayCommand(NavigateToBackPage);
         }
 
         private void AddPrescription(object parameter)
@@ -233,7 +254,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
 
                 var newPrescription = new Prescription
                 {
-                    PatientRecordId = 1,
+                    PatientRecordId = Patient.Id,
                     Dosage = Dosage,
                     Duration = Duration,
                     Instruction = Instruction,
@@ -356,7 +377,10 @@ _context.Prescription_Medicines
                 }
             }
         }
-
+        private void NavigateToBackPage(object parameter)
+        {
+            NavigationService?.Navigate(new Uri("Views/Doctor/ViewPrescription.xaml", UriKind.Relative));
+        }
     }
 
 }
