@@ -183,12 +183,13 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
                 Patient.Diagnosis = Diagnosis;
                 Patient.Disease = Disease;
                 Patient.DoctorId = a.Id;
+                Patient.Doctor = a;
                 
 
 
                 _context.Patient_Records.Update(Patient);
                 _context.SaveChanges();
-                MessageBox.Show("Patient updated successfully");
+                MessageBox.Show("Patient Record updated successfully");
             }
             catch (Exception ex)
             {

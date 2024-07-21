@@ -127,7 +127,6 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         public PatientVM()
         {
             _context = new DataContext();
-            Application.Current.Properties["User"] = _context.Account.FirstOrDefault(u => u.UserName == "Admin");
             sort = 0;
             by = 0;
             exelService = new ExelService();
@@ -153,7 +152,6 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         public PatientVM(int a,int b)
         {
             _context = new DataContext();
-            Application.Current.Properties["User"] = _context.Account.FirstOrDefault(u => u.UserName == "Admin");
             sort = a;
             by = b;
             exelService = new ExelService();

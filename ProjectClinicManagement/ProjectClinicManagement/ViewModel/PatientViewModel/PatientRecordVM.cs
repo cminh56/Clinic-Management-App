@@ -99,8 +99,6 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         public PatientRecordVM(Patient patient)
         {
             _context = new DataContext();
-            Account a = (Account)Application.Current.Properties["User"];
-            name = a.Name;
             AddPrescriptionCommand = new RelayCommand(NavigateToAddPrescriptionPage);
             ViewPrescriptionCommand = new RelayCommand(NavigateToViewPrescriptionPage);
             EditPatientRecordCommand=new RelayCommand(NavigateToEditPatientRecordPage);
