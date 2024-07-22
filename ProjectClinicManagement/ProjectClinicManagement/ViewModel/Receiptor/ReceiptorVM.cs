@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using static ProjectClinicManagement.Models.Receipt;
 
 namespace ProjectClinicManagement.ViewModel.Receiptor
 {
@@ -160,7 +161,7 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
 
         private void getListReceipts()
         {
-            var query = context.Receipts.Include(r => r.Patient).AsQueryable();
+            var query = context.Receipts.Include(r => r.Patient).OrderBy(r => r.Status == StatusType.Unpaid ? 0 : 1).ThenBy(r => r.Status).AsQueryable();
             Totalpage = query.ToList().Count - 1 / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage + 1;
             Receipts = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
 

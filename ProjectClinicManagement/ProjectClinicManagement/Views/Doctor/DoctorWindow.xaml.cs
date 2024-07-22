@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectClinicManagement.ViewModel.DoctorViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,13 @@ namespace ProjectClinicManagement.Views.Doctor
     /// </summary>
     public partial class DoctorWindow : Window
     {
+        private DoctorNavigationVM navigationVM;
         public DoctorWindow()
         {
             InitializeComponent();
+            navigationVM = new DoctorNavigationVM();
+            this.DataContext = navigationVM;
+
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

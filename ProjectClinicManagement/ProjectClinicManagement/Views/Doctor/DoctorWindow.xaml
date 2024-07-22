@@ -9,9 +9,7 @@
         mc:Ignorable="d"
         Title="DoctorWindow"       Height="{x:Static SystemParameters.PrimaryScreenHeight}" 
         Width="{x:Static SystemParameters.PrimaryScreenWidth}">
-    <Window.DataContext>
-        <vm:DoctorNavigationVM />
-    </Window.DataContext>
+    
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis"/>
