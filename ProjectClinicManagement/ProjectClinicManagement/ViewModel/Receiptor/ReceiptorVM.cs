@@ -137,11 +137,11 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
             if (isCashChecked)
             {
 
-                Invoices invoices = new Invoices();
+                Invoices invoices = new Invoices(receipt);
                 invoices.Show();
             }
             if(IsCardChecked) { 
-              VietQRPaymentAPI paymentAPI = new VietQRPaymentAPI();
+              VietQRPaymentAPI paymentAPI = new VietQRPaymentAPI(receipt);
                 paymentAPI.Show();
             }
         }

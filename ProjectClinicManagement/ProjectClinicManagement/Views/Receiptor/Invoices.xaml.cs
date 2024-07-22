@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ProjectClinicManagement.Data;
+using ProjectClinicManagement.Models;
 using ProjectClinicManagement.ViewModel.Receiptor;
 
 
@@ -23,10 +24,10 @@ namespace ProjectClinicManagement.Views.Receiptor
     public partial class Invoices : Window
     {
         private InVoicesVM vm;
-        public Invoices()
+        public Invoices(Receipt receipt)
         {
             InitializeComponent();
-            vm = new InVoicesVM(ReceiptorVM.receiptInsta);
+            vm = new InVoicesVM(receipt);
             this.DataContext = vm;
         }
 

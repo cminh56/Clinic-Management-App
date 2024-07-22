@@ -27,7 +27,7 @@ namespace ProjectClinicManagement.Views.Admin
             adminNavigation = new AdminNavigationVM();
             this.DataContext = adminNavigation;
 
-
+         
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {

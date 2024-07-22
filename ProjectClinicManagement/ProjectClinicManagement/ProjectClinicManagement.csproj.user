@@ -49,6 +49,9 @@
     <Compile Update="Views\Doctor\ViewPrescription.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Doctor\ViewPrescriptionDetail.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Doctor\DoctorWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -56,15 +59,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Receiptor\Invoices.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Receiptor\ReceiptDetails.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Receiptor\ReceiptorWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Receiptor\ViewReceipts.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\UI Template\CallMessageBox.xaml.cs">
@@ -135,25 +129,16 @@
     <Page Update="Views\Doctor\ViewPrescription.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Doctor\DoctorWindow.xaml">
+    <Page Update="Views\Doctor\ViewPrescriptionDetail.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Doctor\ViewPrescriptionDetail.xaml">
+    <Page Update="Views\Doctor\DoctorWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Patient\AddPatient.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Receiptor\Invoices.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Receiptor\ReceiptDetails.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Receiptor\ReceiptorWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Receiptor\ViewReceipts.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UI Template\CallMessageBox.xaml">

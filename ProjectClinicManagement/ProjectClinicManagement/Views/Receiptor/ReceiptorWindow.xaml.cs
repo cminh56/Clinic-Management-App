@@ -26,8 +26,14 @@ namespace ProjectClinicManagement.Views.Receiptor
             InitializeComponent();
             receiptorVM = new ReceiptorNavigationVM();
             this.DataContext = receiptorVM;
+            StatusChangedNotifier.StatusChanged += OnStatusChanged;
         }
 
-       
+        private void OnStatusChanged()
+        {
+            // Reload data
+            receiptorVM.ReceiptPage.Execute(this);
+        }
+
     }
 }

@@ -64,7 +64,7 @@
                 <!-- Manufacturer -->
                 <TextBlock FontWeight="SemiBold" Text="Date" Margin="5" Grid.Row="6" Grid.Column="1"/>
                 <TextBox Height="30" Style="{StaticResource TextBoxStyle69}" x:Name="Date" IsReadOnly="True" Text="{Binding Date}" Margin="5" Grid.Row="7" Grid.Column="1"/>
-                <TextBlock FontWeight="SemiBold" Text="List Medicines" Margin="5" Grid.Row="8" Grid.Column="0"/>
+                <TextBlock FontWeight="Bold" Text="List Medicines" Margin="5" Grid.Row="8" Grid.Column="0" FontSize="25" HorizontalAlignment="Center"/>
                 <StackPanel Grid.Row="9" Grid.ColumnSpan="2" Margin="0,0,0,-214" >
                     <DataGrid ItemsSource="{Binding Medicines}" SelectedItem="{Binding Medicine}" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Width="1000"  >
                         <DataGrid.Columns>
@@ -83,14 +83,36 @@
                         </DataGrid.Columns>
 
                     </DataGrid>
-                    <StackPanel Orientation="Horizontal"  >
-                        <Button  Style="{StaticResource addButton}" Click="Back_Click" Command="{Binding BackCommand}" >
-                            <StackPanel Orientation="Horizontal" >
+                    <StackPanel Orientation="Vertical" Width="331" Height="109" HorizontalAlignment="Left">
+                        <!-- First row: Payment method text -->
+                        <StackPanel Orientation="Horizontal" Height="39">
+                            <TextBlock FontWeight="SemiBold" FontSize="15" Margin="5" Height="29"><Run Text="Payment method:"/></TextBlock>
+                        </StackPanel>
 
-                                <TextBlock Text="Back to Prescription"/>
-                            </StackPanel>
-                        </Button>
+                        <!-- Second row: Checkboxes -->
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Style="{StaticResource CheckBoxStyle1}" Margin="5" Content="Cash" x:Name="cbCash"  IsChecked="{Binding IsCashChecked}"/>
+                            <CheckBox Style="{StaticResource CheckBoxStyle1}" Margin="5" Content="Card" x:Name="cbCard" IsChecked="{Binding IsCardChecked}"/>
+                        </StackPanel>
+
+                        <!-- Third row: Button -->
+                        <StackPanel Orientation="Horizontal">
+                            <Button Command="{Binding CheckoutCommand}" Style="{StaticResource addButton}" x:Name="btCheckOut" Content="Check Out" Margin="1" Width="100" Height="25"/>
+                        </StackPanel>
                     </StackPanel>
+
+                    <DockPanel LastChildFill="True">
+                        <!-- Other content in your application -->
+
+                        <!-- The following StackPanel will be docked to the bottom -->
+                        <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left">
+                            <Button Style="{StaticResource addButton}" Click="Back_Click" Command="{Binding BackCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Back to Prescription"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </DockPanel>
 
                     <!--Memeber Datagrid-->
                 </StackPanel>
