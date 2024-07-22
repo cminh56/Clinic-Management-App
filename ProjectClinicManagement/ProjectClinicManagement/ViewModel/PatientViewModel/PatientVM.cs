@@ -355,7 +355,7 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
         var saveFileDialog = new SaveFileDialog
         {
             Filter = "Excel files (*.xlsx)|*.xlsx",
-            FileName = "AccountsList.xlsx"
+            FileName = "PatientsList.xlsx"
         };
 
         if (saveFileDialog.ShowDialog() == true)
