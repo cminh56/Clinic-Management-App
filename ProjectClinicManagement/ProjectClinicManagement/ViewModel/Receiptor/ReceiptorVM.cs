@@ -161,7 +161,8 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
 
         private void getListReceipts()
         {
-            var query = context.Receipts.Include(r => r.Patient).OrderBy(r => r.Status == StatusType.Unpaid ? 0 : 1).ThenBy(r => r.Status).AsQueryable();
+            var query = context.Receipts.Include(r => r.Patient)
+                .OrderBy(r => r.Status == StatusType.Unpaid ? 0 : 1).ThenBy(r => r.Status).AsQueryable();
             Totalpage = query.ToList().Count - 1 / _itemsPerPage == 0 ? 1 : query.ToList().Count / _itemsPerPage + 1;
             Receipts = query.Skip((_currentPage - 1) * _itemsPerPage).Take(_itemsPerPage).ToList();
 
@@ -216,7 +217,9 @@ namespace ProjectClinicManagement.ViewModel.Receiptor
         }
         private void Search(Object pra)
         {
-            var query = context.Receipts.Include(r => r.Patient).AsQueryable();
+            var query = context.Receipts.Include(r => r.Patient)
+                .OrderBy(r => r.Status == StatusType.Unpaid ? 0 : 1)
+                .ThenBy(r => r.Status).AsQueryable();
             if (!string.IsNullOrEmpty(SearchText))
             {
                 query = query.Where(p => p.Patient.Name.Contains(SearchText) || p.Patient.Phone.Contains(SearchText));

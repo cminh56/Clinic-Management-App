@@ -70,7 +70,7 @@ namespace ProjectClinicManagement.Helper
                                 This email is from ClinicManagement system,
                                 Your account has been created. Please use the following credential to login:
                                 
-                                User name: {account.Email}
+                                User name: {account.UserName}
                                 Password:  {password}
                                 
                                 If anything wrong, please reach out to clinicManagement@gmail.com. We are so sorry for this inconvenience.

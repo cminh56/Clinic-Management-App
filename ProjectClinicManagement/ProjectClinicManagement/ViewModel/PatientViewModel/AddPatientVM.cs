@@ -96,21 +96,21 @@ namespace ProjectClinicManagement.ViewModel.PatientViewModel
             set { name = value; Validate(nameof(Name), value); }
         }
         [Required(ErrorMessage = "Age is required.")]
-        [Range(0, int.MaxValue, ErrorMessage = "Age must be greater than 0.")]
+        [Range(1, int.MaxValue, ErrorMessage = "Age must be greater than 0.")]
         public int Age
         {
             get { return age; }
             set { age = value; Validate(nameof(Age), value); }
         }
         [Required(ErrorMessage = "Weight is required.")]
-        [Range(0, double.MaxValue, ErrorMessage = "Weight must be greater than 0.")]
+        [Range(1, double.MaxValue, ErrorMessage = "Weight must be greater than 0.")]
         public double Weight
         {
             get { return weight; }
             set { weight = value; Validate(nameof(Weight), value); }
         }
         [Required(ErrorMessage = "Height is required.")]
-        [Range(0, double.MaxValue, ErrorMessage = "Height must be greater than 0.")]
+        [Range(1, double.MaxValue, ErrorMessage = "Height must be greater than 0.")]
         public double Height
         {
             get { return height; }
