@@ -42,7 +42,7 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             Name = User.Name;
 
             NavigateToPage1Command = new RelayCommand(_ => NavigateToPage1());
-            NavigateToDoctorCommand= new RelayCommand(_ => NavigateToDoctor());
+            NavigateToDoctorCommand = new RelayCommand(_ => NavigateToDoctor());
             NavigateToReceiptorCommand = new RelayCommand(_ => NavigateToReceiptor());
             LogoutCommand = new RelayCommand(Logout);
             CurrentPage = new Views.Admin.ViewUsers();
@@ -77,14 +77,14 @@ namespace ProjectClinicManagement.ViewModel.AdminViewModel
             AuthenWindow loginWindow = new AuthenWindow();
             loginWindow.Show();
 
-             
-    if (currentWindow != null)
-    {
-        currentWindow.Close();
-    }
 
-    // Set the current main window to the login window
-    Application.Current.MainWindow = loginWindow;
+            if (currentWindow != null)
+            {
+                currentWindow.Close();
+            }
+
+            // Set the current main window to the login window
+            Application.Current.MainWindow = loginWindow;
         }
     }
 }

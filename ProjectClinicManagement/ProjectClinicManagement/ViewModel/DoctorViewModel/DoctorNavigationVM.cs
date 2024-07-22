@@ -57,6 +57,7 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
             // Clear user information
             Application.Current.Properties["UserName"] = null;
             Application.Current.Properties["UserRole"] = null;
+            Application.Current.Properties["User"] = null;
             var currentWindow = Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive);
             // Reopen login window
             AuthenWindow loginWindow = new AuthenWindow();
@@ -72,4 +73,5 @@ namespace ProjectClinicManagement.ViewModel.DoctorViewModel
             Application.Current.MainWindow = loginWindow;
         }
     }
+
 }
