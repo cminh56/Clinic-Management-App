@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>  
 
         <TextBlock Grid.Row="0" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10">Receipt</TextBlock>
 
@@ -33,16 +33,16 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Grid.Column="0" Margin="5">Date From:</Label>
-            <DatePicker Grid.Column="1" Margin="5" Name="dtpDateFrom" Width="200" SelectedDate="{Binding DateFrom, UpdateSourceTrigger=PropertyChanged}"/>
-            <Label Grid.Column="2" Margin="5">Date To:</Label>
-            <DatePicker Grid.Column="3" Margin="5" Name="dtpDateTo" Width="200" SelectedDate="{Binding DateTo, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0" Grid.Row="2" Margin="5">Date From:</Label>
+            <DatePicker Grid.Row="2" Grid.Column="1" Margin="5" Name="dtpDateFrom" Width="200" SelectedDate="{Binding DateFrom, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Row="2" Grid.Column="2" Margin="5">Date To:</Label>
+            <DatePicker Grid.Column="3" Grid.Row="2" Margin="5" Name="dtpDateTo" Width="200" SelectedDate="{Binding DateTo, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Grid.Column="0" Grid.Row="2" Margin="5">Search by Phone's Patient:</Label>
-            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle69}" Grid.Column="1" Grid.Row="2" Margin="5" Name="tbSearchPhone" Width="200"/>
-            <Label Grid.Column="2" Grid.Row="2" Margin="5" Content="Status"/>
+            <Label Grid.Column="0"  Margin="5">Search by Phone's Patient:</Label>
+            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle69}" Grid.Column="1"  Margin="5" Name="tbSearchPhone" Width="200"/>
+            <Label Grid.Column="2"  Margin="5" Content="Status"/>
             <Button Style="{StaticResource addButton}" Command="{Binding SearchCommand}" Grid.Column="3" Grid.Row="3" Width="90" Content="Search"  HorizontalAlignment="Center" Margin="0,10,0,10"/>
-            <ComboBox Text="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="200" Height="26">
+            <ComboBox Text="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="26">
                 <ComboBoxItem Content=""/>
                 <ComboBoxItem Content="Paid"/>
                 <ComboBoxItem Content="Unpaid"/>

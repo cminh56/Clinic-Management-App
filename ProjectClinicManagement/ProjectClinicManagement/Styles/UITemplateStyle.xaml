@@ -318,7 +318,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Border Background="White"
+                    <Border x:Name="Border" Background="White"
 BorderBrush="Gray"
 BorderThickness="1"
 CornerRadius="15">
@@ -326,6 +326,15 @@ CornerRadius="15">
                                       HorizontalAlignment="Left" 
                                       VerticalAlignment="Center"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#d9d9d9" TargetName="Border"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#7b5cd6"/>
+                            <Setter TargetName="Border" Property="BorderThickness" Value="2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
