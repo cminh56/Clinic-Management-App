@@ -24,10 +24,7 @@
             </Grid.RowDefinitions>
 
             <!--Menu Icon-->
-            <Button Margin="20 28 0 35" Style="{StaticResource topButton}">
-                <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15"/>
-            </Button>
-            <Border Grid.Row="1" Background="#623ed0" CornerRadius="0 50 0 30">
+            <Border Margin="0 50 0 0" Grid.Row="1" Background="#623ed0" CornerRadius="0 50 0 30">
                 <DockPanel>
                     <!--Menu Logo-->
                     <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100"
