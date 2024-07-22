@@ -10,47 +10,47 @@
       Title="ViewReceipts">
 
     <Grid Background="White">
-       
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10">Prescriptions</TextBlock>
+
+        <Grid Grid.Row="1" Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            <Label Grid.Column="0" Margin="5">Date From:</Label>
+            <DatePicker Grid.Column="1" Margin="5" Name="dtpDateFrom" Width="200" SelectedDate="{Binding DateFrom, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="2" Margin="5">Date To:</Label>
+            <DatePicker Grid.Column="3" Margin="5" Name="dtpDateTo" Width="200" SelectedDate="{Binding DateTo, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <TextBlock Grid.Row="0" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10">Prescriptions</TextBlock>
-
-            <Grid Grid.Row="1" Margin="0,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Label Grid.Column="0" Margin="5">Date From:</Label>
-                <DatePicker Grid.Column="1" Margin="5" Name="dtpDateFrom" Width="200" SelectedDate="{Binding DateFrom, UpdateSourceTrigger=PropertyChanged}"/>
-                <Label Grid.Column="2" Margin="5">Date To:</Label>
-                <DatePicker Grid.Column="3" Margin="5" Name="dtpDateTo" Width="200" SelectedDate="{Binding DateTo, UpdateSourceTrigger=PropertyChanged}"/>
-
-                <Label Grid.Column="0" Grid.Row="2" Margin="5">Search by Phone's Patient:</Label>
-                <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle69}" Grid.Column="1" Grid.Row="2" Margin="5" Name="tbSearchPhone" Width="200"/>
-                <Label Grid.Column="2" Grid.Row="2" Margin="5" Content="Status"/>
-                <Button Style="{StaticResource addButton}" Command="{Binding SearchCommand}" Grid.Column="3" Grid.Row="3" Width="90" Content="Search"  HorizontalAlignment="Center" Margin="0,10,0,10"/>
-                <ComboBox Text="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" HorizontalAlignment="Left" Margin="5,9,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120">
-                    <ComboBoxItem Content=""/>
-                    <ComboBoxItem Content="Paid"/>
+            <Label Grid.Column="0" Grid.Row="2" Margin="5">Search by Phone's Patient:</Label>
+            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxStyle69}" Grid.Column="1" Grid.Row="2" Margin="5" Name="tbSearchPhone" Width="200"/>
+            <Label Grid.Column="2" Grid.Row="2" Margin="5" Content="Status"/>
+            <Button Style="{StaticResource addButton}" Command="{Binding SearchCommand}" Grid.Column="3" Grid.Row="3" Width="90" Content="Search"  HorizontalAlignment="Center" Margin="0,10,0,10"/>
+            <ComboBox Text="{Binding Status, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="200" Height="26">
+                <ComboBoxItem Content=""/>
+                <ComboBoxItem Content="Paid"/>
                 <ComboBoxItem Content="Unpaid"/>
-                    <ComboBoxItem Content="Cancel"/>
-                </ComboBox>
-            </Grid>
+                <ComboBoxItem Content="Cancel"/>
+            </ComboBox>
+        </Grid>
 
-            <DataGrid ItemsSource="{Binding Receipts}" 
+        <DataGrid ItemsSource="{Binding Receipts}" 
 SelectedItem="{Binding Receipt}" 
 Style="{DynamicResource DataGridStyle1}" 
 CellStyle="{DynamicResource DataGridCellStyle1}" 
@@ -61,58 +61,59 @@ Margin="0,10,0,0"
 x:Name="lvData">
 
 
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="No" Width="50" Binding="{Binding Id}"/>
-                    <DataGridTextColumn Header="Patients Name" Width="100" Binding="{Binding Patient.Name}"/>
-                    <DataGridTextColumn Header="Patients Age" Width="100" Binding="{Binding Patient.Age}"/>
-                    <DataGridTextColumn Header="Phone" Width="100" Binding="{Binding Patient.Phone}"/>
-                    <DataGridTextColumn Header="Address" Width="100" Binding="{Binding Patient.Address}"/>
-                    <DataGridTextColumn Header="Total Price" Width="100" Binding="{Binding TotalAmount}"/>
-                    <DataGridTextColumn Header="Date" Width="100" Binding="{Binding Date}"/>
-                    <DataGridTextColumn Header="Satus" Width="100" Binding="{Binding Status}"/>
-                    <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="No" Width="50" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Patients Name" Width="100" Binding="{Binding Patient.Name}"/>
+                <DataGridTextColumn Header="Patients Age" Width="100" Binding="{Binding Patient.Age}"/>
+                <DataGridTextColumn Header="Phone" Width="100" Binding="{Binding Patient.Phone}"/>
+                <DataGridTextColumn Header="Address" Width="100" Binding="{Binding Patient.Address}"/>
+                <DataGridTextColumn Header="Total Price" Width="100" Binding="{Binding TotalAmount}"/>
+                <DataGridTextColumn Header="Date" Width="100" Binding="{Binding Date}"/>
+                <DataGridTextColumn Header="Satus" Width="100" Binding="{Binding Status}"/>
+                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
                                 <Button  Style="{StaticResource gridEditButton}" Click="Update_Click"  Command="{Binding DataContext.ReceiptDetailsCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}">
-                                        <Icon:PackIconMaterial Kind="Eye" Style="{StaticResource gridButtonIcon}" />
-                                    </Button>
+                                    <Icon:PackIconMaterial Kind="Eye" Style="{StaticResource gridButtonIcon}" />
+                                </Button>
 
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
 
-                    </DataGridTemplateColumn>
+                </DataGridTemplateColumn>
 
 
 
-                </DataGrid.Columns>
-            </DataGrid>
+            </DataGrid.Columns>
+        </DataGrid>
 
-            <Grid Grid.Row="3" Margin="0,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+        <Grid Grid.Row="3" Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal" Margin="25,8,212,8" Grid.RowSpan="2" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" Margin="10,32,442,-27" Grid.Row="2">
                 <TextBlock Margin="5">Payment method:</TextBlock>
-                <CheckBox Style="{StaticResource CheckBoxStyle1}" Margin="5" Content="Cash" x:Name="cbCash"  IsChecked="{Binding IsCashChecked}"/>
+                <CheckBox Style="{StaticResource CheckBoxStyle1}" Margin="5" Content="Cash" x:Name="cbCash" IsChecked="{Binding IsCashChecked}"/>
                 <CheckBox Style="{StaticResource CheckBoxStyle1}" Margin="5" Content="Card" x:Name="cbCard" IsChecked="{Binding IsCardChecked}"/>
-                <Button Command="{Binding CheckoutCommand}" Style="{StaticResource addButton}" x:Name="btCheckOut" Content="Check Out" Margin="1" Width="100" Height="25"></Button>
+                <Button Command="{Binding CheckoutCommand}" Style="{StaticResource addButton}" x:Name="btCheckOut" Content="Check Out" Margin="15,1,1,1" Width="97" Height="25"></Button>
             </StackPanel>
-            <Button Command="{Binding ExportToExelCommand}" Style="{StaticResource addButton}" Margin="0,11,113,10" Content="Export to Excel file" Grid.RowSpan="2" Grid.Row="1" x:Name="btnExportExcel" Width="239" Height="25"/>
-            </Grid>
-      
+
+            <Button Command="{Binding ExportToExelCommand}" Style="{StaticResource addButton}" Margin="0,31,245,-24" Content="Export to Excel file" Grid.Row="2" x:Name="btnExportExcel" Width="155" Height="25"/>
+        </Grid>
+
         <!--Pagination Section-->
-        <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#dee4ec" BorderThickness="1"
-   CornerRadius="5" Padding="5" Background="White" Margin="0 10 10 10">
+        <Border Grid.Row="3" HorizontalAlignment="Right" BorderBrush="#dee4ec" BorderThickness="1"
+   CornerRadius="5" Padding="5" Background="White" Margin="0,36,10,7">
             <StackPanel Orientation="Horizontal">
                 <Button Command="{Binding Prepage}" Style="{StaticResource paginButton}">
                     <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource paginButtonIcon}"/>
@@ -137,5 +138,5 @@ x:Name="lvData">
 
         </Border>
     </Grid>
-    
+
 </Page>
